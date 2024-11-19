@@ -1,7 +1,7 @@
 <template>
     <div class="navbar mb-3" v-show="isNavbarVisible">
         <div id="nav">
-            <div><router-link :to="{ name: 'Order' }">Ordens de venda</router-link></div>
+            <div><router-link :to="{ name: 'Order' }">Ordens de vendas</router-link></div>
         </div>
     </div>
 </template>
