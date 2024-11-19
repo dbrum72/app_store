@@ -28,7 +28,7 @@
         <div class="wrap">
             <div class="custom-quantity">
                 <input type="button" class="control" value="-" @click="this.decrement">
-                <input type="text" class="quantity" v-model="product.quantity" data-max="9999" size="1" value="1"
+                <input type="text" class="quantity" v-model="quantity" data-max="9999" size="1"
                     readonly="readonly">
                 <input type="button" class="control" value="+" @click="this.increment">
             </div>
@@ -39,7 +39,6 @@
                     @click="PUSH_CART(product)"></i>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -60,16 +59,22 @@ export default {
         'alt'
     ],
 
+    data() {
+        return {
+            quantity: 1
+        }
+    },
+
     mixins: [AbstractMixin],
 
     methods: {
 
         increment() {
-            this.product.quantity++;
+            this.quantity++;
         },
 
         decrement() {
-            this.product.quantity--;
+            this.quantity--;
         }
     }
 };
