@@ -1,0 +1,7 @@
+1. (terminal) npm install -g @vue/cli (caso o VUE não esteja instalado no ambiente de desenvolvimento)
+
+2. (terminal) vue create "name_projeto"
+
+3. 
+
+
