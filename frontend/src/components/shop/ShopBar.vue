@@ -1,7 +1,8 @@
 <template>
     <div class="navbar mb-3" v-show="isNavbarVisible">
         <div id="nav">
-            <div><router-link :to="{ name: 'Order' }">Ordens de venda</router-link></div>
+            <div><router-link :to="{ name: 'Order' }">Ordens de venda</router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -25,7 +26,7 @@ export default {
 <style scoped>
 .navbar {
     display: flex;
-    flex-flow: column nowrap; 
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
     padding: 20px;
