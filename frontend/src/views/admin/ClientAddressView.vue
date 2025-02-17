@@ -1,7 +1,7 @@
 <template>
     <div class="content" :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="fontSr12w600Cg">ENDEREÇO (Cliente)</span>
+            <span class="font12rW600TuCg">ENDEREÇO (Cliente)</span>
         </div>
 
         <div class="p-2">

@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="fontSr12w600Cg">CLIENTE</span>
+            <span class="font12rW600TuCg">CLIENTE</span>
         </div>
 
         <div class="p-2">
@@ -42,8 +42,8 @@
                             <tr v-for="(client, index) in clients" :key="index">
                                 <td>{{ client.id }}</td>
                                 <td>{{ client.name }}</td>
-                                <td class="text-end">{{ client.celphone }} <i v-if="client.whatsapp"
-                                        class="fa-brands fa-whatsapp" style="color: #41B883;"></i></td>
+                                <td class="text-end"><i v-if="client.whatsapp" class="fa-brands fa-whatsapp"
+                                        style="color: #41B883;"></i> {{ client.celphone }} </td>
                                 <td>{{ client.email }}</td>
                                 <td>
                                     <div class="d-flex justify-content-end">
@@ -243,7 +243,7 @@
                             <span>Endereços</span>
                             <div>
                                 <router-link class="btn btn-sm btn-view" type="button"
-                                    :to="{ name: 'ClientAddress' }"><i class="fa-solid fa-share"></i>Ir para
+                                    :to="{ name: 'saveAddress', id: client.addresses.id }"><i class="fa-solid fa-share"></i>Ir para
                                     endereços</router-link>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ export default {
 
         ...mapMutations([ 'SET_USER', 'PUSH_NOTIFICATION', 'SET_ERRORS', 'SET_LOADER' ]),
 
-        async handleRequest(request, successMessage, errorMessage, showNotification = true, showLoader = true, ) {
+        async handleRequest(request, successMessage, errorMessage, showNotification = true, showLoader = true) {
             if (showLoader) {
                 this.SET_LOADER({ 'active': true, 'text': 'Processando...' });
             }

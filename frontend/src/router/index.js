@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/',
         name: 'Shop',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/shop/shop-index.vue')
+        component: () => import(/* webpackChunkName: "home" */ '@/views/shop/IndexView.vue')
     },
     {
         path: '/carrinho',
@@ -34,7 +34,7 @@ const routes = [
         path: '/logout',
         name: 'Logout',
         meta: { auth: true },
-        component: () => import('@/views/shop/shop-index.vue')
+        component: () => import('@/views/LoginView.vue')
     },
     {
         path: '/dashboard',
@@ -70,17 +70,57 @@ const routes = [
                 component: () => import('@/views/admin/CategoryView.vue')
             },
             {
-                path: 'cliente',
-                name: 'Client',
+                path: 'clients',
+                name: 'getClients',
                 meta: { auth: true },
-                component: () => import('@/views/admin/ClientView.vue')
+                component: () => import('@/views/admin/client/getClients.vue'),
+                children: [
+                    {
+                        path: 'addresses',
+                        name: 'getAddresses',
+                        meta: { auth: true },
+                        component: () => import('@/views/admin/address/getAddresses.vue'),
+                        children: [
+                            {
+                                path: 'show',
+                                name: 'getAddress',
+                                meta: { auth: true },
+                                component: () => import('@/views/admin/address/getAddress.vue')
+                            },
+                            {
+                                path: 'save/:id?',
+                                name: 'saveAddress',
+                                meta: { auth: true },
+                                component: () => import('@/views/admin/address/saveAddress.vue')
+                            }
+                        ]
+                    },
+                    {
+                        path: 'endereco',
+                        name: 'getAddresses',
+                        meta: { auth: true },
+                        component: () => import('@/views/admin/address/getAddresses.vue')
+                    },
+                ]
             },
             {
-                path: 'cliente-endereco',
-                name: 'ClientAddress',
+                path: 'client/save/:id?',
+                name: 'saveClient',
                 meta: { auth: true },
-                component: () => import('@/views/admin/ClientAddressView.vue')
+                component: () => import('@/views/admin/client/saveClient.vue')
             },
+            {
+                path: 'client/delete/:id',
+                name: 'deleteClient',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/deleteClient.vue')
+            },
+            {
+                path: 'client/show/:id',
+                name: 'showClient',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/showClient.vue')
+            },           
             {
                 path: 'estoque',
                 name: 'Stock',

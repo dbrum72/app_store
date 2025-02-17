@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="fontSr12w600Cg">PRODUTO</span>
+            <span class="font12rW600TuCg">PRODUTO</span>
         </div>
 
         <div class="p-2">

@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="fontSr12w600Cg">CATEGORIA</span>
+            <span class="font12rW600TuCg">CATEGORIA</span>
         </div>
 
         <div class="p-2">
@@ -10,7 +10,7 @@
                     <div class="form-floating flex-fill">
                         <input type="text" class="form-control" id="filterCategory" placeholder="Pesquisar name..."
                             v-model="filter">
-                        <label for="filterCategory">Pesquisar name...</label>
+                        <label for="filterCategory">Pesquisar nome...</label>
                         <div class="input-group-append">
                             <button type="button" class="btn btn-opcoes search-button"
                                 @click="fetchCategories(filter)"><i class="fa-solid fa-magnifying-glass"></i></button>

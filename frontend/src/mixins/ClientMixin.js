@@ -62,7 +62,7 @@ export default {
             this.fetchClients()
             this.client = {}  
             this.SET_ERRORS([])
-            this.template = 'list'
+            this.$router.push({ name: 'getClients'})
         },
     }
 }

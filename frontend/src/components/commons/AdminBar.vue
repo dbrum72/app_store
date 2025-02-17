@@ -2,8 +2,7 @@
     <div class="navbar" v-show="isNavbarVisible">
         <div id="nav">
             <div><router-link :to="{ name: 'Shop' }">Início</router-link></div>
-            <div><router-link :to="{ name: 'Client' }">Clientes</router-link></div>
-            <div><router-link :to="{ name: 'ClientAddress' }">Endereços</router-link></div>
+            <div><router-link :to="{ name: 'getClients' }">Clientes</router-link></div>
             <div><router-link :to="{ name: 'Product' }">Produtos</router-link></div>
             <div><router-link :to="{ name: 'Stock' }">Estoques</router-link></div>
             <div><router-link :to="{ name: 'Category' }">Categorias</router-link></div>

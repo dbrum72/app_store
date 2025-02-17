@@ -50,7 +50,9 @@ class OrderController extends Controller {
 
         if($store = $this->order->create($request->all())) {
 
-            return response()->json([ 'errors' => [], 'msg' => 'Ordem de venda criada com sucesso!'], 201);
+            $id = $store->id;
+
+            return response()->json([ 'id' => $id, 'errors' => [], 'msg' => 'Ordem de venda criada com sucesso!'], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404); 
