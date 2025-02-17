@@ -87,12 +87,7 @@ const routes = [
                                 meta: { auth: true },
                                 component: () => import('@/views/admin/address/getAddress.vue')
                             },
-                            {
-                                path: 'save/:id?',
-                                name: 'saveAddress',
-                                meta: { auth: true },
-                                component: () => import('@/views/admin/address/saveAddress.vue')
-                            }
+                            
                         ]
                     },
                     {
@@ -117,10 +112,16 @@ const routes = [
             },
             {
                 path: 'client/show/:id',
-                name: 'showClient',
+                name: 'getClient',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/showClient.vue')
-            },           
+                component: () => import('@/views/admin/client/getClient.vue')
+            },
+            {
+                path: 'client/address/new/:client_id',
+                name: 'newAddress',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/newAddress.vue')
+            },     
             {
                 path: 'estoque',
                 name: 'Stock',

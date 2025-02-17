@@ -43,9 +43,9 @@
                             <td>{{ client.email }}</td>
                             <td>
                                 <div class="d-flex justify-content-end">
-                                    <router-link class="btn btn-sm btn-view" :to="{ name: 'showClient', params:{ id: client.id }}"><i class="fa-regular fa-folder-open"></i></router-link>
-                                    <router-link class="btn btn-sm btn-edit" :to="{ name: 'saveClient', params:{ id: client.id }}"><i class="fa-solid fa-pencil"></i></router-link>
-                                    <router-link class="btn btn-sm btn-delete" :to="{ name: 'deleteClient', params:{ id: client.id }}"><i class="fa-regular fa-trash-can"></i></router-link>                                    
+                                    <router-link class="btn btn-sm btn-view" :to="{ name: 'getClient', params:{ 'id': client.id }}"><i class="fa-regular fa-folder-open"></i></router-link>
+                                    <router-link class="btn btn-sm btn-edit" :to="{ name: 'saveClient', params:{ 'id': client.id }}"><i class="fa-solid fa-pencil"></i></router-link>
+                                    <router-link class="btn btn-sm btn-delete" :to="{ name: 'deleteClient', params:{ 'id': client.id }}"><i class="fa-regular fa-trash-can"></i></router-link>                                    
                                 </div>
                             </td>
                         </tr>

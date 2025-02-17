@@ -64,9 +64,8 @@ export default {
         resetAddressView() {
             this.fetchAddresses(); // Atualiza a lista de endereços            
             this.address = {}; // Reseta o endereço
-            this.searchQuery = ''
             this.SET_ERRORS([]) // Reseta os erros
-            this.template = 'list'; // Muda o template
+            this.$router.push({ name: 'getClient', params: { 'id': this.client_id}})
         },
     }
 }
