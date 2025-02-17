@@ -112,8 +112,7 @@
                             <span class="obgField">* Campo obrigatório.</span>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="button" class="btn btn-cancel me-2"
-                                @click="(template = 'list')">Cancelar</button>
+                            <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': client_id }}">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
                                 @click="saveAddress(address.id ?? null)">Salvar</button>
                         </div>
