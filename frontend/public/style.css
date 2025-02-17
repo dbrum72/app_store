@@ -1,7 +1,6 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
     box-sizing: border-box;
 }
 
@@ -280,10 +279,6 @@ html, body {
     color: #000
 }
 
-.subArea {
-    margin: 15px;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
@@ -314,7 +309,11 @@ tr:hover {
 
 .tupla {
     display: flex;
-    margin: 10px 20px;
+    margin: 5px 20px;
     align-items: center;
-    border-bottom: 1px solid #cccbcb
+}
+
+.dados .tupla:nth-child(n+2) {
+    border-top: 1px solid #cccbcb;
+    padding: 5px 0px;  
 }
