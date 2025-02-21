@@ -16,7 +16,8 @@
                     </div>
                 </div>
                 <div>
-                    <router-link class="btn btn-sm btn-view" :to="{ name: 'saveClient', params:{ id: null }}"><i class="fa-solid fa-plus"></i> Adicionar cliente</router-link>
+                    <router-link class="btn btn-sm btn-view" :to="{ name: 'newClient' }"><i
+                            class="fa-solid fa-plus"></i> Adicionar cliente</router-link>
                 </div>
             </div>
             <div class="mb-2">
@@ -31,7 +32,7 @@
                             <th scope="col">NOME</th>
                             <th scope="col">CELULAR</th>
                             <th scope="col">EMAIL</th>
-                            <th scope="col">Açoes</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,11 +43,9 @@
                                     style="color: #41B883;"></i> {{ client.celphone }} </td>
                             <td>{{ client.email }}</td>
                             <td>
-                                <div class="d-flex justify-content-end">
-                                    <router-link class="btn btn-sm btn-view" :to="{ name: 'getClient', params:{ 'id': client.id }}"><i class="fa-regular fa-folder-open"></i></router-link>
-                                    <router-link class="btn btn-sm btn-edit" :to="{ name: 'saveClient', params:{ 'id': client.id }}"><i class="fa-solid fa-pencil"></i></router-link>
-                                    <router-link class="btn btn-sm btn-delete" :to="{ name: 'deleteClient', params:{ 'id': client.id }}"><i class="fa-regular fa-trash-can"></i></router-link>                                    
-                                </div>
+                                <router-link class="btn btn-sm btn-view"
+                                    :to="{ name: 'getClient', params: { 'id': client.id } }"><i
+                                        class="fa-regular fa-folder-open"></i></router-link>
                             </td>
                         </tr>
                     </tbody>

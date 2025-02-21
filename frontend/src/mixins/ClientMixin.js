@@ -34,7 +34,19 @@ export default {
             }
         },
 
-        async saveClient(id) {
+        async storeClient() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/client`
+            const response = await this.handleRequest(
+                () => upstoreData(url, null, this.client),
+                null,
+                'Erro ao salvar os dados.'
+            );
+            if (response) {
+                this.resetClientView(response.data.client.id)
+            }
+        },
+
+        async updateClient(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client`
             const response = await this.handleRequest(
                 () => upstoreData(url, id, this.client),
@@ -42,7 +54,7 @@ export default {
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetClientView()
+                this.resetClientView(response.data.client.id)
             }
         },
 
@@ -58,11 +70,10 @@ export default {
             }
         },
 
-        resetClientView() {
-            this.fetchClients()
+        resetClientView(id) {
             this.client = {}  
             this.SET_ERRORS([])
-            this.$router.push({ name: 'getClients'})
+            this.$router.push({ name: 'getClient', params: { 'id' : id}})
         },
     }
 }

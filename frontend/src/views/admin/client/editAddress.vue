@@ -1,14 +1,14 @@
 <template>
     <div class="content" :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="font12rW600TuCg">ENDEREÇO (Cliente)</span>
+            <span class="font12rW600TuCg">ENDEREÇO ({{ address.client?.name }})</span>
         </div>
 
         <div class="p-2">
             <div>
                 <div class="row">
                     <div class="col-sm-12 col-lg-8 mb-2">
-                        <h6>{{ address.id ? `Editando... (Id. ${address.id})` : 'Nova entrada...' }}
+                        <h6>{{ `Editando... (Id. ${address.id})` }}
                         </h6>
                     </div>
                     <div class="col-sm-12 col-lg-4 mb-2">
@@ -18,26 +18,6 @@
                                 <label class="form-check-label" for="AddressMain">
                                     Principal ?
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 mb-2">
-                        <div class="form-floating">
-                            <input type="text" v-model="searchQuery" @input="onInputChange" placeholder="Cliente"
-                                class="form-control" :class="errors.client_id ? 'is-invalid' : ''"
-                                id="addressClientId" />
-                            <label for="addressClientId">Cliente *</label>
-                            <div v-if="errors.client_id" id="addressClientIdFeedback"
-                                class="invalid-feedback text-start">{{ errors.client_id }}
-                            </div>
-                            <div v-if="clients.length > 0 && searchQuery.length >= 3" class="menu-clients">
-                                <ul>
-                                    <li v-for="client in clients" :key="client.id" @click="selectClient(client)">
-                                        {{ client.name }}
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -118,10 +98,10 @@
                             <span class="obgField">* Campo obrigatório.</span>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="button" class="btn btn-cancel me-2"
-                                @click="(template = 'list')">Cancelar</button>
+                            <router-link class="btn btn-cancel me-2"
+                                :to="{ name: 'getClient', params: { 'id': address.client_id } }">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
-                                @click="saveAddress(address.id ?? null)">Salvar</button>
+                                @click="editAddress(address.id, address.client_id)">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -134,7 +114,6 @@
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
 import ClientAddressMixin from '@/mixins/ClientAddressMixin';
-import { debounce } from 'lodash';
 
 
 export default {
@@ -153,59 +132,12 @@ export default {
     computed: mapState(['loader', 'errors']),
 
     mounted() {
-        this.fetchAddress()
+        this.fetchAddress(this.$route.params.id)
     },
 
     methods: {
-
-        onInputChange: debounce(function () {
-            if (this.searchQuery.length < 3) {
-                this.clients = [];
-                return;
-            }
-            this.loading = true;
-            this.fetchClients(this.searchQuery);
-            this.loading = false;
-        }, 500),
-
-        selectClient(client) {
-            this.searchQuery = client.name;
-            this.address.client_id = client.id
-            this.clients = []
-        },
     }
 }
 </script>
 
-<style>
-.menu-clients {
-    position: absolute;
-    top: 100%;
-    /* Faz o menu aparecer logo abaixo do input */
-    left: 0;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-}
-
-.menu-clients ul {
-    padding-left: 0;
-    margin: 0;
-}
-
-.menu-clients li {
-    list-style-type: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.menu-clients li:hover {
-    background-color: #e0f8e6;
-}
-</style>
+<style></style>

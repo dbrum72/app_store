@@ -34,7 +34,19 @@ export default {
             }
         },
 
-        async saveCategory(id) {
+        async storeCategory() {
+            const url = process.env.VUE_APP_BACKEND_URL + '/category'
+            const response = await this.handleRequest(
+                () =>  upstoreData(url, null, this.category),
+                null,
+                'Erro ao salvar os dados.'
+            );
+            if (response) {
+                this.resetCategoryView(response.data.category.id)
+            }
+        },
+        
+        async updateCategory(id) {
             const url = process.env.VUE_APP_BACKEND_URL + '/category'
             const response = await this.handleRequest(
                 () =>  upstoreData(url, id, this.category),
@@ -42,7 +54,7 @@ export default {
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetCategoryView();
+                this.resetCategoryView(response.data.category.id)
             }
         },
 
@@ -58,11 +70,10 @@ export default {
             }
         },
 
-        resetCategoryView() {
-            this.fetchCategories()            
+        resetCategoryView(id) {         
             this.category = {}  
             this.SET_ERRORS([])
-            this.template = 'list'
+            this.$router.push({ name: 'getCategory', params: { 'id' : id}})            
         }
     }
 }

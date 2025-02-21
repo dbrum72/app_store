@@ -50,7 +50,7 @@ class ClientController extends Controller {
 
         if($store = $this->client->create($request->all())) {
             
-            return response()->json([ 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
+            return response()->json([ 'client' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!' ], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
@@ -65,7 +65,7 @@ class ClientController extends Controller {
 
             if($update->update($request->all())) {
 
-                return response()->json([ 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 201);
+                return response()->json([ 'client' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!' ], 201);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);

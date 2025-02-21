@@ -64,45 +64,53 @@ const routes = [
         component: () => import('@/views/admin/AdminIndex.vue'),
         children: [
             {
-                path: 'categoria',
-                name: 'Category',
+                path: 'categories',
+                name: 'getCategories',
                 meta: { auth: true },
-                component: () => import('@/views/admin/CategoryView.vue')
+                component: () => import('@/views/admin/category/getCategories.vue')
             },
+            {
+                path: 'category/new',
+                name: 'newCategory',
+                meta: { auth: true },
+                component: () => import('@/views/admin/category/newCategory.vue')
+            },
+            {
+                path: 'category/show/:id',
+                name: 'getCategory',
+                meta: { auth: true },
+                component: () => import('@/views/admin/category/getCategory.vue')
+            },
+            {
+                path: 'category/edit/:id',
+                name: 'editCategory',
+                meta: { auth: true },
+                component: () => import('@/views/admin/category/editCategory.vue')
+            },
+            {
+                path: 'category/delete/:id',
+                name: 'deleteCategory',
+                meta: { auth: true },
+                component: () => import('@/views/admin/category/deleteCategory.vue')
+            },
+            
             {
                 path: 'clients',
                 name: 'getClients',
                 meta: { auth: true },
                 component: () => import('@/views/admin/client/getClients.vue'),
-                children: [
-                    {
-                        path: 'addresses',
-                        name: 'getAddresses',
-                        meta: { auth: true },
-                        component: () => import('@/views/admin/address/getAddresses.vue'),
-                        children: [
-                            {
-                                path: 'show',
-                                name: 'getAddress',
-                                meta: { auth: true },
-                                component: () => import('@/views/admin/address/getAddress.vue')
-                            },
-                            
-                        ]
-                    },
-                    {
-                        path: 'endereco',
-                        name: 'getAddresses',
-                        meta: { auth: true },
-                        component: () => import('@/views/admin/address/getAddresses.vue')
-                    },
-                ]
             },
             {
-                path: 'client/save/:id?',
-                name: 'saveClient',
+                path: 'client/new',
+                name: 'newClient',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/saveClient.vue')
+                component: () => import('@/views/admin/client/newClient.vue')
+            },
+            {
+                path: 'client/edit/:id',
+                name: 'editClient',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/editClient.vue')
             },
             {
                 path: 'client/delete/:id',
@@ -121,7 +129,19 @@ const routes = [
                 name: 'newAddress',
                 meta: { auth: true },
                 component: () => import('@/views/admin/client/newAddress.vue')
-            },     
+            },
+            {
+                path: 'client/address/edit/:id',
+                name: 'editAddress',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/editAddress.vue')
+            },
+            {
+                path: 'client/address/delete/:id',
+                name: 'deleteAddress',
+                meta: { auth: true },
+                component: () => import('@/views/admin/client/deleteAddress.vue')
+            },
             {
                 path: 'estoque',
                 name: 'Stock',

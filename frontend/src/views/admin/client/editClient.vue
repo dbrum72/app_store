@@ -8,7 +8,7 @@
             <div>
                 <div class="row">
                     <div class="col-sm-12 col-lg-8 mb-2">
-                        <h6>{{ client.id ? `Editando... (Id. ${client.id})` : 'Nova entrada...' }}
+                        <h6>{{ `Editando... (Id. ${client.id})` }}
                         </h6>
                     </div>
                 </div>
@@ -79,9 +79,9 @@
                         <span class="obgField">* Campo obrigatório.</span>
                     </div>
                     <div class="card-footer text-end">
-                        <router-link class="btn btn-cancel me-2" :to="{ name: 'getClients'}">Cancelar</router-link>
+                        <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': this.id }}">Cancelar</router-link>
                         <button class="btn btn-save" type="button"
-                            @click="saveClient(client.id ?? null)">Salvar</button>
+                            @click="updateClient(client.id)">Salvar</button>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.id ? this.fetchClient(this.id) : ''
+        this.fetchClient(this.id)
     }
 
 }

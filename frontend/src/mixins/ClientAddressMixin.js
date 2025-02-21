@@ -31,12 +31,22 @@ export default {
             );
             if (response) {
                 this.address = response.data.data
-                this.searchQuery = this.address.client.name
-                this.clients = []
             }
         },
 
-        async saveAddress(id) {
+        async newAddress() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/client_address`
+            const response = await this.handleRequest(
+                () => upstoreData(url, null, this.address),
+                null,
+                'Erro ao salvar os dados.'
+            );
+            if (response) {
+                this.resetAddressView(this.address.client_id);
+            }
+        },
+
+        async editAddress(id, client_id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client_address`
             const response = await this.handleRequest(
                 () => upstoreData(url, id, this.address),
@@ -44,12 +54,11 @@ export default {
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetAddressView();
-                this.fetchClients()
+                this.resetAddressView(client_id);
             }
         },
 
-        async destroyAddress(id) {
+        async destroyAddress(id, client_id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client_address`
             const response = await this.handleRequest(
                 () => deleteData(url, id),
@@ -57,15 +66,14 @@ export default {
                 'Erro ao excluir o endereço.'
             );
             if (response) {
-                this.resetAddressView();
+                this.resetAddressView(client_id);
             }
         },
 
-        resetAddressView() {
-            this.fetchAddresses(); // Atualiza a lista de endereços            
+        resetAddressView(id) {
             this.address = {}; // Reseta o endereço
             this.SET_ERRORS([]) // Reseta os erros
-            this.$router.push({ name: 'getClient', params: { 'id': this.client_id}})
+            this.$router.push({ name: 'getClient', params: { 'id': id}})
         },
     }
 }

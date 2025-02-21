@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="font12rW600TuCg">CLIENTE</span>
+            <span class="font12rW600TuCg">CLIENTE (endereço)</span>
         </div>
 
         <div class="p-2">
@@ -10,11 +10,11 @@
                     <span>Atenção</span>
                 </div>
                 <div style="margin: 10px;">
-                    Confirma a exclusão do cliente "{{ client.name }}" (Id. {{ client.id }}) ?
+                    Confirma a exclusão de endereço do cliente "{{ address.street }}" (Id. {{ address.id }}) ?
                 </div>
                 <div class="text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': this.id }}">Cancelar</router-link>
-                    <button type="button" class="btn btn-delete" @click="(destroyClient(client.id))">Excluir</button>
+                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': address.client_id }}">Cancelar</router-link>
+                    <button type="button" class="btn btn-delete" @click="(destroyAddress(address.id, address.client_id))">Excluir</button>
                 </div>
             </div>
         </div>
@@ -24,25 +24,25 @@
 <script>
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ClientMixin from '@/mixins/ClientMixin';
+import ClientAddressMixin from '@/mixins/ClientAddressMixin';
 
 export default {
 
     name: 'DeleteClient',
 
-    mixins: [AbstractMixin, ClientMixin],
+    mixins: [AbstractMixin, ClientAddressMixin],
 
     data() {
         return {
             id: this.$route.params.id,
-            client: {},
+            address: {},
         };
     },
 
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchClient(this.id)
+        this.fetchAddress(this.id)
     }
 
 }

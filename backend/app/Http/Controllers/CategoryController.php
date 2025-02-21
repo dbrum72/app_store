@@ -73,7 +73,7 @@ class CategoryController extends Controller {
         
         if($store = $this->category->create($request->all())) {
 
-            return response()->json([ 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
+            return response()->json([ 'category' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
@@ -105,7 +105,7 @@ class CategoryController extends Controller {
             
             if($update->update($request->all())) {
 
-                return response()->json([ 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
+                return response()->json([ 'category' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);

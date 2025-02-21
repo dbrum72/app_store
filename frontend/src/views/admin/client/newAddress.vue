@@ -114,7 +114,7 @@
                         <div class="card-footer text-end">
                             <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': client_id }}">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
-                                @click="saveAddress(address.id ?? null)">Salvar</button>
+                                @click="newAddress()">Salvar</button>
                         </div>
                     </div>
                 </div>
