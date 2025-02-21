@@ -12,7 +12,7 @@
                             v-model="filter">
                         <label for="filterProduct">Pesquisar...</label>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-opcoes search-button" @click="fetchProducts(filter)"><i
+                            <button type="button" class="btn btn-opcoes search-button" @click="getProducts(filter)"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
@@ -46,13 +46,13 @@
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <button class="btn btn-sm btn-view"
-                                            @click="(fetchProduct(product.id), template = 'show')" title="Visualizar"><i
+                                            @click="(getProduct(product.id), template = 'show')" title="Visualizar"><i
                                                 class="fa-regular fa-folder-open"></i></button>
                                         <button class="btn btn-sm btn-edit"
-                                            @click="(fetchProduct(product.id), template = 'save')" title="Editar"><i
+                                            @click="(getProduct(product.id), template = 'save')" title="Editar"><i
                                                 class="fa-solid fa-pencil"></i></button>
                                         <button class="btn btn-sm btn-delete"
-                                            @click="(fetchProduct(product.id), template = 'delete')" title="Excluir"><i
+                                            @click="(getProduct(product.id), template = 'delete')" title="Excluir"><i
                                                 class="fa-regular fa-trash-can"></i></button>
                                     </div>
 
@@ -370,7 +370,7 @@ export default {
 
     mounted() {
         this.fetchCategories()
-        this.fetchProducts()
+        this.getProducts()
     }
 }
 </script>

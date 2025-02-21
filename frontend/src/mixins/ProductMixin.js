@@ -8,7 +8,7 @@ export default {
 
         ...mapMutations(['SET_ERRORS' ]),
 
-        async fetchProducts(filter) {
+        async getProducts(filter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=files,image,category&stockQuantity`
             const parameter = 'name'
             const response = await this.handleRequest(
@@ -22,7 +22,7 @@ export default {
             }
         },
 
-        async fetchProduct(id) {
+        async getProduct(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/product/${id}`
             const response = await this.handleRequest(
                 () => getData(url),
@@ -35,7 +35,19 @@ export default {
             }
         },
 
-        async saveProduct(id) {
+        async storeProduct() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/product`
+            const response = await this.handleRequest(
+                () => upstoreData(url, null, this.product),
+                null,
+                'Erro ao salvar os dados.'
+            );
+            if (response) {
+                this.resetProductView();
+            }
+        },
+
+        async updateProduct(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/product`
             const response = await this.handleRequest(
                 () => upstoreData(url, id, this.product),
@@ -43,7 +55,7 @@ export default {
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetProductView();
+                this.resetProductView(id);
             }
         },
 
@@ -91,11 +103,10 @@ export default {
             this.SET_ERRORS([])
         },
 
-        resetProductView() {
-            this.fetchProducts()
+        resetProductView(id) {
             this.product = {}
             this.SET_ERRORS([])
-            this.template = 'list'
+            id ? this.$router.push({ name: 'getProduct', params: { 'id': id }}) : this.$router.push({ name: 'getProducts'})
         },
     }
 

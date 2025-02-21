@@ -20,7 +20,7 @@
                             v-model="search">
                         <label for="searchProduct">Pesquisar...</label>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-opcoes search-button" @click="fetchProducts()"><i
+                            <button type="button" class="btn btn-opcoes search-button" @click="getProducts()"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                     </div>
                     <div>
                         <button type="button" class="btn btn-sm btn-headArea me-2" title="Lista de products"
-                            @click="(fetchProducts(), template = 'list')"><i
+                            @click="(getProducts(), template = 'list')"><i
                                 class="fa-solid fa-users"></i></button>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="text-end">
                         <button type="button" class="btn btn-cancel"
-                            @click="(template = 'show', fetchProduct(product.id))">Cancelar</button>
+                            @click="(template = 'show', getProduct(product.id))">Cancelar</button>
                         <button type="button" class="btn btn-delete"
                             @click="deleteProduct(product.id)">Excluir</button>
                     </div>
@@ -277,7 +277,7 @@ export default {
 
     mounted() {
         this.loadCategories()
-        this.fetchProducts()
+        this.getProducts()
     }
 };
 </script>

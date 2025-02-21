@@ -149,12 +149,29 @@ const routes = [
                 component: () => import('@/views/admin/StockView.vue')
             },
             {
-                path: 'produto',
-                name: 'Product',
+                path: 'products',
+                name: 'getProducts',
                 meta: { auth: true },
-                component: () => import('@/views/admin/ProductView.vue')
+                component: () => import('@/views/admin/product/getProducts.vue')
             },
-            
+            {
+                path: 'product/new',
+                name: 'newProduct',
+                meta: { auth: true },
+                component: () => import('@/views/admin/product/newProduct.vue')
+            },
+            {
+                path: 'product/show/:id',
+                name: 'getProduct',
+                meta: { auth: true },
+                component: () => import('@/views/admin/product/getProduct.vue')
+            },
+            {
+                path: 'product/edit/:id',
+                name: 'editProduct',
+                meta: { auth: true },
+                component: () => import('@/views/admin/product/editProduct.vue')
+            },
         ]
     },
     {

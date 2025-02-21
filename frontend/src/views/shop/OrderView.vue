@@ -144,7 +144,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchProducts()
+        this.getProducts()
         console.log(this.products)
     },
 
@@ -156,7 +156,7 @@ export default {
                 return;
             }
             this.loading = true;
-            this.fetchProducts(this.searchQuery);
+            this.getProducts(this.searchQuery);
             this.loading = false;
         }, 500),
 

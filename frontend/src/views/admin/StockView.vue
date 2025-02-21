@@ -260,7 +260,7 @@ export default {
                 return;
             }
             this.loading = true;
-            this.fetchProducts(this.searchQuery);
+            this.getProducts(this.searchQuery);
             this.loading = false;
         }, 500),
 

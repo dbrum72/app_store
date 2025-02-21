@@ -3,7 +3,7 @@
         <div id="nav">
             <div><router-link :to="{ name: 'Shop' }">Início</router-link></div>
             <div><router-link :to="{ name: 'getClients' }">Clientes</router-link></div>
-            <div><router-link :to="{ name: 'Product' }">Produtos</router-link></div>
+            <div><router-link :to="{ name: 'getProducts' }">Produtos</router-link></div>
             <div><router-link :to="{ name: 'Stock' }">Estoques</router-link></div>
             <div><router-link :to="{ name: 'getCategories' }">Categorias</router-link></div>
         </div>
