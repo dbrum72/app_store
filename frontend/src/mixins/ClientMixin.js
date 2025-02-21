@@ -73,7 +73,7 @@ export default {
         resetClientView(id) {
             this.client = {}  
             this.SET_ERRORS([])
-            this.$router.push({ name: 'getClient', params: { 'id' : id}})
+            id ? this.$router.push({ name: 'getClient', params: { 'id' : id}}) : this.$router.push({ name: 'getClients' })
         },
     }
 }

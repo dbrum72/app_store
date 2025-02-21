@@ -5,7 +5,7 @@
                 <span class="font12rW600TuCg">CLIENTE</span>
             </div>
             <div>
-                <router-link class="btn btn-sm btn-view" :to="{ name: 'getClients' }"><i
+                <router-link class="btn btn-sm btn-view" :to="{ name: 'getClients' }" title="Lista de clientes"><i
                         class="fa-solid fa-list"></i></router-link>
             </div>
         </div>
@@ -16,10 +16,10 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <router-link class="btn btn-sm btn-edit"
-                        :to="{ name: 'editClient', params: { 'id': client.id } }"><i
+                        :to="{ name: 'editClient', params: { 'id': client.id } }" title="Editar"><i
                             class="fa-solid fa-pencil"></i></router-link>
                     <router-link class="btn btn-sm btn-delete"
-                        :to="{ name: 'deleteClient', params: { 'id': client.id } }"><i
+                        :to="{ name: 'deleteClient', params: { 'id': client.id } }" title="Excluir"><i
                             class="fa-regular fa-trash-can"></i></router-link>
                 </div>
             </div>
@@ -114,10 +114,10 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <router-link class="btn btn-sm btn-edit"
-                            :to="{ name: 'editAddress', params: { 'id': address.id } }"><i
+                            :to="{ name: 'editAddress', params: { 'id': address.id } }" title="Editar"><i
                                 class="fa-solid fa-pencil"></i></router-link>
                         <router-link class="btn btn-sm btn-delete"
-                            :to="{ name: 'deleteAddress', params: { 'id': address.id } }"><i
+                            :to="{ name: 'deleteAddress', params: { 'id': address.id } }" title="Excluir"><i
                                 class="fa-regular fa-trash-can"></i></router-link>
                     </div>
                 </div>

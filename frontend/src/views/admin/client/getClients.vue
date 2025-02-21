@@ -45,7 +45,7 @@
                             <td>
                                 <router-link class="btn btn-sm btn-view"
                                     :to="{ name: 'getClient', params: { 'id': client.id } }"><i
-                                        class="fa-regular fa-folder-open"></i></router-link>
+                                        class="fa-regular fa-folder-open" title="Visualizar dados"></i></router-link>
                             </td>
                         </tr>
                     </tbody>

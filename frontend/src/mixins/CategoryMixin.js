@@ -73,7 +73,7 @@ export default {
         resetCategoryView(id) {         
             this.category = {}  
             this.SET_ERRORS([])
-            this.$router.push({ name: 'getCategory', params: { 'id' : id}})            
+            id ? this.$router.push({ name: 'getCategory', params: { 'id' : id}}) : this.$router.push({ name: 'getCategories' })
         }
     }
 }

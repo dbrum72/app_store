@@ -8,13 +8,13 @@
                 <div><span>Informações</span></div>
                 <div class="d-flex justify-content-end">
                     <router-link class="btn btn-sm btn-view" :to="{ name: 'getCategories' }"><i
-                            class="fa-solid fa-list"></i></router-link>
+                            class="fa-solid fa-list" title="Lista de categorias"></i></router-link>
                     <router-link class="btn btn-sm btn-edit"
                         :to="{ name: 'editCategory', params: { 'id': category.id } }"><i
-                            class="fa-solid fa-pencil"></i></router-link>
+                            class="fa-solid fa-pencil" title="Editar"></i></router-link>
                     <router-link class="btn btn-sm btn-delete"
                         :to="{ name: 'deleteCategory', params: { 'id': category.id } }"><i
-                            class="fa-regular fa-trash-can"></i></router-link>
+                            class="fa-regular fa-trash-can" title="Excluir"></i></router-link>
                 </div>
             </div>
             <div class="tupla">

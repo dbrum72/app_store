@@ -42,7 +42,7 @@
                                 <td>{{ category.tree }}</td>
                                 <td>
                                     <router-link class="btn btn-sm btn-view"
-                                    :to="{ name: 'getCategory', params: { 'id': category.id } }"><i
+                                    :to="{ name: 'getCategory', params: { 'id': category.id } }" title="Visualizar dados"><i
                                         class="fa-regular fa-folder-open"></i></router-link>
                                 </td>
                             </tr>
