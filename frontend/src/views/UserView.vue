@@ -40,10 +40,10 @@
                                 <button class="btn btn-sm btn-view"
                                     @click="(this.loadUser(user.id))"
                                     title="Visualizar"><i class="fa-solid fa-user"></i></button>
-                                    <button class="btn btn-sm btn-edit"
+                                    <button class="btn btn-sm btn-blue"
                                 @click="(this.loadUser(user.id))" title="Editar"><i
                                     class="fa-solid fa-user-pen"></i></button>
-                                    <button class="btn btn-sm btn-delete"
+                                    <button class="btn btn-sm btn-red"
                                 @click="(this.loadUser(user.id), this.destroy = true)"
                                 title="Excluir"><i class="fa-regular fa-trash-can"></i></button>
                             </td>

@@ -1,17 +1,17 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
-        <div class="areaHeader">
-            <span class="font12rW600TuCg">PRODUTO</span>
+        <div class="d-flex areaHeader">
+            <span class="font12rW600TuCg pe-2">PRODUTO</span>
+            <router-link class="btn btn-sm btn-gray" :to="{ name: 'getProducts' }" title="Lista de produtos"><i
+                class="fa-solid fa-list"></i></router-link>
         </div>
         <div class="subArea mb-5">
             <div class="d-flex justify-content-between m-2 title-sub-area">
                 <div><span>Informações</span></div>
-                <div class="d-flex justify-content-end m-2">
-                    <router-link class="btn btn-sm btn-view" :to="{ name: 'getProducts' }" title="Lista de produtos"><i
-                            class="fa-solid fa-list"></i></router-link>
-                    <router-link class="btn btn-sm btn-edit" :to="{ name: 'editProduct', params: { 'id': product.id } }"
+                <div class="d-flex justify-content-end m-2">                    
+                    <router-link class="btn btn-sm btn-blue" :to="{ name: 'editProduct', params: { 'id': product.id } }"
                         title="Editar"><i class="fa-solid fa-pencil"></i></router-link>
-                    <router-link class="btn btn-sm btn-delete" :to="{ name: 'deleteProduct', params: { 'id': product.id } }" title="Excluir"><i
+                    <router-link class="btn btn-sm btn-red" :to="{ name: 'deleteProduct', params: { 'id': product.id } }" title="Excluir"><i
                             class="fa-regular fa-trash-can"></i></router-link>
                 </div>
             </div>
@@ -87,7 +87,7 @@
             <div class="title-sub-area">
                 <span>Estoque</span>
                 <div class="d-flex justify-content-end m-2">
-                    <router-link class="btn btn-sm btn-view" type="button" :to="{ name: 'Stock' }"><i
+                    <router-link class="btn btn-sm btn-view" type="button" :to="{ name: 'getStock' }"><i
                             class="fa-solid fa-share"></i>
                         Ir para estoques</router-link>
                 </div>
@@ -113,7 +113,7 @@
                     <div class="position-relative me-3 mb-3">
                         <img :src="fetchFile(file.storaged)" width="100px" height="100px" :title="file.name"
                             :alt="file.name">
-                        <button class="btn-trash btn-delete" title="Excluir" @click="destroyFile(file.id)"><i
+                        <button class="btn-trash btn-red" title="Excluir" @click="destroyFile(file.id)"><i
                                 class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-cancel" id="cancelModal" data-bs-dismiss="modal"
+                        <button type="button" class="btn btn-gray" id="cancelModal" data-bs-dismiss="modal"
                             @click="this.errors = []">Cancelar</button>
                         <button type="button" class="btn btn-save"
                             @click="saveFile(product.id, this.file)">Salvar</button>

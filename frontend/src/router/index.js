@@ -141,19 +141,7 @@ const routes = [
                 name: 'deleteAddress',
                 meta: { auth: true },
                 component: () => import('@/views/admin/client/deleteAddress.vue')
-            },
-            {
-                path: 'stock',
-                name: 'getStocks',
-                meta: { auth: true },
-                component: () => import('@/views/admin/stock/getStocks.vue')
-            },
-            {
-                path: 'stock/new',
-                name: 'newStock',
-                meta: { auth: true },
-                component: () => import('@/views/admin/stock/newStock.vue')
-            },
+            },            
             {
                 path: 'products',
                 name: 'getProducts',
@@ -183,7 +171,37 @@ const routes = [
                 name: 'deleteProduct',
                 meta: { auth: true },
                 component: () => import('@/views/admin/product/deleteProduct.vue')
-            }
+            },
+            {
+                path: 'stocks',
+                name: 'getStocks',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/getStocks.vue')
+            },
+            {
+                path: 'stock/new',
+                name: 'newStock',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/newStock.vue')
+            },
+            {
+                path: 'stock/edit/:id',
+                name: 'editStock',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/editStock.vue')
+            },
+            {
+                path: 'stock/show/:id',
+                name: 'getStock',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/getStock.vue')
+            },
+            {
+                path: 'stock/delete/:id',
+                name: 'deleteStock',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/deleteStock.vue')
+            },
         ]
     },
     {

@@ -39,9 +39,9 @@ class AbstractRepository {
         }
     }
 
-    public function subFilter($subfilter) {
+    public function subFilter($subFilter) {
 
-        $subFilter = explode(',', $subfilter);
+        $subFilter = explode(',', $subFilter);
         
         $parameters = explode(':', $subFilter[1]);
         

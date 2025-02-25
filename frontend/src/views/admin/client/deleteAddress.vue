@@ -13,8 +13,8 @@
                     Confirma a exclusão de endereço do cliente "{{ address.street }}" (Id. {{ address.id }}) ?
                 </div>
                 <div class="text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': address.client_id }}">Cancelar</router-link>
-                    <button type="button" class="btn btn-delete" @click="(destroyAddress(address.id, address.client_id))">Excluir</button>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getClient', params: { 'id': address.client_id }}">Cancelar</router-link>
+                    <button type="button" class="btn btn-red" @click="(destroyAddress(address.id, address.client_id))">Excluir</button>
                 </div>
             </div>
         </div>

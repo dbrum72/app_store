@@ -71,37 +71,37 @@ html, body {
     border-radius: 20px;
 }
 
-.btn-cancel {
+.btn-gray {
     border: solid 1px #979797 !important;
     color: #979797 !important;
 }
 
-.btn-cancel:hover {
+.btn-gray:hover {
     color: #515252 !important;
     background-color: #c4c2c2 !important;
 }
 
-.btn-delete {
+.btn-red {
     margin: 0px 5px 0px 0px;
     border: solid 1px #fc7575 !important;
     color: #fc7575 !important;
     background-color: transparent !important;
 }
 
-.btn-delete:hover {
+.btn-red:hover {
     border: solid 1px red !important;
     color: red !important;
     background-color: #fddbdb !important;
 }
 
-.btn-edit {
+.btn-blue {
     margin: 0px 5px 0px 0px;
     border: solid 1px #62a4f5 !important;
     color: #62a4f5 !important;
     background-color: transparent !important;
 }
 
-.btn-edit:hover {
+.btn-blue:hover {
     border: solid 1px #426FA6 !important;
     color: #426FA6 !important;
     background-color: #bcd6f5 !important;

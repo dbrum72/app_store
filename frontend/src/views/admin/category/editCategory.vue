@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="text-end">
-                            <router-link class="btn btn-cancel me-2" :to="{ name: 'getCategory', params: { 'id': this.id }}">Cancelar</router-link>
+                            <router-link class="btn btn-gray me-2" :to="{ name: 'getCategory', params: { 'id': this.id }}">Cancelar</router-link>
                             <button type="button" class="btn btn-save"
                                 @click="updateCategory(category.id)">Salvar</button>
                         </div>

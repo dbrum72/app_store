@@ -7,11 +7,11 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getStocks(subfilter) {
+        async getStocks(subFilter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/stock?with=product`
             const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, null, subfilter, parameter),
+                () => getCollection(url, null, subFilter, parameter),
                 'Lista de estoques atualizada.',
                 'Erro ao carregar a lista de estoques.',
                 false
@@ -36,7 +36,19 @@ export default {
             }
         },
 
-        async saveStock(id) {
+        async storeStock() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/stock`
+            const response = await this.handleRequest(
+                () => upstoreData(url, null, this.stock),
+                null,
+                'Erro ao salvar os dados.'
+            );
+            if (response) {
+                this.resetStockView();
+            }
+        },
+
+        async updateStock(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/stock`
             const response = await this.handleRequest(
                 () => upstoreData(url, id, this.stock),
@@ -44,7 +56,7 @@ export default {
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetStockView();
+                this.resetStockView(response.data.stock.id);
             }
         },
 
@@ -60,11 +72,10 @@ export default {
             }
         },
 
-        resetStockView() {
-            this.getStocks()         
+        resetStockView(id) {      
             this.stock = {}
             this.SET_ERRORS([])
-            this.template = 'list'
+            id ? this.$router.push({ name: 'getStock', params: { 'id' : id}}) : this.$router.push({ name: 'getStocks' })
         },
     }
 }

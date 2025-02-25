@@ -112,7 +112,7 @@
                             <span class="obgField">* Campo obrigatório.</span>
                         </div>
                         <div class="card-footer text-end">
-                            <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': client_id }}">Cancelar</router-link>
+                            <router-link class="btn btn-gray me-2" :to="{ name: 'getClient', params: { 'id': client_id }}">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
                                 @click="newAddress()">Salvar</button>
                         </div>
@@ -147,7 +147,7 @@ export default {
     computed: mapState(['loader', 'errors']),
 
     mounted() {
-        this.fetchClient(this.client_id)
+        this.getClient(this.client_id)
         this.address.client_id = this.client_id
     }
 }

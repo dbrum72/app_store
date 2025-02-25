@@ -9,10 +9,10 @@
             <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
                 <div class="form-floating flex-fill">
                     <input type="text" class="form-control" id="filterProduct" placeholder="Pesquisar name..."
-                        v-model="subfilter">
+                        v-model="subFilter">
                     <label for="filterProduct">Pesquisar produto...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getStocks(subfilter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getStocks(subFilter)"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -48,13 +48,8 @@
                             <td class="text-end">{{ stock.quantity }}</td>
                             <td>
                                 <div class="d-flex justify-content-end m-2">
-                                    <button class="btn btn-sm btn-view" @click="(getStock(stock.id), template = 'show')"
-                                        title="Visualizar"><i class="fa-regular fa-folder-open"></i></button>
-                                    <button class="btn btn-sm btn-edit" @click="(getStock(stock.id), template = 'save')"
-                                        title="Editar"><i class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-delete"
-                                        @click="(getStock(stock.id), template = 'delete')" title="Excluir"><i
-                                            class="fa-regular fa-trash-can"></i></button>
+                                    <router-link class="btn btn-sm btn-view" :to="{ name: 'getStock', params: { id: stock.id } }"
+                                        title="Visualizar"><i class="fa-regular fa-folder-open"></i></router-link>
                                 </div>
                             </td>
                         </tr>
@@ -89,7 +84,7 @@ export default {
             stocks: {},
             searchQuery: '',
             products: {},
-            subfilter: '',
+            subFilter: '',
             loading: false
         };
     },
@@ -104,7 +99,7 @@ export default {
 
         onInputChange: debounce(function () {
             if (this.searchQuery.length < 3) {
-                this.products = [];
+                this.products = {};
                 return;
             }
             this.loading = true;
@@ -115,7 +110,7 @@ export default {
         selectProduct(product) {
             this.searchQuery = product.name
             this.stock.product_id = product.id
-            this.products = []
+            this.products = {}
         }
     }
 }

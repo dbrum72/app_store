@@ -72,7 +72,7 @@
                 </div>
                 <div class="">
                     <button class="btn btn-save" type="button" @click="update(this.$store.state.user.user_id)">Salvar</button>
-                    <button type="button" class="btn btn-cancel" @click="this.errors = []">Cancelar</button>
+                    <button type="button" class="btn btn-gray" @click="this.errors = []">Cancelar</button>
                 </div>
             </div>
             <div>

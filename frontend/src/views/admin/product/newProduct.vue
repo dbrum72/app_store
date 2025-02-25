@@ -23,8 +23,6 @@
                 </div>
             </div>
             <div>
-                <div>
-                </div>
                 <div class="row">
                     <div class="col-sm-12 col-lg-6 mb-2">
                         <div class="form-floating">
@@ -98,9 +96,8 @@
                     <span class="obgField">* Campo obrigatório.</span>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="button" class="btn btn-cancel me-2" @click="(template = 'list')">Cancelar</button>
-                    <button class="btn btn-save" type="button"
-                        @click="storeProduct()">Salvar</button>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getProducts' }">Cancelar</router-link>
+                    <button class="btn btn-save" type="button" @click="storeProduct()">Salvar</button>
                 </div>
             </div>
         </div>
@@ -136,5 +133,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

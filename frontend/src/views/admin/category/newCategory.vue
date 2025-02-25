@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <router-link class="btn btn-cancel me-2" :to="{ name: 'getCategories' }">Cancelar</router-link>
+                        <router-link class="btn btn-gray me-2" :to="{ name: 'getCategories' }">Cancelar</router-link>
                         <button type="button" class="btn btn-save" @click="storeCategory()">Salvar</button>
                     </div>
                 </div>

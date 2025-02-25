@@ -77,7 +77,7 @@
                     <span class="obgField">* Campo obrigatório.</span>
                 </div>
                 <div class="card-footer text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getClients' }">Cancelar</router-link>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getClients' }">Cancelar</router-link>
                     <button class="btn btn-save" type="button" @click="storeClient()">Salvar</button>
                 </div>
             </div>

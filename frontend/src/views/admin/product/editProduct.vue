@@ -98,7 +98,7 @@
                     <span class="obgField">* Campo obrigatório.</span>
                 </div>
                 <div class="card-footer text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getProduct', params: { 'id': this.id} }">Cancelar</router-link>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getProduct', params: { 'id': this.id} }">Cancelar</router-link>
                     <button class="btn btn-save" type="button"
                         @click="updateProduct(product.id)">Salvar</button>
                 </div>

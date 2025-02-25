@@ -136,7 +136,7 @@ export default {
                 return;
             }
             this.loading = true;
-            this.fetchClients(this.searchQuery);
+            this.getClients(this.searchQuery);
             this.loading = false;
         }, 500),
 

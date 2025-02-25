@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="font12rW600TuCg">CATEGORIA</span>
+            <span class="font12rW600TuCg">ESTOQUE</span>
         </div>
 
         <div class="p-2">
@@ -9,13 +9,12 @@
                 <div class="fs-4 pb-2 mb-4 border-bottom border-dark">
                     <span>Atenção</span>
                 </div>
-                <div style="margin: 10px;">
-                    Confirma a exclusão da categoria de ID nº. "{{ category.id }}" ?
+                <div v-if="stock" class="mb-3">
+                    Confirma a exclusão da entrada de ID nº. {{ stock.id }} ?
                 </div>
                 <div class="text-end">
-                    <router-link class="btn btn-gray me-2" :to="{ name: 'getCategory', params: { 'id': this.id }}">Cancelar</router-link>
-                    <button type="button" class="btn btn-red"
-                        @click="(destroyCategory(category.id))">Excluir</button>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getStock', params: { 'id': this.id }}">Cancelar</router-link>
+                    <button type="button" class="btn btn-red" @click="(destroyStock(stock.id))">Excluir</button>
                 </div>
             </div>
         </div>
@@ -24,26 +23,28 @@
 
 <script>
 import { mapState } from "vuex"
+import StockMixin from '@/mixins/StockMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
-import CategoryMixin from '@/mixins/CategoryMixin'
+
 
 export default {
 
-    name: 'DeleteCategory',
+    name: 'StockIndex',
 
-    mixins: [AbstractMixin, CategoryMixin],
+    mixins: [AbstractMixin, StockMixin],
 
     data() {
         return {
             id: this.$route.params.id,
-            category: {},
+            stock: {},
+            loading: false
         };
     },
 
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchCategory(this.id)
+        this.getStock(this.id)
     }
 }
 </script>

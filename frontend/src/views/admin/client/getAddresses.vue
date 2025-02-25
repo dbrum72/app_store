@@ -54,10 +54,10 @@
                                     <button class="btn btn-sm btn-view"
                                         @click="(fetchAddress(address.id), template = 'show')" title="Visualizar"><i
                                             class="fa-regular fa-folder-open"></i></button>
-                                    <button class="btn btn-sm btn-edit"
+                                    <button class="btn btn-sm btn-blue"
                                         @click="(fetchAddress(address.id), template = 'save')" title="Editar"><i
                                             class="fa-solid fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-delete"
+                                    <button class="btn btn-sm btn-red"
                                         @click="(fetchAddress(address.id), template = 'delete')" title="Excluir"><i
                                             class="fa-regular fa-trash-can"></i></button>
                                 </div>
@@ -112,7 +112,7 @@ export default {
                 return;
             }
             this.loading = true;
-            this.fetchClients(this.searchQuery);
+            this.getClients(this.searchQuery);
             this.loading = false;
         }, 500),
 

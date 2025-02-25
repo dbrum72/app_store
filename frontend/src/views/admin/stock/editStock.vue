@@ -7,7 +7,7 @@
         <div class="p-2">
             <div class="row">
                 <div class="col-sm-12 col-lg-8 mb-2">
-                    <h6>Nova entrada...
+                    <h6>{{ `Editando... (Id. ${stock.id})` }}
                     </h6>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                             <input type="text" class="form-control" :class="errors.name ? 'is-invalid' : ''"
                                 id="validationServerNome" aria-describedby="validationServerNomeFeedback"
                                 placeholder="Nome" v-model="stock.quantity">
-                            <label for="validationServerNome">Quantidade *</label>
+                            <label for="validationServerNome">quantidade *</label>
                             <div v-if="errors.name" id="validationServerNomeFeedback"
                                 class="invalid-feedback text-start">{{ errors.name[0] }}</div>
                         </div>
@@ -61,14 +61,13 @@
                     <span class="obgField">* Campo obrigatório.</span>
                 </div>
                 <div class="card-footer text-end">
-                    <router-link class="btn btn-gray me-2" :to="{ name: 'getStocks' }">Cancelar</router-link>
+                    <router-link class="btn btn-gray me-2"
+                        :to="{ name: 'getStock', params: { 'id': this.id } }">Cancelar</router-link>
                     <button class="btn btn-save" type="button"
-                        @click="storeStock()">Salvar</button>
+                        @click="updateStock(stock.id)">Salvar</button>
                 </div>
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -88,11 +87,10 @@ export default {
 
     data() {
         return {
-            stocks: {},
+            id: this.$route.params.id,
             stock: {},
             products: {},
             searchQuery: '',
-            filter: '',
             loading: false
         };
     },
@@ -100,7 +98,8 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getStocks()
+        this.getProducts(),
+            this.getStock(this.id)
     },
 
     methods: {
@@ -125,34 +124,4 @@ export default {
 </script>
 
 <style>
-.menu-products {
-    position: absolute;
-    top: 100%;
-    /* Faz o menu aparecer logo abaixo do input */
-    left: 0;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: #f0f0f0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-}
-
-.menu-products ul {
-    padding-left: 0;
-    margin: 0;
-}
-
-.menu-products li {
-    list-style-type: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.menu-products li:hover {
-    background-color: #e0f8e6;
-}
 </style>

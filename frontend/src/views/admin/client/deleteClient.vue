@@ -13,8 +13,8 @@
                     Confirma a exclusão do cliente "{{ client.name }}" (Id. {{ client.id }}) ?
                 </div>
                 <div class="text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getClient', params: { 'id': this.id }}">Cancelar</router-link>
-                    <button type="button" class="btn btn-delete" @click="(destroyClient(client.id))">Excluir</button>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getClient', params: { 'id': this.id }}">Cancelar</router-link>
+                    <button type="button" class="btn btn-red" @click="(destroyClient(client.id))">Excluir</button>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchClient(this.id)
+        this.getClient(this.id)
     }
 
 }

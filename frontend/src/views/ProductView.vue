@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-end">
-                        <button type="button" class="btn btn-cancel me-2"
+                        <button type="button" class="btn btn-gray me-2"
                             @click="(product.id ? (this.template = 'show', this.loadProduct(product.id)) : (this.template = 'list', this.product = {}), this.loadProducts())">Cancelar</button>
                         <button class="btn btn-acao" type="button"
                             @click="saveProduct(product.id ? product.id : null)">Salvar</button>
@@ -169,7 +169,7 @@
                                 <button class="btn btn-sm btn-headSubArea"
                                     @click="(this.template = 'save', this.loadProduct(product.id))" title="Editar"><i
                                         class="fa-solid fa-user-pen"></i></button>
-                                <button class="btn btn-sm btn-delete"
+                                <button class="btn btn-sm btn-red"
                                     @click="(this.template = 'excluir-product', this.loadProduct(product.id))"
                                     title="Excluir"><i class="fa-regular fa-trash-can"></i></button>
                             </div>
@@ -240,9 +240,9 @@
                         Confirma a exclusão do(a) product "{{ product.name }}" ?
                     </div>
                     <div class="text-end">
-                        <button type="button" class="btn btn-cancel"
+                        <button type="button" class="btn btn-gray"
                             @click="(template = 'show', getProduct(product.id))">Cancelar</button>
-                        <button type="button" class="btn btn-delete"
+                        <button type="button" class="btn btn-red"
                             @click="deleteProduct(product.id)">Excluir</button>
                     </div>
                 </div>

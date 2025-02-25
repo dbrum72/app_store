@@ -37,7 +37,7 @@ class StockController extends Controller {
 
         if($request->has('subFilter')) {
 
-            $stockRepository->subFilter($request->subFilter);
+            $stockRepository->subFilter('product,'.$request->subFilter);
         }
 
         if($stock = $stockRepository->getResultado()) {   
@@ -53,7 +53,7 @@ class StockController extends Controller {
 
         if($store = $this->stock->create($request->all())) {
             
-            return response()->json([ 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
+            return response()->json([ 'stock' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
@@ -72,7 +72,7 @@ class StockController extends Controller {
 
             if($update->update($request->all())) {
 
-                return response()->json([ 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
+                return response()->json([ 'stock' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);

@@ -13,8 +13,8 @@
                     Confirma a exclusão do produto de ID nº. "{{ this.id }}" ?
                 </div>
                 <div class="text-end">
-                    <router-link class="btn btn-cancel me-2" :to="{ name: 'getProduct', params: { 'id': this.id }}">Cancelar</router-link>
-                    <button type="button" class="btn btn-delete" @click="(destroyProduct(this.id))">Excluir</button>
+                    <router-link class="btn btn-gray me-2" :to="{ name: 'getProduct', params: { 'id': this.id }}">Cancelar</router-link>
+                    <button type="button" class="btn btn-red" @click="(destroyProduct(this.id))">Excluir</button>
                 </div>
             </div>
         </div>

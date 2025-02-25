@@ -1,12 +1,10 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="areaHeader">
-                <span class="font12rW600TuCg">CLIENTE</span>
-            </div>
-            <div>
-                <router-link class="btn btn-sm btn-view" :to="{ name: 'getClients' }" title="Lista de clientes"><i
-                        class="fa-solid fa-list"></i></router-link>
+            <div class="d-flex areaHeader">
+                <span class="font12rW600TuCg pe-2">CLIENTE</span>
+                <router-link class="btn btn-sm btn-gray" :to="{ name: 'getClients' }" title="Lista de clientes"><i
+                    class="fa-solid fa-list"></i></router-link>
             </div>
         </div>
         <div class="subArea mb-5">
@@ -15,10 +13,10 @@
                     <span>Dados Pessoais</span>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <router-link class="btn btn-sm btn-edit"
+                    <router-link class="btn btn-sm btn-blue"
                         :to="{ name: 'editClient', params: { 'id': client.id } }" title="Editar"><i
                             class="fa-solid fa-pencil"></i></router-link>
-                    <router-link class="btn btn-sm btn-delete"
+                    <router-link class="btn btn-sm btn-red"
                         :to="{ name: 'deleteClient', params: { 'id': client.id } }" title="Excluir"><i
                             class="fa-regular fa-trash-can"></i></router-link>
                 </div>
@@ -63,6 +61,22 @@
                     </div>
                     <div class="data">
                         {{ client.email }}
+                    </div>
+                </div>
+                <div class="tupla">
+                    <div class="field">
+                        Criado em
+                    </div>
+                    <div class="data">
+                        {{ this.client.created_at ? formatDate(this.client.created_at) : '' }}
+                    </div>
+                </div>
+                <div class="tupla">
+                    <div class="field">
+                        Atualizado em
+                    </div>
+                    <div class="data">
+                        {{ this.client.updated_at ? formatDate(this.client.updated_at) : '' }}
                     </div>
                 </div>
             </div>
@@ -113,10 +127,10 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <router-link class="btn btn-sm btn-edit"
+                        <router-link class="btn btn-sm btn-blue"
                             :to="{ name: 'editAddress', params: { 'id': address.id } }" title="Editar"><i
                                 class="fa-solid fa-pencil"></i></router-link>
-                        <router-link class="btn btn-sm btn-delete"
+                        <router-link class="btn btn-sm btn-red"
                             :to="{ name: 'deleteAddress', params: { 'id': address.id } }" title="Excluir"><i
                                 class="fa-regular fa-trash-can"></i></router-link>
                     </div>
@@ -124,29 +138,6 @@
             </div>
             <div v-else>
                 <span class="lenght0">Nenhum endereço cadastrado.</span>
-            </div>
-        </div>
-        <div class="subArea">
-            <div class="title-sub-area">
-                <span>Atualizações</span>
-            </div>
-            <div class="dados">
-                <div class="tupla">
-                    <div class="field">
-                        Criado em
-                    </div>
-                    <div class="data">
-                        {{ this.client.created_at ? formatDate(this.client.created_at) : '' }}
-                    </div>
-                </div>
-                <div class="tupla">
-                    <div class="field">
-                        Atualizado em
-                    </div>
-                    <div class="data">
-                        {{ this.client.updated_at ? formatDate(this.client.updated_at) : '' }}
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -173,7 +164,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchClient(this.id)
+        this.getClient(this.id)
     }
 
 }

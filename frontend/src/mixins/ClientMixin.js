@@ -7,7 +7,7 @@ export default {
 
         ...mapMutations(['SET_ERRORS']),
 
-        async fetchClients(filter) {
+        async getClients(filter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client`
             const parameter = 'name'
             const response = await this.handleRequest(
@@ -21,7 +21,7 @@ export default {
             }
         },
 
-        async fetchClient(id) {
+        async getClient(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client/${id}`
             const response = await this.handleRequest(
                 () => getData(url),
