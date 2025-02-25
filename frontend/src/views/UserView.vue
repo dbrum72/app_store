@@ -37,7 +37,7 @@
                             <td>{{ user.tel_cel }} <i v-if = "user.whatsapp" class="fa-brands fa-whatsapp" style="color: #008302;"></i></td>
                             <td>{{ user.email }}</td>
                             <td>
-                                <button class="btn btn-sm btn-view"
+                                <button class="btn btn-sm btn-green"
                                     @click="(this.loadUser(user.id))"
                                     title="Visualizar"><i class="fa-solid fa-user"></i></button>
                                     <button class="btn btn-sm btn-blue"

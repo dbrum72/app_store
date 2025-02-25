@@ -19,7 +19,7 @@ class ProductFileStoreRequest extends FormRequest {
     public function rules(): array {
         
         return [
-            'file' => 'required|mimes:jpeg,png',
+            'file' => 'required|mimes:jpeg,png,avif',
         ];
     }
 
@@ -29,7 +29,7 @@ class ProductFileStoreRequest extends FormRequest {
 
         return [
             'required' => 'Este campo é obrigatório.',
-            'mimes' => 'Este campo deve ser um arquivo do tipo: jpg, jpeg ou png.'
+            'mimes' => 'Este campo deve ser um arquivo do tipo: jpg, jpeg, png ou avif.'
         ];        
     }
 }

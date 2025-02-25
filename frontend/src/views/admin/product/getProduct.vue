@@ -87,7 +87,7 @@
             <div class="title-sub-area">
                 <span>Estoque</span>
                 <div class="d-flex justify-content-end m-2">
-                    <router-link class="btn btn-sm btn-view" type="button" :to="{ name: 'getStock' }"><i
+                    <router-link class="btn btn-sm btn-green" type="button" :to="{ name: 'getStock' }"><i
                             class="fa-solid fa-share"></i>
                         Ir para estoques</router-link>
                 </div>
@@ -111,7 +111,7 @@
             <div class="d-flex" v-if="(product.files && product.files.length > 0)">
                 <div class="me-2" v-for="(file, index) in product.files" :key="index">
                     <div class="position-relative me-3 mb-3">
-                        <img :src="fetchFile(file.storaged)" width="100px" height="100px" :title="file.name"
+                        <img :src="getFile(file.storaged)" width="100px" height="100px" :title="file.name"
                             :alt="file.name">
                         <button class="btn-trash btn-red" title="Excluir" @click="destroyFile(file.id)"><i
                                 class="fa-solid fa-trash"></i></button>
@@ -183,7 +183,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchCategories()
+        this.getCategories()
         this.getProduct(this.id)
     }
 }

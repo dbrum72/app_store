@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div>
-                    <router-link class="btn btn-sm btn-view" :to="{ name: 'newStock' }" title="Nova entrada"><i
+                    <router-link class="btn btn-sm btn-green" :to="{ name: 'newStock' }" title="Nova entrada"><i
                             class="fa-solid fa-plus"></i>
                         Adicionar entrada</router-link>
                 </div>
@@ -48,7 +48,7 @@
                             <td class="text-end">{{ stock.quantity }}</td>
                             <td>
                                 <div class="d-flex justify-content-end m-2">
-                                    <router-link class="btn btn-sm btn-view" :to="{ name: 'getStock', params: { id: stock.id } }"
+                                    <router-link class="btn btn-sm btn-green" :to="{ name: 'getStock', params: { id: stock.id } }"
                                         title="Visualizar"><i class="fa-regular fa-folder-open"></i></router-link>
                                 </div>
                             </td>

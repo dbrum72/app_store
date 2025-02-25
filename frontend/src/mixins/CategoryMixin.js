@@ -7,7 +7,7 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async fetchCategories(filter) {
+        async getCategories(filter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/category`
             const parameter = 'name'
             const response = await this.handleRequest(

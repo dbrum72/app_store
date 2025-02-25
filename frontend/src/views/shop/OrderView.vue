@@ -13,11 +13,11 @@
                         <label for="filterCategory">Pesquisar nome...</label>
                         <div class="input-group-append">
                             <button type="button" class="btn btn-opcoes search-button"
-                                @click="fetchCategories(filter)"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                @click="getCategories(filter)"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-sm btn-view" title="Adicionar category"
+                        <button type="button" class="btn btn-sm btn-green" title="Adicionar category"
                             @click="(category = {}, this.SET_ERRORS([]), template = 'save')"><i
                                 class="fa-solid fa-plus"></i> Novo Pedido</button>
                     </div>
@@ -44,7 +44,7 @@
                                 <td>{{ category.tree }}</td>
                                 <td>
                                     <div class="d-flex justify-content-end m-2">
-                                        <button class="btn btn-sm btn-view"
+                                        <button class="btn btn-sm btn-green"
                                             @click="(fetchCategory(category.id), template = 'show')"
                                             title="Visualizar"><i class="fa-regular fa-folder-open"></i></button>
                                         <button class="btn btn-sm btn-blue"
@@ -79,7 +79,7 @@
                         </div>
                         <div class="list">
                             <ProductStrip v-for="(product, index) in products" :key="index"
-                                :image="product.image?.storaged ? fetchFile(product.image.storaged) : fetchFile('nenhumaImagem.png')"
+                                :image="product.image?.storaged ? getFile(product.image.storaged) : getFile('nenhumaImagem.png')"
                                 :id="product.id" :stock=product.stock :title="product.name"
                                 :description=product.description :price=product.price :alt="product.name" />
                         </div>

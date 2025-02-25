@@ -78,7 +78,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchCategories()
+        this.getCategories()
         this.fetchCategory(this.id)
     }
 }

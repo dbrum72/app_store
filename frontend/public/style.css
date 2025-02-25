@@ -147,14 +147,14 @@ html, body {
     background-color: #abcbf8 !important;
 }
 
-.btn-view {
+.btn-green {
     margin: 0px 5px 0px 0px;
     border: solid 1px #45e2a9 !important;
     color: #41B883 !important;
     background-color: transparent !important;
 }
 
-.btn-view:hover {
+.btn-green:hover {
     color: #03723e !important;
     border-color: #157347 !important;
     background-color: rgba(64, 252, 183, 0.2) !important;

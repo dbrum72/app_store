@@ -11,12 +11,12 @@
                         v-model="filter">
                     <label for="filterCategory">Pesquisar nome...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="fetchCategories(filter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getCategories(filter)"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
                 <div>
-                    <router-link class="btn btn-sm btn-view" :to="{ name: 'newCategory' }"><i
+                    <router-link class="btn btn-sm btn-green" :to="{ name: 'newCategory' }"><i
                             class="fa-solid fa-plus"></i> Adicionar categoria</router-link>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                             <td>{{ category.name }}</td>
                             <td>{{ category.tree }}</td>
                             <td>
-                                <router-link class="btn btn-sm btn-view"
+                                <router-link class="btn btn-sm btn-green"
                                     :to="{ name: 'getCategory', params: { 'id': category.id } }"
                                     title="Visualizar dados"><i class="fa-regular fa-folder-open"></i></router-link>
                             </td>
@@ -78,7 +78,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchCategories()
+        this.getCategories()
     }
 }
 </script>

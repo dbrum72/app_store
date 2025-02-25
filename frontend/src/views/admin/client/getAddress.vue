@@ -13,7 +13,7 @@
                         <span>Informações</span>
                         <div class="d-flex justify-content-end m-2">
 
-                            <button class="btn btn-sm btn-view" @click="(template = 'list')"
+                            <button class="btn btn-sm btn-green" @click="(template = 'list')"
                                 title="Lista de produtos"><i class="fa-solid fa-list"></i></button>
                         </div>
                     </div>

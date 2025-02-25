@@ -27,7 +27,7 @@ export default {
             const response = await this.handleRequest(
                 () => getData(url),
                 null,
-                'Erro ao carregar a lista de clientes.',
+                'Erro ao carregar a lista de produtos.',
                 false
             );
             if (response) {
@@ -71,7 +71,7 @@ export default {
             }
         },
 
-        fetchFile(file) {
+        getFile(file) {
             return getFile(file)
         },
 

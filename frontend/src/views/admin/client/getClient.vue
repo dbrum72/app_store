@@ -85,7 +85,7 @@
             <div class="title-sub-area">
                 <span>Endereços</span>
                 <div>
-                    <router-link class="btn btn-sm btn-view"
+                    <router-link class="btn btn-sm btn-green"
                         :to="{ name: 'newAddress', params: { 'client_id': id } }"><i class="fa-solid fa-plus"></i>
                         Adicionar endereço</router-link>
                 </div>

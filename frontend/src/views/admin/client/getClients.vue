@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div>
-                    <router-link class="btn btn-sm btn-view" :to="{ name: 'newClient' }"><i
+                    <router-link class="btn btn-sm btn-green" :to="{ name: 'newClient' }"><i
                             class="fa-solid fa-plus"></i> Adicionar cliente</router-link>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                     style="color: #41B883;"></i> {{ client.celphone }} </td>
                             <td>{{ client.email }}</td>
                             <td>
-                                <router-link class="btn btn-sm btn-view"
+                                <router-link class="btn btn-sm btn-green"
                                     :to="{ name: 'getClient', params: { 'id': client.id } }"><i
                                         class="fa-regular fa-folder-open" title="Visualizar dados"></i></router-link>
                             </td>

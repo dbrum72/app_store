@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-view" data-bs-dismiss="modal">Comprar mais produtos</button>
+                    <button type="button" class="btn btn-green" data-bs-dismiss="modal">Comprar mais produtos</button>
                     <button v-if="COUNT_CART()" type="button" class="btn btn-save" data-bs-dismiss="modal">Continuar</button>
                 </div>
             </div>

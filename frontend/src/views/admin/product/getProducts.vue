@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div>
-                        <router-link class="btn btn-sm btn-view" :to="{ name: 'newProduct' }"><i
+                        <router-link class="btn btn-sm btn-green" :to="{ name: 'newProduct' }"><i
                             class="fa-solid fa-plus"></i> Adicionar produto</router-link>
                     </div>
                 </div>
@@ -29,8 +29,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col"></th>
                                 <th scope="col">CÓDIGO/BARRAS</th>
-                                <th scope="col">NOME</th>
+                                <th scope="col">PRODUTO</th>
                                 <th scope="col">CATEGORIA</th>
                                 <th scope="col"></th>
                             </tr>
@@ -38,12 +39,13 @@
                         <tbody>
                             <tr v-for="(product, index) in products" :key="index">
                                 <td>{{ product.id }}</td>
+                                <td><img :src="getFile(product.image?.storaged ?? 'nenhumaImagem.png')" width="40px" height="40px"></td>
                                 <td>{{ product.barcode }}</td>
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.category.tree }}</td>
                                 <td>
                                     <div class="d-flex justify-content-end">
-                                        <router-link class="btn btn-sm btn-view" :to="{ name: 'getProduct', params: { 'id': product.id }}" title="Visualizar"><i
+                                        <router-link class="btn btn-sm btn-green" :to="{ name: 'getProduct', params: { 'id': product.id }}" title="Visualizar"><i
                                             class="fa-regular fa-folder-open"></i></router-link>
                                     </div>
 
@@ -84,7 +86,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchCategories()
+        this.getCategories()
         this.getProducts()
     }
 }

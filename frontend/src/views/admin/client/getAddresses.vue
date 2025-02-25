@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-sm btn-view" title="Adicionar endereço"
+                    <button type="button" class="btn btn-sm btn-green" title="Adicionar endereço"
                         @click="(this.SET_ADDRESS({}), template = 'save')"><i class="fa-solid fa-plus"></i>
                         Adicionar endereço</button>
                 </div>
@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end m-2">
-                                    <button class="btn btn-sm btn-view"
+                                    <button class="btn btn-sm btn-green"
                                         @click="(fetchAddress(address.id), template = 'show')" title="Visualizar"><i
                                             class="fa-regular fa-folder-open"></i></button>
                                     <button class="btn btn-sm btn-blue"

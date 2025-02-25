@@ -43,7 +43,7 @@
 
                 <div class="row">
                     <div class="col-md-8 offset-md-4">
-                        <button type="button" class="btn btn-view" @click="login()">Entrar</button>
+                        <button type="button" class="btn btn-green" @click="login()">Entrar</button>
                     </div>
                 </div>
             </div>
