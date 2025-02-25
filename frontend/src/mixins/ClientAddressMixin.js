@@ -7,11 +7,11 @@ export default {
 
         ...mapMutations([ 'SET_ADDRESSES', 'SET_ADDRESS', 'SET_CLIENTS', 'SET_ERRORS' ]),
 
-        async fetchAddresses(filter = null) {
+        async fetchAddresses(filter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client_address?with=client`
             const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, parameter),
+                () => getCollection(url, filter, null, parameter),
                 'Lista de endereços atualizada.',
                 'Erro ao carregar a lista de endereços.',
                 false

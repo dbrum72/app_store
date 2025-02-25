@@ -143,10 +143,16 @@ const routes = [
                 component: () => import('@/views/admin/client/deleteAddress.vue')
             },
             {
-                path: 'estoque',
-                name: 'Stock',
+                path: 'stock',
+                name: 'getStocks',
                 meta: { auth: true },
-                component: () => import('@/views/admin/StockView.vue')
+                component: () => import('@/views/admin/stock/getStocks.vue')
+            },
+            {
+                path: 'stock/new',
+                name: 'newStock',
+                meta: { auth: true },
+                component: () => import('@/views/admin/stock/newStock.vue')
             },
             {
                 path: 'products',
@@ -172,6 +178,12 @@ const routes = [
                 meta: { auth: true },
                 component: () => import('@/views/admin/product/editProduct.vue')
             },
+            {
+                path: 'product/delete/:id',
+                name: 'deleteProduct',
+                meta: { auth: true },
+                component: () => import('@/views/admin/product/deleteProduct.vue')
+            }
         ]
     },
     {

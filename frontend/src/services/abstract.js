@@ -1,12 +1,17 @@
 import http from '@/services/http.js'
 
-export const getCollection = (url, filter, parameter) => {
+export const getCollection = (url, filter, subfilter, parameter) => {
 
     let queryUrl = url;
 
     if (filter) {
         
         queryUrl += `${queryUrl.includes('?') ? '&' : '?'}filter=${parameter}:like:%${encodeURIComponent(filter)}%`
+    }
+
+    if (subfilter) {
+        
+        queryUrl += `${queryUrl.includes('?') ? '&' : '?'}subFilter=${parameter}:like:%${encodeURIComponent(subfilter)}%`
     }
     
     return http.get(queryUrl)

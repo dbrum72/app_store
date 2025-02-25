@@ -7,11 +7,11 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async fetchStocks(filter = null) {
+        async getStocks(subfilter) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/stock?with=product`
             const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, parameter),
+                () => getCollection(url, null, subfilter, parameter),
                 'Lista de estoques atualizada.',
                 'Erro ao carregar a lista de estoques.',
                 false
@@ -21,7 +21,7 @@ export default {
             }
         },
 
-        async fetchStock(id) {
+        async getStock(id) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/stock/${id}`
             const response = await this.handleRequest(
                 () => getData(url),
@@ -61,7 +61,7 @@ export default {
         },
 
         resetStockView() {
-            this.fetchStocks()         
+            this.getStocks()         
             this.stock = {}
             this.SET_ERRORS([])
             this.template = 'list'

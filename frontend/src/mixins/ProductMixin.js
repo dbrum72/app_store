@@ -12,7 +12,7 @@ export default {
             const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=files,image,category&stockQuantity`
             const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, parameter),
+                () => getCollection(url, filter, null, parameter),
                 null,
                 'Erro ao carregar a lista de produtos.',
                 false

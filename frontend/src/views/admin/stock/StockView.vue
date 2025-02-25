@@ -12,7 +12,7 @@
                             v-model="filter">
                         <label for="filterProduct">Pesquisar produto...</label>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-opcoes search-button" @click="fetchStocks(filter)"><i
+                            <button type="button" class="btn btn-opcoes search-button" @click="getStocks(filter)"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
@@ -50,13 +50,13 @@
                                 <td>
                                     <div class="d-flex justify-content-end m-2">
                                         <button class="btn btn-sm btn-view"
-                                            @click="(fetchStock(stock.id), template = 'show')" title="Visualizar"><i
+                                            @click="(getStock(stock.id), template = 'show')" title="Visualizar"><i
                                                 class="fa-regular fa-folder-open"></i></button>
                                         <button class="btn btn-sm btn-edit"
-                                            @click="(fetchStock(stock.id), template = 'save')" title="Editar"><i
+                                            @click="(getStock(stock.id), template = 'save')" title="Editar"><i
                                                 class="fa-solid fa-pencil"></i></button>
                                         <button class="btn btn-sm btn-delete"
-                                            @click="(fetchStock(stock.id), template = 'delete')" title="Excluir"><i
+                                            @click="(getStock(stock.id), template = 'delete')" title="Excluir"><i
                                                 class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </td>
@@ -249,7 +249,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.fetchStocks()
+        this.getStocks()
     },
 
     methods: {

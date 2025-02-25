@@ -11,6 +11,8 @@
                             class="fa-solid fa-list"></i></router-link>
                     <router-link class="btn btn-sm btn-edit" :to="{ name: 'editProduct', params: { 'id': product.id } }"
                         title="Editar"><i class="fa-solid fa-pencil"></i></router-link>
+                    <router-link class="btn btn-sm btn-delete" :to="{ name: 'deleteProduct', params: { 'id': product.id } }" title="Excluir"><i
+                            class="fa-regular fa-trash-can"></i></router-link>
                 </div>
             </div>
             <div class="dados">
