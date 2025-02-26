@@ -32,21 +32,15 @@
                             <th scope="col">NOME</th>
                             <th scope="col">CELULAR</th>
                             <th scope="col">EMAIL</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(client, index) in clients" :key="index">
+                        <tr v-for="(client, index) in clients" :key="index" @click="navigateTo(client.id)">
                             <td>{{ client.id }}</td>
                             <td>{{ client.name }}</td>
                             <td class="text-end"><i v-if="client.whatsapp" class="fa-brands fa-whatsapp"
                                     style="color: #41B883;"></i> {{ client.celphone }} </td>
                             <td>{{ client.email }}</td>
-                            <td>
-                                <router-link class="btn btn-sm btn-green"
-                                    :to="{ name: 'getClient', params: { 'id': client.id } }"><i
-                                        class="fa-regular fa-folder-open" title="Visualizar dados"></i></router-link>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -80,6 +74,12 @@ export default {
 
     mounted() {
         this.getClients()
+    },
+
+    methods: {
+        navigateTo(id) {
+            this.$router.push({ name: 'getClient', params: { 'id': id} })
+        }
     }
 
 }

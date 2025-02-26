@@ -36,22 +36,15 @@
                             <th scope="col">PRODUTO</th>
                             <th scope="col">PREÇO</th>
                             <th scope="col">QTD.</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(stock, index) in stocks" :key="index">
+                        <tr v-for="(stock, index) in stocks" :key="index" @click="navigateTo(stock.id)">
                             <th>{{ stock.id }}</th>
                             <td>{{ formatDate(stock.created_at) }}</td>
                             <td>{{ stock.product.name }}</td>
                             <td class="text-end">{{ toCurrency(stock.price) }}</td>
                             <td class="text-end">{{ stock.quantity }}</td>
-                            <td>
-                                <div class="d-flex justify-content-end m-2">
-                                    <router-link class="btn btn-sm btn-green" :to="{ name: 'getStock', params: { id: stock.id } }"
-                                        title="Visualizar"><i class="fa-regular fa-folder-open"></i></router-link>
-                                </div>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,9 +52,7 @@
             <div v-else>
                 <span class="lenght0">Nenhum registro localizado.</span>
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -70,7 +61,6 @@ import { mapState } from "vuex"
 import StockMixin from '@/mixins/StockMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
-import { debounce } from 'lodash';
 
 
 export default {
@@ -96,21 +86,8 @@ export default {
     },
 
     methods: {
-
-        onInputChange: debounce(function () {
-            if (this.searchQuery.length < 3) {
-                this.products = {};
-                return;
-            }
-            this.loading = true;
-            this.getProducts(this.searchQuery);
-            this.loading = false;
-        }, 500),
-
-        selectProduct(product) {
-            this.searchQuery = product.name
-            this.stock.product_id = product.id
-            this.products = {}
+        navigateTo(id) {
+            this.$router.push({ name: 'getStock', params: { 'id': id}})
         }
     }
 }

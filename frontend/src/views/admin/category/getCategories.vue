@@ -32,19 +32,13 @@
                             <th scope="col">ID</th>
                             <th scope="col">NOME</th>
                             <th scope="col">ÁRVORE</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(category, index) in categories" :key="index">
+                        <tr v-for="(category, index) in categories" :key="index" @click="navigateTo(category.id)">
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
                             <td>{{ category.tree }}</td>
-                            <td>
-                                <router-link class="btn btn-sm btn-green"
-                                    :to="{ name: 'getCategory', params: { 'id': category.id } }"
-                                    title="Visualizar dados"><i class="fa-regular fa-folder-open"></i></router-link>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,6 +73,12 @@ export default {
 
     mounted() {
         this.getCategories()
+    },
+
+    methods: {
+        navigateTo(id) {
+            this.$router.push({ name: 'getCategory', params: { 'id': id}})
+        }
     }
 }
 </script>

@@ -285,6 +285,10 @@ table {
     background-color: transparent;
 }
 
+table>tbody>tr {
+    cursor: pointer;
+}
+
 .title-sub-area {
     display: flex;
     justify-content: space-between;
