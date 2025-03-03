@@ -26,6 +26,7 @@ class StockSaveRequest extends FormRequest {
 
         $rules = [
             'id' => 'unique:stocks,id,'.(isset($this->stock) ? $this->stock : null).',id',
+            'operation_id' => 'required|exists:stock_operations,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer',
             'price' => 'required|decimal:2'

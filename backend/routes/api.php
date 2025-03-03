@@ -38,6 +38,9 @@ Route::group([
 
      /**** Order *****/
     Route::apiResource('/order', 'OrderController', ['except' => ['create','edit']]);
+
+    /**** Stock Operations *****/
+    Route::get('/stock_operation', 'StockOperationController@index')->name('stock_operation.index');
 });
 
 /***********************************************************************************************/
@@ -72,6 +75,8 @@ Route::group([
 
     /**** Stock *****/
     Route::apiResource('stock', 'App\Http\Controllers\StockController');
+
+    
 
     /**** User *****/
     Route::resource('/user', 'UserController', ['except' => ['create','store','edit']]);

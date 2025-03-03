@@ -12,6 +12,21 @@
                 </div>
             </div>
             <div>
+                <div class="col-sm-12 col-lg-6 mb-2">
+                        <div class="form-floating">
+                            <select class="form-select" :class="errors.operation_id ? 'is-invalid' : ''"
+                                id="validationServerCategory" aria-describedby="validationServerCategoryFeedback"
+                                v-model="stock.operation_id">
+                                <option disabled selected>Selecione ...</option>
+                                <option v-for="(operation, index) in stock_operations" :key="index" :value="operation.id">{{
+                                    operation.type }}</option>
+                            </select>
+                            <label for="validationServerCategory">Tipo</label>
+                            <div v-if="errors.operation_id" id="validationServerCategoryFeedback"
+                                class="invalid-feedback text-start">{{
+                                    errors.operation_id[0] }}</div>
+                        </div>
+                    </div>
                 <div class="row">
                     <div class="col-sm-12 mb-2">
                         <div class="form-floating">
@@ -75,6 +90,7 @@
 <script>
 import { mapState } from "vuex"
 import StockMixin from '@/mixins/StockMixin'
+import StockOperationMixin from '@/mixins/StockOperationMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
 import { debounce } from 'lodash';
@@ -84,13 +100,13 @@ export default {
 
     name: 'StockIndex',
 
-    mixins: [AbstractMixin, StockMixin, ProductMixin],
+    mixins: [AbstractMixin, StockMixin, StockOperationMixin, ProductMixin],
 
     data() {
         return {
-            stocks: {},
             stock: {},
             products: {},
+            stock_operations: {},
             searchQuery: '',
             filter: '',
             loading: false
@@ -101,6 +117,8 @@ export default {
 
     mounted() {
         this.getStocks()
+        this.getStockOperations()
+
     },
 
     methods: {

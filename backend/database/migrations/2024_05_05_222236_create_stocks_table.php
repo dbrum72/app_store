@@ -10,7 +10,9 @@ return new class extends Migration {
 
         Schema::create('stocks', function (Blueprint $table) {
 
-            $table->id();            
+            $table->id();
+            $table->set('type', ['1','2','3']);
+            $table->foreignId('order_id')->nullable();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->float('price', 8, 2);
