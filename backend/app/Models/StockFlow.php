@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class StockOperation extends Model {
+class StockFlow extends Model {
 
-    protected $table = 'stock_operations';
+    protected $table = 'stock_flows';
 
     protected $fillable = ['type']; 
 

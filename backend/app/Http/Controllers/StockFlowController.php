@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\StockOperation;
+use App\Models\StockFlow;
 
 use Illuminate\Http\Request;
 
-class StockOperationController extends Controller {
+class StockFlowController extends Controller {
 
-    public function __construct(StockOperation $stockOperation) {
+    public function __construct(StockFlow $stockOperation) {
 
         $this->stockOperation = $stockOperation;
     }

@@ -7,24 +7,24 @@
         <div class="p-2">
             <div class="row">
                 <div class="col-sm-12 col-lg-8 mb-2">
-                    <h6>Nova entrada...
+                    <h6>Novo fluxo...
                     </h6>
                 </div>
             </div>
             <div>
                 <div class="col-sm-12 col-lg-6 mb-2">
                         <div class="form-floating">
-                            <select class="form-select" :class="errors.operation_id ? 'is-invalid' : ''"
+                            <select class="form-select" :class="errors.flow_id ? 'is-invalid' : ''"
                                 id="validationServerCategory" aria-describedby="validationServerCategoryFeedback"
-                                v-model="stock.operation_id">
+                                v-model="stock.flow_id">
                                 <option disabled selected>Selecione ...</option>
-                                <option v-for="(operation, index) in stock_operations" :key="index" :value="operation.id">{{
-                                    operation.type }}</option>
+                                <option v-for="(flow, index) in stock_flows" :key="index" :value="flow.id">{{
+                                    flow.type }}</option>
                             </select>
                             <label for="validationServerCategory">Tipo</label>
-                            <div v-if="errors.operation_id" id="validationServerCategoryFeedback"
+                            <div v-if="errors.flow_id" id="validationServerCategoryFeedback"
                                 class="invalid-feedback text-start">{{
-                                    errors.operation_id[0] }}</div>
+                                    errors.flow_id[0] }}</div>
                         </div>
                     </div>
                 <div class="row">
@@ -90,7 +90,7 @@
 <script>
 import { mapState } from "vuex"
 import StockMixin from '@/mixins/StockMixin'
-import StockOperationMixin from '@/mixins/StockOperationMixin'
+import StockFlowMixin from '@/mixins/StockFlowMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
 import { debounce } from 'lodash';
@@ -100,13 +100,13 @@ export default {
 
     name: 'StockIndex',
 
-    mixins: [AbstractMixin, StockMixin, StockOperationMixin, ProductMixin],
+    mixins: [AbstractMixin, StockMixin, StockFlowMixin, ProductMixin],
 
     data() {
         return {
             stock: {},
             products: {},
-            stock_operations: {},
+            stock_flows: {},
             searchQuery: '',
             filter: '',
             loading: false
@@ -117,7 +117,7 @@ export default {
 
     mounted() {
         this.getStocks()
-        this.getStockOperations()
+        this.getStockFlows()
 
     },
 

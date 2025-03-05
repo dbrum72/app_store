@@ -19,7 +19,7 @@
                 <div>
                     <router-link class="btn btn-sm btn-green" :to="{ name: 'newStock' }" title="Nova entrada"><i
                             class="fa-solid fa-plus"></i>
-                        Adicionar entrada</router-link>
+                        Adicionar fluxo</router-link>
                 </div>
             </div>
 

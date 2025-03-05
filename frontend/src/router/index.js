@@ -182,7 +182,7 @@ const routes = [
                 path: 'stock/new',
                 name: 'newStock',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/newStock.vue')
+                component: () => import('@/views/admin/stock/flowStock.vue')
             },
             {
                 path: 'stock/edit/:id',

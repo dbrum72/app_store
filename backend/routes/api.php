@@ -40,7 +40,7 @@ Route::group([
     Route::apiResource('/order', 'OrderController', ['except' => ['create','edit']]);
 
     /**** Stock Operations *****/
-    Route::get('/stock_operation', 'StockOperationController@index')->name('stock_operation.index');
+    Route::get('/stock_flow', 'StockFlowController@index')->name('stock_flow.index');
 });
 
 /***********************************************************************************************/

@@ -7,8 +7,8 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getStockOperations() {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock_operation`
+        async getStockFlows() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/stock_flow`
             const response = await this.handleRequest(
                 () => getData(url),
                 'Lista de estoques atualizada.',
@@ -17,7 +17,7 @@ export default {
             );
             if (response) {
                 console.log(response.data)
-                this.stock_operations = response.data
+                this.stock_flows = response.data
             }
         }
     }
