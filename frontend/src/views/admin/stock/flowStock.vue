@@ -12,21 +12,38 @@
                 </div>
             </div>
             <div>
-                <div class="col-sm-12 col-lg-6 mb-2">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 mb-2">
                         <div class="form-floating">
                             <select class="form-select" :class="errors.flow_id ? 'is-invalid' : ''"
-                                id="validationServerCategory" aria-describedby="validationServerCategoryFeedback"
-                                v-model="stock.flow_id">
+                                id="validationServerFlowId" aria-describedby="validationServerFlowIdFeedback"
+                                v-model="stock.flow_id" @change="getFlowTypes()">
                                 <option disabled selected>Selecione ...</option>
-                                <option v-for="(flow, index) in stock_flows" :key="index" :value="flow.id">{{
-                                    flow.type }}</option>
+                                <option v-for="flow in flows" :key="flow.id" :value="flow.id">{{
+                                    flow.flow }}</option>
                             </select>
-                            <label for="validationServerCategory">Tipo</label>
-                            <div v-if="errors.flow_id" id="validationServerCategoryFeedback"
+                            <label for="validationServerFlowId">Fluxo *</label>
+                            <div v-if="errors.flow_id" id="validationServerFlowIdFeedback"
                                 class="invalid-feedback text-start">{{
                                     errors.flow_id[0] }}</div>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-lg-6 mb-2">
+                        <div class="form-floating">
+                            <select class="form-select" :class="errors.flow_type_id ? 'is-invalid' : ''"
+                                id="validationServerFlowTypeId" aria-describedby="validationServerFlowTypeIdFeedback"
+                                v-model="stock.flow_type_id" :disabled="flowTypes.length === 0">
+                                <option disabled selected>Selecione ...</option>
+                                <option v-for="flowType in flowTypes" :key="flowType.id" :value="flowType.id">{{
+                                    flowType.type }}</option>
+                            </select>
+                            <label for="validationServerFlowTypeId">Tipo *</label>
+                            <div v-if="errors.flow_type_id" id="validationServerFlowTypeIdFeedback"
+                                class="invalid-feedback text-start">{{
+                                    errors.flow_type_id[0] }}</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 mb-2">
                         <div class="form-floating">
@@ -35,7 +52,7 @@
                                 id="stockProductId" />
                             <label for="stockProductId">Produto *</label>
                             <div v-if="errors.product_id" id="stockProductIdFeedback"
-                                class="invalid-feedback text-start">{{ errors.product_id }}
+                                class="invalid-feedback text-start">{{ errors.product_id[0] }}
                             </div>
                             <div v-if="products.length > 0 && searchQuery.length >= 3" class="menu-products">
                                 <ul>
@@ -51,22 +68,22 @@
                     <div class="col-6 mb-2">
                         <div class="form-floating">
                             <input type="text" class="form-control" :class="errors.price ? 'is-invalid' : ''"
-                                id="validationServerCodigo" aria-describedby="validationServerCodigoFeedback"
+                                id="validationServerPrice" aria-describedby="validationServerPriceFeedback"
                                 placeholder="Preço" v-model="stock.price">
-                            <label for="validationServerCodigo">Preço (R$) *</label>
-                            <div v-if="errors.price" id="validationServerCodigofeedback"
+                            <label for="validationServerPrice">Preço (R$) *</label>
+                            <div v-if="errors.price" id="validationServerPricefeedback"
                                 class="invalid-feedback text-start">
                                 {{ errors.price[0] }}</div>
                         </div>
                     </div>
                     <div class="col-6 mb-2">
                         <div class="form-floating">
-                            <input type="text" class="form-control" :class="errors.name ? 'is-invalid' : ''"
-                                id="validationServerNome" aria-describedby="validationServerNomeFeedback"
+                            <input type="text" class="form-control" :class="errors.quantity ? 'is-invalid' : ''"
+                                id="validationServerQuantity" aria-describedby="validationServerQuantityFeedback"
                                 placeholder="Nome" v-model="stock.quantity">
-                            <label for="validationServerNome">Quantidade *</label>
-                            <div v-if="errors.name" id="validationServerNomeFeedback"
-                                class="invalid-feedback text-start">{{ errors.name[0] }}</div>
+                            <label for="validationServerQuantity">Quantidade *</label>
+                            <div v-if="errors.quantity" id="validationServerQuantityFeedback"
+                                class="invalid-feedback text-start">{{ errors.quantity[0] }}</div>
                         </div>
                     </div>
                 </div>
@@ -77,13 +94,10 @@
                 </div>
                 <div class="card-footer text-end">
                     <router-link class="btn btn-gray me-2" :to="{ name: 'getStocks' }">Cancelar</router-link>
-                    <button class="btn btn-save" type="button"
-                        @click="storeStock()">Salvar</button>
+                    <button class="btn btn-save" type="button" @click="storeStock()">Salvar</button>
                 </div>
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -106,7 +120,8 @@ export default {
         return {
             stock: {},
             products: {},
-            stock_flows: {},
+            flows: {},
+            flowTypes: '',
             searchQuery: '',
             filter: '',
             loading: false
@@ -116,9 +131,8 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
+        this.getFlows()
         this.getStocks()
-        this.getStockFlows()
-
     },
 
     methods: {

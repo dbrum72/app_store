@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Progresso;
 use Illuminate\Http\Request;
 
-class ProgressoController extends Controller
+class OrderProgressController extends Controller
 {
     /**
      * Display a listing of the resource.

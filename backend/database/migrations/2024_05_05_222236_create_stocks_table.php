@@ -9,9 +9,9 @@ return new class extends Migration {
     public function up(): void {
 
         Schema::create('stocks', function (Blueprint $table) {
-
             $table->id();
-            $table->set('type', ['1','2','3']);
+            $table->foreignId('flow_id');
+            $table->foreignId('flow_type_id');
             $table->foreignId('order_id')->nullable();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity');

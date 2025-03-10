@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     
     public function up(): void {
-
-        Schema::create('orders_progress', function (Blueprint $table) {
+        Schema::create('flow_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
+            $table->foreignId('flow_id');
+            $table->string('type', 20);
         });
     }
 
     public function down(): void {
 
-        Schema::dropIfExists('orders_progress');
+        Schema::dropIfExists('flow_types');
     }
 };

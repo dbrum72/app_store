@@ -26,7 +26,9 @@ class StockSaveRequest extends FormRequest {
 
         $rules = [
             'id' => 'unique:stocks,id,'.(isset($this->stock) ? $this->stock : null).',id',
-            'operation_id' => 'required|exists:stock_operations,id',
+            'flow_id' => 'required|exists:flows,id',
+            'flow_type_id' => 'required|exists:flow_types,id',
+            'order_id' => 'nullable|exists:orders,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer',
             'price' => 'required|decimal:2'
@@ -56,15 +58,17 @@ class StockSaveRequest extends FormRequest {
             'required' => 'Este campo é obrigatório.',
             'unique' => 'O dado informado já existe.',
             'exists' => 'O dado informado não existe.',
-            'decimal' => 'Este campo deve ter valor monetário. Ex.: 99999,00'
+            'decimal' => 'Este campo deve ter valor monetário. Ex.: 99999,00',
+            'integer' => 'Este campo deve ser um inteiro.'
         ];        
     }
 
     protected function prepareForValidation(): void {
 
-        $this->merge([
-            'price' => Str::replace(',', '', number_format((float)Str::replace(',', '.',$this->price), 2))
-        ]);
+        if($this->price) {
+            $this->merge([
+                'price' => Str::replace(',', '', number_format((float)Str::replace(',', '.',$this->price), 2))
+            ]);
+        }
     }
-
 }
