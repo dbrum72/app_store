@@ -2,7 +2,7 @@
     <div class="header">
         <div>
             <img src="@/assets/logo.png">
-            <router-link :to="{ name: 'Shop'}">{{ title }}</router-link>
+            <router-link :to="{ name: 'Ecommerce'}">{{ title }}</router-link>
         </div>
         <div>
 

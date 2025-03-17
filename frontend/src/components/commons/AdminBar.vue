@@ -1,7 +1,7 @@
 <template>
     <div class="navbar" v-show="isNavbarVisible">
         <div id="nav">
-            <div><router-link :to="{ name: 'Shop' }">Início</router-link></div>
+            <div><router-link :to="{ name: 'Ecommerce' }">Início</router-link></div>
             <div><router-link :to="{ name: 'getClients' }">Clientes</router-link></div>
             <div><router-link :to="{ name: 'getProducts' }">Produtos</router-link></div>
             <div><router-link :to="{ name: 'getStocks' }">Estoques</router-link></div>

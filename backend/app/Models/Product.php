@@ -35,10 +35,6 @@ class Product extends Model {
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
 
-    public function image(): HasOne {
-        return $this->hasOne('App\Models\ProductFile', 'product_id')->oldest();
-    }
-
     public function files(): HasMany {
 
         return $this->hasMany('App\Models\ProductFile', 'product_id');

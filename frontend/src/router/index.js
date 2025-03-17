@@ -5,19 +5,20 @@ import store from "@/store"
 
 const routes = [
     {
-        path: '/:catchAll(.*)',
-        redirect: { name: 'Shop' }
+        path: '/ecommerce',
+        name: 'Ecommerce',
+        component: () => import('@/views/ecommerce/IndexView.vue')      
     },
     {
-        path: '/',
-        name: 'Shop',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/shop/IndexView.vue')
+        path: '/ecommerce/product/:id',
+        name: 'ProductView',
+        component: () => import('@/views/ecommerce/getProduct.vue')
     },
     {
         path: '/carrinho',
         name: 'Carrinho',
         meta: { auth: true },
-        component: () => import('@/views/shop/cart-view.vue')
+        component: () => import('@/views/ecommerce/cart-view.vue')
     },    
     {
         path: '/login',
@@ -44,8 +45,8 @@ const routes = [
     {
         path: '/produtos',
         name: 'Produtos',
-        component: () => import('@/views/shop/OrderView.vue')
-    },  
+        component: () => import('@/views/ecommerce/OrderView.vue')
+    },    
     {
         path: '/sobre',
         name: 'Sobre',
@@ -205,18 +206,10 @@ const routes = [
         ]
     },
     {
-        path: '/loja',
-        name: 'Shop',
-        component: () => import('@/views/shop/IndexView.vue'),
-        children: [
-            {
-                path: 'ordem',
-                name: 'Order',
-                meta: { auth: true },
-                component: () => import('@/views/shop/OrderView.vue')
-            }
-        ]
-    }
+        path: '/:catchAll(.*)',
+        redirect: { name: 'Ecommerce' }
+    },
+    
 ]
 
 const router = createRouter({

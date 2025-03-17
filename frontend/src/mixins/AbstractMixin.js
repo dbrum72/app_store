@@ -87,7 +87,7 @@ export default {
             document.cookie = "user_name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             this.SET_USER(null)
 
-            this.$router.push({ name: 'Shop' })
+            this.$router.push({ name: 'Ecommerce' })
 
         },
 

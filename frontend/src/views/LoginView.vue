@@ -94,7 +94,7 @@ export default {
                 })
                 
                 /* eslint-disable */
-                this.$router.push({ name: 'Shop' })
+                this.$router.push({ name: 'Ecommerce' })
 
             } catch (error) {
                 if (error?.response?.status === 401) {

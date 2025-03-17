@@ -9,7 +9,7 @@ export default {
         ...mapMutations(['SET_ERRORS' ]),
 
         async getProducts(filter) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=files,image,category&stockQuantity`
+            const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=files,category&stockQuantity`
             const parameter = 'name'
             const response = await this.handleRequest(
                 () => getCollection(url, filter, null, parameter),

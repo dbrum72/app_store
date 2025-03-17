@@ -6,7 +6,7 @@
         <div class="btn-cart" :class="COUNT_CART() ? '' : ' empty'" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
             <span class="mb-1">{{ COUNT_CART() }}</span>
-                <span class="label"><i class="fa-solid fa-cart-shopping"></i></span>
+                <span class="label"><i class="fa-solid fa-cart-ecommerceping"></i></span>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
 <script>
 import AbstractMixin from '@/mixins/AbstractMixin'
 import { mapState, mapGetters } from 'vuex';
-import CartItem from "@/components/shop/cart-item.vue"
+import CartItem from "@/components/ecommerce/cart-item.vue"
 
 export default {
 

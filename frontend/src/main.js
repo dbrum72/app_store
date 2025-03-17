@@ -7,6 +7,6 @@ const app = createApp(App)
     .use(store)
     .use(router)
     
-app.config.globalProperties.$myApp = process.env.VUE_APP_TITLE;
+app.config.globalProperties.$myEcommerce = process.env.VUE_APP_ECOMMERCE_TITLE;
 
 app.mount('#app')

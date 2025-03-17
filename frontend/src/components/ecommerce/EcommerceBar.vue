@@ -12,7 +12,7 @@ import { mapMutations, mapState } from "vuex";
 
 export default {
 
-    name: "ShopBar",
+    name: "EcommerceBar",
 
     computed: mapState(['isNavbarVisible']),
 

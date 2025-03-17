@@ -1,7 +1,9 @@
 html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-size: Helvetica;
 }
 
 /************************************/
@@ -49,7 +51,7 @@ html, body {
     list-style: none;
 }
 
-.areaLeftbar nav ul li {
+.areaLeftbar nav app li {
     margin-bottom: 1rem;
 }
 
@@ -161,11 +163,9 @@ html, body {
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    width: 100% !important;
-    margin: 0px !important;
-    padding: 10px
+    max-width: 1200px !important;
+    margin: 20px auto !important;
+    padding: 20px;
 }
 
 .content {
@@ -211,6 +211,10 @@ html, body {
 .information-box>div>input {
     width: 100%;
     text-align: center;
+    box-sizing: border-box;
+}
+
+input {
     box-sizing: border-box;
 }
 

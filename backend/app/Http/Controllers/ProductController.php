@@ -86,7 +86,6 @@ class ProductController extends Controller {
         
         return new ProductResource($this->product
             ->with('category')
-            ->with('image')
             ->with('files')
             ->withSum('entries as stock', 'quantity')
             ->findOrFail($product));

@@ -119,7 +119,7 @@
 
 <script>
 import { mapState } from "vuex"
-import ProductStrip from '@/components/shop/ProductStrip.vue';
+import ProductStrip from '@/components/ecommerce/ProductStrip.vue';
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
 import { debounce } from 'lodash';

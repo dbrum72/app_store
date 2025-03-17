@@ -3,7 +3,7 @@
         <div class="products">
             <div class="header">
                 <div>
-                    <span class="title title-color-1"><i class="fa-solid fa-cart-shopping cart"></i> SEU CARRINHO DE
+                    <span class="title title-color-1"><i class="fa-solid fa-cart-ecommerceping cart"></i> SEU CARRINHO DE
                         COMPRAS</span>
                 </div>
                 <div><router-link :to="{ name: 'Produtos' }"> continue comprando</router-link></div>
