@@ -9,6 +9,7 @@
                 :id="product.id"
                 :name="product.name"
                 :src="urlBackFiles+product.files?.[0].storaged"
+                :price="product.price"
                 />                
         </div>
     </div>
