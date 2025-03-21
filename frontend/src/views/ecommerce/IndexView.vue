@@ -8,7 +8,7 @@
             <ProductCard 
                 :id="product.id"
                 :name="product.name"
-                :src="urlBackFiles+product.files?.[0].storaged"
+                :src="urlBackFiles+(product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"
                 :price="product.price"
                 />                
         </div>
