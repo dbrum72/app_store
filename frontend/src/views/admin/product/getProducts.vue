@@ -38,7 +38,7 @@
                     <tbody>
                         <tr v-for="(product, index) in products" :key="index" @click="navigateTo(product.id)">
                             <td>{{ product.id }}</td>
-                            <td><img :src="getFile(product.image?.storaged ?? 'nenhumaImagem.png')" width="40px"
+                            <td><img :src="getFile(product.files?.[0]?.storaged ?? 'nenhumaImagem.png')" width="40px"
                                     height="40px"></td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.category.tree }}</td>
