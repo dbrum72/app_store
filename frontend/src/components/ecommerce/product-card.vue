@@ -27,14 +27,14 @@ export default {
 
 <style scoped>
 
-.card {
-    width: 270px;
-    height: 470px;
-    padding: 10px;
+.card {    
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
-    border: solid 1px #d3d3d3 !important
+    width: 270px;
+    height: 470px;
+    padding: 10px;
+    border: solid 1px #d3d3d3
 }
 
 .card-img {

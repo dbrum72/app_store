@@ -3,7 +3,7 @@
         <div class="title">
             <div class="logo">
                 <img src="@/assets/logo.png">
-                <h1>{{ $myEcommerce }}</h1>
+                <router-link :to="{ name: 'Ecommerce'}"><h1>{{ $myEcommerce }}</h1></router-link>                
             </div>
             <div class="user-options">
                 <router-link :to="{ name: 'Login' }"><i class="fas fa-user"></i>Login / Cadastro</router-link>
@@ -42,6 +42,10 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.logo a {
+    text-decoration: none;
 }
 
 .logo img {

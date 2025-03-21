@@ -44,9 +44,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .cards {
     display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
     gap: 20px;
 }
 </style>
