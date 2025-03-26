@@ -19,7 +19,7 @@ const routes = [
         name: 'Carrinho',
         meta: { auth: true },
         component: () => import('@/views/ecommerce/cart-view.vue')
-    },    
+    },
     {
         path: '/login',
         name: 'Login',

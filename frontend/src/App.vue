@@ -1,7 +1,7 @@
 <template>
 
 	<header>
-		<TopBar />
+		<HeaderBar />
 	</header>
 
 	<!--<AppAuthenticated />
@@ -25,7 +25,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import TopBar from '@/components/ecommerce/header-bar.vue'
+import HeaderBar from '@/components/ecommerce/header-bar.vue'
 //import AppAuthenticated from '@/components/templates/app-authenticated.vue'
 //import AppHeader from '@/components/templates/app-header.vue'
 //import AppNavbar from '@/components/templates/app-navbar.vue'
@@ -38,7 +38,7 @@ export default {
 	name: 'AppWebstore',
 
 	components: {
-		TopBar,
+		HeaderBar,
 		//AppAuthenticated,
 		//AppHeader,
 		//AppNavbar,

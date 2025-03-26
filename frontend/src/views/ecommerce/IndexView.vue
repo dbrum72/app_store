@@ -9,6 +9,7 @@
                 :id="product.id"
                 :name="product.name"
                 :src="urlBackFiles+(product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"
+                :description="product.description"
                 :price="product.price"
                 />                
         </div>
@@ -34,13 +35,20 @@ export default {
     data() {
         return {
             urlBackFiles: process.env.VUE_APP_BACKEND_URL_FILES,
+            filter: null,
             products: {}
         }
     },
 
     mounted() {
         this.getProducts(null)
-    }
+    },
+
+    //methods: {
+       // filtrateProducts(filter) {
+        //    this.getProducts(filter)
+        //}
+   // }
 }
 </script>
 
@@ -48,7 +56,7 @@ export default {
 .cards {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    gap: 20px;
+    gap: 15px;
+    box-sizing:border-box
 }
 </style>

@@ -153,7 +153,7 @@ html, body {
     margin: 0px 5px 0px 0px;
     border: solid 1px #45e2a9 !important;
     color: #41B883 !important;
-    background-color: transparent !important;
+    background-color: transparent !important;    
 }
 
 .btn-green:hover {
@@ -166,6 +166,7 @@ html, body {
     max-width: 1200px !important;
     margin: 20px auto !important;
     padding: 20px;
+    background-color: #F4F4F4;
 }
 
 .content {

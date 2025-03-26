@@ -6,13 +6,13 @@
                 <router-link :to="{ name: 'Ecommerce'}"><h1>{{ $myEcommerce }}</h1></router-link>                
             </div>
             <div class="user-options">
-                <router-link :to="{ name: 'Login' }"><i class="fas fa-user"></i>Login / Cadastro</router-link>
+                <router-link :to="{ name: 'Login' }"><i class="fas fa-user"></i>Entre ou Cadastre-se</router-link>
                 <a href=""></a>
                 <a href=""></a>
             </div>
         </div>
         <nav>
-            <router-link to="">Computadores</router-link>
+            <router-link :to="{ name: 'Ecommerce', params: { category: 'Notebooks'} }">Notebooks</router-link>
             <router-link to="">TVs</router-link>
             <router-link to="">Acessórios</router-link>
             <router-link to="">Promoções</router-link>
@@ -20,6 +20,7 @@
                 <input type="text" placeholder="Buscar produto">
                 <i class="fas fa-search"></i>
             </div>
+                   
         </nav>
     </div>
 </template>
@@ -35,7 +36,7 @@ export default {
 h1 {
     font-size: 1.5rem;
     white-space: nowrap;
-    color: #08EFB0;
+    color: #41B883;
 }
 
 .logo {
