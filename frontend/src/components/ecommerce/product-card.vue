@@ -3,7 +3,9 @@
         <div class="card-img">
             <img :src="src" :alt="name" />
         </div>
-        <div class="card-title"><h6>{{ name }}</h6></div>
+        <div class="card-title">
+            <h6>{{ name }}</h6>
+        </div>
         <div class="card-description">{{ description }}</div>
         <div class="card-price">R$ {{ price }}</div>
         <div class="view-details">
@@ -43,6 +45,13 @@ export default {
 
     -webkit-box-shadow: 5px 5px 10px 0px #5c5c5c96;
     -moz-box-shadow: 5px 5px 10px 0px #5c5c5c96;
+}
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .card-img {

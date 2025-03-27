@@ -8,11 +8,12 @@ export default {
 
         ...mapMutations(['SET_ERRORS' ]),
 
-        async getProducts(filter) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=files,category&stockQuantity`
-            const parameter = 'name'
+        async getProducts(filter, extendFilter, parameter) {
+
+            const url = `${process.env.VUE_APP_BACKEND_URL}/product?with=category,files&stockQuantity`
+            
             const response = await this.handleRequest(
-                () => getCollection(url, filter, null, parameter),
+                () => getCollection(url, filter, extendFilter, parameter),
                 null,
                 'Erro ao carregar a lista de produtos.',
                 false
