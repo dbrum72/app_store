@@ -129,6 +129,10 @@ nav a {
     text-decoration: none;
 }
 
+.user-options i {
+    margin-right: 10px;
+}
+
 .user-options input[type='text'] {
     padding: 5px;
     border: solid 2px #41B883;

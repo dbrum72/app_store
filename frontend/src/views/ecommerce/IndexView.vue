@@ -1,17 +1,11 @@
 <template>
-
-    <div>
-        <h1>PRODUTOS</h1>
-    </div>
-    <div class="cards" v-if="(this.products && this.products.length > 0)">
+     <div class="cards" v-if="(this.products && this.products.length > 0)">
         <div v-for="product in products" :key=product.id>
             <ProductCard :id="product.id" :name="product.name"
                 :src="urlBackFiles + (product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"
                 :description="product.description" :price="product.price" />
         </div>
     </div>
-
-
 </template>
 
 <script>
@@ -51,21 +45,23 @@ export default {
 
     mounted() {
         this.getProducts(null, this.filter, this.parameter)
-    },
-
-    //methods: {
-    // filtrateProducts(filter) {
-    //    this.getProducts(filter)
-    //}
-    // }
+    }
 }
 </script>
 
 <style scoped>
+
 .cards {
     display: flex;
     flex-flow: row wrap;
     gap: 15px;
-    box-sizing: border-box
+    width: fit-content;
+    max-width: 1160px;
+    margin: 0 auto;
 }
+
+
+
+
+
 </style>

@@ -4,6 +4,10 @@ html, body {
     padding: 0;
     box-sizing: border-box;
     font-size: Helvetica;
+    /*background: linear-gradient(rgb(1, 1, 1, 0.2), rgba(1, 1, 1, 0.2)), 
+                url('background.png');
+    background-position: center;
+    background-repeat: repeat;*/
 }
 
 /************************************/
@@ -164,10 +168,14 @@ html, body {
 
 .container {
     max-width: 1200px !important;
+    width: 100% !important; /* Garante que o .container não limite o crescimento */
     margin: 20px auto !important;
     padding: 20px;
     background-color: #F4F4F4;
+    display: flex; /* Mantém o conteúdo organizado */
+    justify-content: center; /* Centraliza */
 }
+
 
 .content {
     display: flex;
