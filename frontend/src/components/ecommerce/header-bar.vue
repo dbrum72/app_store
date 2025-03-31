@@ -69,7 +69,7 @@ export default {
 <style scoped>
 .dropdown-item:hover {
     color: #203041;
-    background-color: #52D9A9;
+    background-color: #D9FEF1;
     cursor: pointer;
 }
 

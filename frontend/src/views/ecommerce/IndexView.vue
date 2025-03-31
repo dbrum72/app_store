@@ -1,7 +1,10 @@
 <template>
      <div class="cards" v-if="(this.products && this.products.length > 0)">
         <div v-for="product in products" :key=product.id>
-            <ProductCard :id="product.id" :name="product.name"
+            <ProductCard
+                :id="product.id"
+                :name="product.name"
+                :tree="product.category?.tree"
                 :src="urlBackFiles + (product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"
                 :description="product.description" :price="product.price" />
         </div>

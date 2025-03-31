@@ -63,7 +63,7 @@ class CategoryController extends Controller {
             do {                
                 if(!is_null($tree->parent_id)) {
                     $tree = $tree->find($tree->parent_id);
-                    $name = $tree->name . ' -> ' . $name;                    
+                    $name = $tree->name . '/' . $name;                    
                 }
             }
             while(!is_null($tree->parent_id));
@@ -90,12 +90,12 @@ class CategoryController extends Controller {
             if(!is_null($request->parent_id)) {
 
                 $tree = Category::find($request->parent_id);
-                $name = $tree->name.' -> '.$request->name;
+                $name = $tree->name.'/'.$request->name;
     
                 do {                
                     if(!is_null($tree->parent_id)) {
                         $tree = $tree->find($tree->parent_id);
-                        $name = $tree->name . ' -> ' . $name;                    
+                        $name = $tree->name . '/' . $name;                    
                     }
                 }
                 while(!is_null($tree->parent_id));
