@@ -11,7 +11,7 @@
                         v-model="filter">
                     <label for="filterProduct">Pesquisar...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getProducts(filter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getProducts(null,'name',filter)"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
