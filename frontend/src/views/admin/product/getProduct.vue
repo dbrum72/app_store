@@ -111,7 +111,7 @@
             <div class="d-flex" v-if="(product.files && product.files.length > 0)">
                 <div class="me-2" v-for="(file, index) in product.files" :key="index">
                     <div class="position-relative me-3 mb-3">
-                        <img :src="getFile(file.storaged)" width="100px" height="100px" :title="file.name"
+                        <img :src="getFile(file.storaged)" :title="file.name"
                             :alt="file.name">
                         <button class="btn-trash btn-red" title="Excluir" @click="destroyFile(file.id)"><i
                                 class="fa-solid fa-trash"></i></button>
@@ -208,5 +208,10 @@ export default {
 .addFile:hover {
     color: #6b6a6a;
     border-color: #6b6a6a
+}
+
+img {
+    width:100px;
+    height:100px;
 }
 </style>

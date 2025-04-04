@@ -11,7 +11,8 @@
                         v-model="filter">
                     <label for="filterProduct">Pesquisar...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getProducts(null,'name',filter)"><i
+                        <button type="button" class="btn btn-opcoes search-button"
+                            @click="getProducts(null, 'name', filter)"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -38,8 +39,7 @@
                     <tbody>
                         <tr v-for="(product, index) in products" :key="index" @click="navigateTo(product.id)">
                             <td>{{ product.id }}</td>
-                            <td><img :src="getFile(product.files?.[0]?.storaged ?? 'nenhumaImagem.png')" width="40px"
-                                    height="40px"></td>
+                            <td><img :src="getFile(product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"></td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.category.tree }}</td>
                             <td>{{ product.barcode }}</td>
@@ -91,4 +91,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+img {
+    width: 40px;
+    height: 40px;
+}
+</style>

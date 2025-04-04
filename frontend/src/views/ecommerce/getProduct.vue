@@ -15,7 +15,8 @@
                 </div>
             </div>
             <div class="product-info">
-                <p class="product-path">{{ product?.category?.tree }}</p>
+                <BreadcrumbBar :tree="product?.category?.tree" />
+                
                 <h2>{{ product?.name }}</h2>
                 <p class="product-code">Código do produto: {{ product?.barcode }}</p>
                 <p class="price">R$ {{ product?.price }}</p>
@@ -74,10 +75,13 @@
 <script>
 import AbstractMixin from '@/mixins/AbstractMixin';
 import ProductMixin from '@/mixins/ProductMixin';
+import BreadcrumbBar from '@/components/ecommerce/breadcrumb-bar.vue'
 
 export default {
 
     name: 'getProduct',
+
+    components: { BreadcrumbBar },
 
     mixins: [AbstractMixin, ProductMixin],
 
@@ -218,7 +222,6 @@ img {
     border-radius: 5px;
 }
 
-.product-path,
 .product-code {
     font-size: .9rm;
     color: #777;
