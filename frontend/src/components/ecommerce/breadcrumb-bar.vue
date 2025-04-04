@@ -1,12 +1,10 @@
 <template>
-    <div>
         <nav class="nav-breadcrumb">
             <router-link v-for="(item, index) in treeArray" :key="index" :to="generatePath(index)"
                 class="nav-breadcrumb-item">
                 {{ item }}
             </router-link>
         </nav>
-    </div>
 </template>
 
 <script>
