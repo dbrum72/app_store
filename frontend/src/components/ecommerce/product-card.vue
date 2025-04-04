@@ -1,11 +1,7 @@
 <template>
     <div class="card">
-        <nav class="card-breadcrumb">
-            <router-link v-for="(item, index) in treeArray" :key="index" :to="generatePath(index)"
-                class="card-breadcrumb-item">
-                {{ item }}
-            </router-link>
-        </nav>
+        <BreadcrumbBar :tree="tree" />
+
         <div class="card-img">
             <img :src="src" :alt="name" />
         </div>
@@ -23,6 +19,7 @@
 </template>
 
 <script>
+import BreadcrumbBar from '@/components/ecommerce/breadcrumb-bar.vue'
 
 export default {
     name: 'ProductCard',
@@ -36,23 +33,7 @@ export default {
         'price'
     ],
 
-    data() {
-        return {
-            url: process.env.VUE_APP_FRONTEND_URL + '/ecommerce?filter=tree&parameter=',
-        }
-    },
-
-    computed: {
-        treeArray() {
-            return this.tree ? this.tree.split('/') : [];
-        },
-    },
-
-    methods: {
-        generatePath(index) {
-            return '/' + this.url + this.treeArray.slice(index, index + 1).join('/');
-        }
-    }
+    components: { BreadcrumbBar }  
 }
 </script>
 
@@ -70,22 +51,6 @@ export default {
 
     -webkit-box-shadow: 5px 5px 10px 0px #5c5c5c96;
     -moz-box-shadow: 5px 5px 10px 0px #5c5c5c96;
-}
-
-.card-breadcrumb {
-    display: flex;
-    gap: 8px;
-}
-
-.card-breadcrumb-item {
-    text-decoration: none;
-    font-size: .8rem;
-    color: #5c5c5c96
-}
-
-.card-breadcrumb-item:not(:last-child)::after {
-    content: " / ";
-    color: gray;
 }
 
 .card-description {

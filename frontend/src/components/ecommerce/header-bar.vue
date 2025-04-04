@@ -82,8 +82,7 @@ h1 {
     font-size: 1.5rem;
     white-space: nowrap;
     color: #41B883;
-    text-shadow: 1px 1px 0px #FFFFFF;
-
+    /*text-shadow: 1px 1px 0px #FFFFFF;*/
 }
 
 i {
