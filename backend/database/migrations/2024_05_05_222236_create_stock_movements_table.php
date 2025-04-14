@@ -8,20 +8,19 @@ return new class extends Migration {
     
     public function up(): void {
 
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('stock_movements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flow_id');
-            $table->foreignId('flow_type_id');
             $table->foreignId('order_id')->nullable();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->enum('movement', ['in', 'out']);
+            $table->foreignId('movement_reason_id');                        
             $table->integer('quantity');
-            $table->float('price', 8, 2);
             $table->timestamps();
         });
     }
 
     public function down(): void {
 
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('stock_movements');
     }
 };

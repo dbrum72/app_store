@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Flow extends Model {
+class MovementReason extends Model {
 
-    protected $table = 'stock_flows';
+    protected $table = 'movement_reasons';
 
-    protected $fillable = ['type']; 
+    protected $fillable = ['movement, reason']; 
 
     public $timestamps = false;
 }
