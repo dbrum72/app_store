@@ -2,77 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stock;
-use App\Repositories\StockRepository;
-use App\Http\Requests\StockSaveRequest;
-use App\Http\Resources\StockResource;
+use App\Models\StockMovement;
+use App\Repositories\StockMovementRepository;
+use App\Http\Requests\StockMovementSaveRequest;
+use App\Http\Resources\StockMovementResource;
 use Illuminate\Http\Request;
 
-class StockController extends Controller {
+class StockMovementMovementController extends Controller {
 
-    public function __construct(Stock $stock) {
+    public function __construct(StockMovement $stockMovement) {
 
-        $this->stock = $stock;
+        $this->stockMovement = $stockMovement;
     }
 
     /************************************************************************************/
     public function index(Request $request) {
 
-        $stockRepository = new StockRepository($this->stock);
+        $stockMovementRepository = new StockMovementRepository($this->stockMovement);
 
         if($request->has('atributos')) {
 
-            $stockRepository->selectAtributos($request->atributos);
+            $stockMovementRepository->selectAtributos($request->atributos);
         }
 
         if($request->has('with')) {
 
-            $stockRepository->selectWith($request->with);
+            $stockMovementRepository->selectWith($request->with);
         }
 
         if($request->has('filter')) {
 
-            $stockRepository->filter($request->filter);
+            $stockMovementRepository->filter($request->filter);
         }
 
         if($request->has('subFilter')) {
 
-            $stockRepository->subFilter('product,'.$request->subFilter);
+            $stockMovementRepository->subFilter('product,'.$request->subFilter);
         }
 
-        if($stock = $stockRepository->getResultado()) {   
+        if($stockMovement = $stockMovementRepository->getResultado()) {   
 
-            return new StockResource($stock);            
+            return new StockMovementResource($stockMovement);            
         }
 
         return response()->json(['errors' => ['error' => 'Nenhum registro localizado.']], 404);
     }
 
     /************************************************************************************/
-    public function store(StockSaveRequest $request) {
+    public function store(StockMovementSaveRequest $request) {
 
-        if($store = $this->stock->create($request->all())) {
+        if($store = $this->stockMovement->create($request->all())) {
             
-            return response()->json([ 'stock' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
+            return response()->json([ 'stockMovement' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
     }
 
     /************************************************************************************/
-    public function show(string $stock)  {
+    public function show(string $stockMovement)  {
 
-        return new StockResource($this->stock->with('product')->findOrFail($stock));
+        return new StockMovementResource($this->stockMovement->with('product')->findOrFail($stockMovement));
     }
 
     /************************************************************************************/
-    public function update(StockSaveRequest $request, string $stock) {
+    public function update(StockMovementSaveRequest $request, string $stockMovement) {
 
-        if($update = $this->stock->find($stock)) {
+        if($update = $this->stockMovement->find($stockMovement)) {
 
             if($update->update($request->all())) {
 
-                return response()->json([ 'stock' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
+                return response()->json([ 'stockMovement' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);
@@ -82,9 +82,9 @@ class StockController extends Controller {
     }
 
     /************************************************************************************/
-    public function destroy(string $stock) {
+    public function destroy(string $stockMovement) {
         
-        if($destroy = $this->stock->find($stock)) {      
+        if($destroy = $this->stockMovement->find($stockMovement)) {      
             
             if($destroy->delete()) {
 

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
 
-class StockSaveRequest extends FormRequest {
+class StockMovementSaveRequest extends FormRequest {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,11 @@ class StockSaveRequest extends FormRequest {
     public function rules(): array {
 
         $rules = [
-            'id' => 'unique:stocks,id,'.(isset($this->stock) ? $this->stock : null).',id',
-            'flow_id' => 'required|exists:flows,id',
-            'flow_type_id' => 'required|exists:flow_types,id',
+            'id' => 'unique:stock_movements,id,'.(isset($this->stockMovement) ? $this->stockMovement : null).',id',            
             'order_id' => 'nullable|exists:orders,id',
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer',
-            'price' => 'required|decimal:2'
+            'movement_reason_id' => 'required|exists:movement_reasons,id',
+            'quantity' => 'required|integer'
         ];
 
         if($this->method() === 'PATCH') {
@@ -61,14 +59,5 @@ class StockSaveRequest extends FormRequest {
             'decimal' => 'Este campo deve ter valor monetário. Ex.: 99999,00',
             'integer' => 'Este campo deve ser um inteiro.'
         ];        
-    }
-
-    protected function prepareForValidation(): void {
-
-        if($this->price) {
-            $this->merge([
-                'price' => Str::replace(',', '', number_format((float)Str::replace(',', '.',$this->price), 2))
-            ]);
-        }
     }
 }
