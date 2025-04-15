@@ -18,12 +18,29 @@ class CategorySaveRequest extends FormRequest {
      */
     public function rules(): array {
 
-        return [
+        $rules = [
             'id' => 'unique:categories,id,'.(isset($this->category) ? $this->category : null).',id',
             'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required|min:3|max:25|unique:categories,name,'.(isset($this->category) ? $this->category : null).',id',
             'tree' => 'nullable'
         ];
+
+        if($this->method() === 'PATCH') {
+
+            $dinamicRules = [];
+
+            foreach($rules as $input => $rule) {
+
+                if(array_key_exists($input, $this->request->all())) {
+
+                    $dinamicRules[$input] = $rule;
+                }
+            }
+
+            return $dinamicRules;
+        }
+
+        return $rules;
     }
 
     public function messages() {       

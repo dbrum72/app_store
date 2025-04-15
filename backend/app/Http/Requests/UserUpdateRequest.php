@@ -14,13 +14,30 @@ class UserUpdateRequest extends FormRequest {
     /** @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string> */
 
     public function rules() {
-        dd($this->user);
-        return [
+        
+        $rules = [
             'name' => 'required|min:3|max:255',
             'cnpj_cpf' => 'nullable|digits_between:11,14|unique:users,cnpj_cpf,'.$this->user.',id',
             'email' => 'required|email|unique:users,email,'.$this->user.',id',
             'tel_cel' => 'nullable|digits:11'
         ];
+
+        if($this->method() === 'PATCH') {
+
+            $dinamicRules = [];
+
+            foreach($rules as $input => $rule) {
+
+                if(array_key_exists($input, $this->request->all())) {
+
+                    $dinamicRules[$input] = $rule;
+                }
+            }
+
+            return $dinamicRules;
+        }
+
+        return $rules;
     }
 
     public function messages() {       

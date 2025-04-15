@@ -43,11 +43,11 @@ class StockMovementSaveRequest extends FormRequest {
                     $dinamicRules[$input] = $rule;
                 }
             }
-        } else {
-            $dinamicRules = $rules;
+
+            return $dinamicRules;
         }
 
-        return $dinamicRules;       
+        return $rules;      
     }
 
     public function messages(): array {       

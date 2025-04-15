@@ -18,12 +18,29 @@ class OrderProductSaveRequest extends FormRequest {
      */
     public function rules(): array {
 
-        return [
+        $rules = [
             'order_id' => 'required|exists:pedidos,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|digits_between:1,5',
             'valor' => 'required|decimal:2',
         ];
+
+        if($this->method() === 'PATCH') {
+
+            $dinamicRules = [];
+
+            foreach($rules as $input => $rule) {
+
+                if(array_key_exists($input, $this->request->all())) {
+
+                    $dinamicRules[$input] = $rule;
+                }
+            }
+
+            return $dinamicRules;
+        }
+
+        return $rules;
     }
 
     public function messages() {       
