@@ -23,7 +23,7 @@ class StockMovement extends Model {
 
    public function movement_reason(): HasMany {
 
-        return $this->hasMany('App\Models\MovementReason', 'movement_reason_id')
-        ->selectRaw('movement,reason');
+        return $this->hasMany('App\Models\MovementReason', 'id')
+        ->selectRaw('id,movement,reason');
     }
 }

@@ -21,7 +21,7 @@ class OrderSaveRequest extends FormRequest {
         $rules = [
             'id' => 'unique:orders,id,'.(isset($this->order) ? $this->order : null).',id',
             'user_id' => 'required|exists:users,id',
-            'client_id' => 'nullable|exists:clients,id',
+            'client_id' => 'required|exists:clients,id',
             'order_progress_id' => 'required|exists:orders_progress,id'
         ];
 

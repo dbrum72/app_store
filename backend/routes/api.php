@@ -39,11 +39,8 @@ Route::group([
      /**** Order *****/
     Route::apiResource('/order', 'OrderController', ['except' => ['create','edit']]);
 
-    /**** Stock -> Flows *****/
-    Route::get('/flow', 'FlowController@index')->name('flow.index');
-
-    /**** Stock -> Flow Types *****/
-    Route::get('/flow_type/{flow}', 'FlowTypeController@index')->name('flowType.index');
+    /**** Stock *****/
+    Route::apiResource('stock_movement', 'App\Http\Controllers\StockMovementController');
 });
 
 /***********************************************************************************************/
@@ -76,10 +73,7 @@ Route::group([
     /**** Product *****/
     Route::apiResource('/product', 'ProductController', ['except' => ['index','show','create','edit']]);
 
-    /**** Stock *****/
-    Route::apiResource('stock', 'App\Http\Controllers\StockController');
-
-    
+        
 
     /**** User *****/
     Route::resource('/user', 'UserController', ['except' => ['create','store','edit']]);

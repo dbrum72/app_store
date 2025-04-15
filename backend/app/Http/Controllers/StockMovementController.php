@@ -8,7 +8,7 @@ use App\Http\Requests\StockMovementSaveRequest;
 use App\Http\Resources\StockMovementResource;
 use Illuminate\Http\Request;
 
-class StockMovementMovementController extends Controller {
+class StockMovementController extends Controller {
 
     public function __construct(StockMovement $stockMovement) {
 
