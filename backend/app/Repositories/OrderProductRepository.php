@@ -2,6 +2,6 @@
 
 namespace App\Repositories;
 
-class OrderProductRepository extends AbstractRepository {
+class OrderItemRepository extends AbstractRepository {
     
 }

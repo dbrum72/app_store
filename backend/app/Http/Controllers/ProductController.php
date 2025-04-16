@@ -42,11 +42,6 @@ class ProductController extends Controller {
             $productRepository->subFilter($request->subFilter);
         }
 
-        if($request->has('stockQuantity')) {
-
-            $productRepository->stockQuantity();
-        }
-
         if($products = $productRepository->getResultado()) {   
 
             return new ProductResource($products);            

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderProduct;
-use App\Http\Requests\OrderProductSaveRequest;
-use App\Http\Resources\OrderProductResource;
-use App\Repositories\OrderProductRepository;
+use App\Models\OrderItem;
+use App\Http\Requests\OrderItemSaveRequest;
+use App\Http\Resources\OrderItemResource;
+use App\Repositories\OrderItemRepository;
 use Illuminate\Http\Request;
 
-class OrderProductController extends Controller {
+class OrderItemController extends Controller {
 
-    public function __construct(OrderProduct $pedido_product) {
+    public function __construct(OrderItem $pedido_product) {
 
         $this->pedido_product = $pedido_product;
     }
@@ -19,7 +19,7 @@ class OrderProductController extends Controller {
 
     public function index(Request $request) {
         
-        $pedido_productRepository = new OrderProductRepository($this->pedido_product);
+        $pedido_productRepository = new OrderItemRepository($this->pedido_product);
 
         if($request->has('atributos')) {
 
@@ -38,7 +38,7 @@ class OrderProductController extends Controller {
 
         if($pedidos = $pedido_productRepository->getResultado()) {   
 
-            return new OrderProductResource($pedidos);            
+            return new OrderItemResource($pedidos);            
         }
 
         return response()->json(['errors' => ['error' => 'Nenhum registro localizado.']], 404);
@@ -46,7 +46,7 @@ class OrderProductController extends Controller {
 
     /********************************************************************************************************/
 
-    public function store(OrderProductSaveRequest $request) {
+    public function store(OrderItemSaveRequest $request) {
 
         if($store = $this->pedido_product->create($request->all())) {
 
@@ -58,7 +58,7 @@ class OrderProductController extends Controller {
 
     /********************************************************************************************************/
 
-    public function update(OrderProductSaveRequest $request, $pedido_product) {
+    public function update(OrderItemSaveRequest $request, $pedido_product) {
         
         if($update = $this->pedido_product->find($pedido_product)) {
 

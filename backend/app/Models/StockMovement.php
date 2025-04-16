@@ -15,15 +15,13 @@ class StockMovement extends Model {
         'quantity'
     ];
 
-   public function product(): BelongsTo {
-
-       return $this->belongsTo('App\Models\Product', 'product_id')
-        ->selectRaw('id,name');
-   }
-
-   public function movement_reason(): HasMany {
-
-        return $this->hasMany('App\Models\MovementReason', 'id')
-        ->selectRaw('id,movement,reason');
+    public function product(): BelongsTo {
+        return $this->belongsTo('App\Models\Product', 'product_id');
     }
+
+    public function movement_reason(): HasMany {
+
+            return $this->hasMany('App\Models\MovementReason', 'id')
+            ->selectRaw('id,movement,reason');
+        }
 }

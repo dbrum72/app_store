@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\StockMovement;
 use App\Http\Requests\OrderSaveRequest;
 use App\Http\Resources\OrderResource;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller {
 
@@ -46,16 +50,37 @@ class OrderController extends Controller {
 
     /********************************************************************************************************/
 
-    public function store(OrderSaveRequest $request) {
+    public function store(OrderSaveRequest $request) {   
 
-        if($store = $this->order->create($request->all())) {
+        return DB::transaction(function () use ($request) {
 
-            $id = $store->id;
+            $order = Order::create();
 
-            return response()->json([ 'id' => $id, 'errors' => [], 'msg' => 'Ordem de venda criada com sucesso!'], 201);
-        }
+            foreach ($request->items as $item) {
+                $product = Product::findOrFail($item['product_id']);
+                $stock = $product->getCurrentStock();
 
-        return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404); 
+                if ($stock < $item['quantity']) {
+                    throw new \Exception("Estoque insuficiente para o produto: {$product->name}");
+                }
+
+                OrderItem::create([
+                    'order_id'   => $order->id,
+                    'product_id' => $product->id,
+                    'quantity'   => $item['quantity'],
+                    'price'      => $product->price,
+                ]);
+
+                StockMovement::create([
+                    'product_id' => $product->id,
+                    'quantity'   => $item['quantity'],
+                    'reason'     => 'out',
+                    'type'       => 'sale',
+                ]);
+            }
+
+            return response()->json([$order->load('items.product'), 'errors' => [], 'msg' => 'Ordem de venda criada com sucesso!'], 201);
+        }, 3); // 3 tentativas em caso de deadlock
     }
 
     /********************************************************************************************************/

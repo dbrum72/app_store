@@ -26,23 +26,25 @@ class Product extends Model {
     ];
 
     public function pedidos(): BelongsToMany {
-
         return $this->belongsToMany('App\Models\Pedido', 'order_products');
     }
 
     public function category(): BelongsTo {
-
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
 
     public function files(): HasMany {
-
         return $this->hasMany('App\Models\ProductFile', 'product_id');
     }
 
-    public function entries(): HasMany {
-
-        return $this->hasMany('App\Models\Stock', 'product_id');
+    public function stockMovements(): HasMany {
+        return $this->hasMany('App\Models\StockMovement');
+    }
+    
+    public function getCurrentStock() {
+        return $this->stockMovements()
+            ->selectRaw("SUM(CASE WHEN reason = 'in' THEN quantity WHEN reason = 'out' THEN -quantity ELSE 0 END) as stock")
+            ->value('stock');
     }
 
     protected static function boot() {

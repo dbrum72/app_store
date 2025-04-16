@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\UserResource;
-use App\Http\Resources\OrderProductResource;
+use App\Http\Resources\OrderItemResource;
 use App\Models\User;
-use App\Models\OrderProduct;
+use App\Models\OrderItem;
 
 Route::group([
 
@@ -65,9 +65,9 @@ Route::group([
     Route::apiResource('/client_address', 'ClientAddressController');    
 
     /**** Orders - Products *****/
-    Route::resource('/order_product', 'OrderProductController', ['except' => ['show','create','edit']]);
+    Route::resource('/order_product', 'OrderItemController', ['except' => ['show','create','edit']]);
     Route::get('/order_product/{order_product}', function (string $order_product) {
-        return new OrderProductResource(OrderProduct::findOrFail($order_product));
+        return new OrderItemResource(OrderItem::findOrFail($order_product));
     });
 
     /**** Product *****/

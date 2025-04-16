@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model {
 
@@ -19,9 +20,9 @@ class Order extends Model {
         return $this->belongsTo('App\Models\User');
     }
 
-    function products(): BelongsToMany {
+    function items(): HasMany {
 
-        return $this->belongsToMany('App\Models\Product', 'order_products')->withPivot('id','quantity','valor');
+        return $this->hasMany('App\Models\OrderItem');
     }
 
     function progress(): BelongsTo {
