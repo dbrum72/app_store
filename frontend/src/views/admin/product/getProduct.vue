@@ -86,15 +86,10 @@
         <div class="subArea mb-5">
             <div class="title-sub-area">
                 <span>Estoque</span>
-                <div class="d-flex justify-content-end m-2">
-                    <router-link class="btn btn-sm btn-green" type="button" :to="{ name: 'getStock' }"><i
-                            class="fa-solid fa-share"></i>
-                        Ir para estoques</router-link>
-                </div>
             </div>
             <div class="tupla">
-                <div class="field" :style="!this.product.stock ? 'color:red' : ''">
-                    {{ this.product.stock ? 'Disponível' : 'Indisponível' }}
+                <div class="field" :style="this.product.stock < 1 ? 'color:red' : ''">
+                    {{ this.product.stock < 1 ? 'Indisponível' : 'Disponível' }}
                 </div>
                 <div class="data">
                     {{ this.product.stock ? this.product.stock : '' }}

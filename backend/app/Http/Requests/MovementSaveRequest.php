@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
 
-class StockMovementSaveRequest extends FormRequest {
+class MovementSaveRequest extends FormRequest {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StockMovementSaveRequest extends FormRequest {
     public function rules(): array {
 
         $rules = [
-            'id' => 'unique:stock_movements,id,'.(isset($this->stockMovement) ? $this->stockMovement : null).',id',            
+            'id' => 'unique:movements,id,'.(isset($this->stockMovement) ? $this->stockMovement : null).',id',            
             'order_id' => 'nullable|exists:orders,id',
             'product_id' => 'required|exists:products,id',
             'movement_reason_id' => 'required|exists:movement_reasons,id',

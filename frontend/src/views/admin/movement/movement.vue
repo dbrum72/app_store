@@ -103,7 +103,7 @@
 
 <script>
 import { mapState } from "vuex"
-import StockMixin from '@/mixins/StockMixin'
+import StockMixin from '@/mixins/MovementMixin'
 import StockFlowMixin from '@/mixins/StockFlowMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'

@@ -39,8 +39,8 @@ Route::group([
      /**** Order *****/
     Route::apiResource('/order', 'OrderController', ['except' => ['create','edit']]);
 
-    /**** Stock *****/
-    Route::apiResource('stock_movement', 'App\Http\Controllers\StockMovementController');
+    /**** Movement *****/
+    Route::apiResource('movement', 'App\Http\Controllers\MovementController');
 });
 
 /***********************************************************************************************/

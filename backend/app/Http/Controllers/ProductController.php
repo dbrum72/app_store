@@ -84,11 +84,13 @@ class ProductController extends Controller {
 
     public function show($product) {        
         
-        return new ProductResource($this->product
-            ->with('category')
-            ->with('files')
-            ->withSum('entries as stock', 'quantity')
-            ->findOrFail($product));
+        $product = $this->product
+        ->with('category', 'files')
+        ->findOrFail($product);
+
+        $product->stock = $product->getCurrentStock();
+
+        return new ProductResource($product);
     }
 
     /********************************************************************************************************/

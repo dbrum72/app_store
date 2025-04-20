@@ -7,8 +7,8 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getStocks(subFilter) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock?with=product`
+        async getMovements(subFilter) {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movement?with=product,movement_reason`
             const parameter = 'name'
             const response = await this.handleRequest(
                 () => getCollection(url, null, subFilter, parameter),
@@ -17,12 +17,12 @@ export default {
                 false
             );
             if (response) {
-                this.stocks = response.data.data
+                this.movements = response.data.data
             }
         },
 
-        async getStock(id) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock/${id}`
+        async getMovement(id) {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movement/${id}`
             const response = await this.handleRequest(
                 () => getData(url),
                 null,
@@ -30,52 +30,52 @@ export default {
                 false
             );
             if (response) {
-                this.stock = response.data.data
-                this.searchQuery = this.stock.product.name
+                this.movement = response.data.data
+                this.searchQuery = this.movement.product.name
                 this.products = []
             }
         },
 
-        async storeStock() {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock`
+        async storeMovement() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movement`
             const response = await this.handleRequest(
-                () => upstoreData(url, null, this.stock),
+                () => upstoreData(url, null, this.movement),
                 null,
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetStockView();
+                this.resetMovementView();
             }
         },
 
-        async updateStock(id) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock`
+        async updateMovement(id) {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movement`
             const response = await this.handleRequest(
-                () => upstoreData(url, id, this.stock),
+                () => upstoreData(url, id, this.movement),
                 null,
                 'Erro ao salvar os dados.'
             );
             if (response) {
-                this.resetStockView(response.data.stock.id);
+                this.resetMovementView(response.data.movement.id);
             }
         },
 
-        async destroyStock(id) {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/stock`
+        async destroyMovement(id) {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movement`
             const response = await this.handleRequest(
                 () => deleteData(url, id),
                 'Estoque excluído com sucesso.',
                 'Erro ao excluir o estoque.'
             );
             if (response) {
-                this.resetStockView();
+                this.resetMovementView();
             }
         },
 
-        resetStockView(id) {      
-            this.stock = {}
+        resetMovementView(id) {      
+            this.movement = {}
             this.SET_ERRORS([])
-            id ? this.$router.push({ name: 'getStock', params: { 'id' : id}}) : this.$router.push({ name: 'getStocks' })
+            id ? this.$router.push({ name: 'getMovement', params: { 'id' : id}}) : this.$router.push({ name: 'getMovements' })
         },
     }
 }

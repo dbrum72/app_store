@@ -2,77 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StockMovement;
-use App\Repositories\StockMovementRepository;
-use App\Http\Requests\StockMovementSaveRequest;
-use App\Http\Resources\StockMovementResource;
+use App\Models\Movement;
+use App\Repositories\MovementRepository;
+use App\Http\Requests\MovementSaveRequest;
+use App\Http\Resources\MovementResource;
 use Illuminate\Http\Request;
 
-class StockMovementController extends Controller {
+class MovementController extends Controller {
 
-    public function __construct(StockMovement $stockMovement) {
+    public function __construct(Movement $movement) {
 
-        $this->stockMovement = $stockMovement;
+        $this->movement = $movement;
     }
 
     /************************************************************************************/
     public function index(Request $request) {
 
-        $stockMovementRepository = new StockMovementRepository($this->stockMovement);
+        $movementRepository = new MovementRepository($this->movement);
 
         if($request->has('atributos')) {
 
-            $stockMovementRepository->selectAtributos($request->atributos);
+            $movementRepository->selectAtributos($request->atributos);
         }
 
         if($request->has('with')) {
 
-            $stockMovementRepository->selectWith($request->with);
+            $movementRepository->selectWith($request->with);
         }
 
         if($request->has('filter')) {
 
-            $stockMovementRepository->filter($request->filter);
+            $movementRepository->filter($request->filter);
         }
 
         if($request->has('subFilter')) {
 
-            $stockMovementRepository->subFilter('product,'.$request->subFilter);
+            $movementRepository->subFilter('product,'.$request->subFilter);
         }
 
-        if($stockMovement = $stockMovementRepository->getResultado()) {   
+        if($movement = $movementRepository->getResultado()) {   
 
-            return new StockMovementResource($stockMovement);            
+            return new MovementResource($movement);            
         }
 
         return response()->json(['errors' => ['error' => 'Nenhum registro localizado.']], 404);
     }
 
     /************************************************************************************/
-    public function store(StockMovementSaveRequest $request) {
+    public function store(MovementSaveRequest $request) {
 
-        if($store = $this->stockMovement->create($request->all())) {
+        if($store = $this->movement->create($request->all())) {
             
-            return response()->json([ 'stockMovement' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
+            return response()->json([ 'movement' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
         }
 
         return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
     }
 
     /************************************************************************************/
-    public function show(string $stockMovement)  {
+    public function show(string $movement)  {
 
-        return new StockMovementResource($this->stockMovement->with('product')->findOrFail($stockMovement));
+        return new MovementResource($this->movement->with('product')->findOrFail($movement));
     }
 
     /************************************************************************************/
-    public function update(StockMovementSaveRequest $request, string $stockMovement) {
+    public function update(MovementSaveRequest $request, string $movement) {
 
-        if($update = $this->stockMovement->find($stockMovement)) {
+        if($update = $this->movement->find($movement)) {
 
             if($update->update($request->all())) {
 
-                return response()->json([ 'stockMovement' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
+                return response()->json([ 'movement' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);
@@ -82,9 +82,9 @@ class StockMovementController extends Controller {
     }
 
     /************************************************************************************/
-    public function destroy(string $stockMovement) {
+    public function destroy(string $movement) {
         
-        if($destroy = $this->stockMovement->find($stockMovement)) {      
+        if($destroy = $this->movement->find($movement)) {      
             
             if($destroy->delete()) {
 

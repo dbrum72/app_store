@@ -38,12 +38,12 @@ class Product extends Model {
     }
 
     public function stockMovements(): HasMany {
-        return $this->hasMany('App\Models\StockMovement');
+        return $this->hasMany('App\Models\Movement', 'product_id');
     }
     
     public function getCurrentStock() {
         return $this->stockMovements()
-            ->selectRaw("SUM(CASE WHEN reason = 'in' THEN quantity WHEN reason = 'out' THEN -quantity ELSE 0 END) as stock")
+            ->selectRaw("SUM(CASE WHEN movement = 'in' THEN quantity WHEN movement = 'out' THEN -quantity ELSE 0 END) as stock")
             ->value('stock');
     }
 

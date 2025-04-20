@@ -174,34 +174,34 @@ const routes = [
                 component: () => import('@/views/admin/product/deleteProduct.vue')
             },
             {
-                path: 'stocks',
-                name: 'getStocks',
+                path: 'movements',
+                name: 'getMovements',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/getStocks.vue')
+                component: () => import('@/views/admin/movement/getMovements.vue')
             },
             {
-                path: 'stock/new',
-                name: 'newStock',
+                path: 'movement/new',
+                name: 'newMovement',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/flowStock.vue')
+                component: () => import('@/views/admin/movement/movement.vue')
             },
             {
-                path: 'stock/edit/:id',
-                name: 'editStock',
+                path: 'movement/edit/:id',
+                name: 'editMovement',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/editStock.vue')
+                component: () => import('@/views/admin/movement/editMovement.vue')
             },
             {
-                path: 'stock/show/:id',
-                name: 'getStock',
+                path: 'movement/show/:id',
+                name: 'getMovement',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/getStock.vue')
+                component: () => import('@/views/admin/movement/getMovement.vue')
             },
             {
-                path: 'stock/delete/:id',
-                name: 'deleteStock',
+                path: 'movement/delete/:id',
+                name: 'deleteMovement',
                 meta: { auth: true },
-                component: () => import('@/views/admin/stock/deleteStock.vue')
+                component: () => import('@/views/admin/movement/deleteMovement.vue')
             },
         ]
     },

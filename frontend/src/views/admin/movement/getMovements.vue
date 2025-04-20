@@ -12,12 +12,12 @@
                         v-model="subFilter">
                     <label for="filterProduct">Pesquisar produto...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getStocks(subFilter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getMovements(subFilter)"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
                 <div>
-                    <router-link class="btn btn-sm btn-green" :to="{ name: 'newStock' }" title="Nova entrada"><i
+                    <router-link class="btn btn-sm btn-green" :to="{ name: 'newMovement' }" title="Nova entrada"><i
                             class="fa-solid fa-plus"></i>
                         Adicionar fluxo</router-link>
                 </div>
@@ -27,24 +27,26 @@
                 <h6 class="card-header">Lista de entradas...</h6>
             </div>
 
-            <div class="mb-2" v-if="(stocks && stocks.length > 0)">
+            <div class="mb-2" v-if="(movements && movements.length > 0)">
                 <table>
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">DATA</th>
                             <th scope="col">PRODUTO</th>
-                            <th scope="col">PREÇO</th>
+                            <th scope="col">MOVIMENTO</th>
+                            <th scope="col">RAZÃO</th>
                             <th scope="col">QTD.</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(stock, index) in stocks" :key="index" @click="navigateTo(stock.id)">
-                            <th>{{ stock.id }}</th>
-                            <td>{{ formatDate(stock.created_at) }}</td>
-                            <td>{{ stock.product.name }}</td>
-                            <td class="text-end">{{ toCurrency(stock.price) }}</td>
-                            <td class="text-end">{{ stock.quantity }}</td>
+                        <tr v-for="(movement, index) in movements" :key="index" @click="navigateTo(movement.id)">
+                            <th>{{ movement.id }}</th>
+                            <td>{{ formatDate(movement.created_at) }}</td>
+                            <td>{{ movement.product.name }}</td>
+                            <td class="text-end">{{ movement.movement === 'in' ? 'entrada' : 'saída' }}</td>
+                            <td class="text-end">{{ movement.movement_reason.reason }}</td>
+                            <td class="text-end">{{ movement.quantity }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,20 +60,20 @@
 
 <script>
 import { mapState } from "vuex"
-import StockMixin from '@/mixins/StockMixin'
+import MovementMixin from '@/mixins/MovementMixin'
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
 
 
 export default {
 
-    name: 'StockIndex',
+    name: 'MovementIndex',
 
-    mixins: [AbstractMixin, StockMixin, ProductMixin],
+    mixins: [AbstractMixin, MovementMixin, ProductMixin],
 
     data() {
         return {
-            stocks: {},
+            movements: {},
             searchQuery: '',
             products: {},
             subFilter: '',
@@ -82,12 +84,12 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getStocks()
+        this.getMovements()
     },
 
     methods: {
         navigateTo(id) {
-            this.$router.push({ name: 'getStock', params: { 'id': id}})
+            this.$router.push({ name: 'getMovement', params: { 'id': id}})
         }
     }
 }
