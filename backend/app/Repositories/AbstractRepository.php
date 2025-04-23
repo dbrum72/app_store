@@ -39,13 +39,13 @@ class AbstractRepository {
         }
     }
 
-    public function subFilter($subFilter) {
+    public function extendedFilter($extendedFilter) {
 
-        $subFilter = explode(',', $subFilter);
+        $extendedFilter = explode(',', $extendedFilter);
         
-        $parameters = explode(':', $subFilter[1]);
+        $parameters = explode(':', $extendedFilter[1]);
         
-        $this->model = $this->model->whereHas($subFilter[0], function (Builder $query) use ($parameters) {
+        $this->model = $this->model->whereHas($extendedFilter[0], function (Builder $query) use ($parameters) {
             $query->where($parameters[0], $parameters[1], $parameters[2]);
         });
     }

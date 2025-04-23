@@ -11,7 +11,7 @@
                         v-model="filter">
                     <label for="filterCategory">Pesquisar nome...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getCategories(filter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getCategories(filter, 'name', 'name ASC')"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -23,7 +23,6 @@
             <div class="mb-2">
                 <h6 class="card-header">Lista de categorias...</h6>
             </div>
-
 
             <div class="mb-2" v-if="(categories && categories.length > 0)">
                 <table>
@@ -72,7 +71,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getCategories()
+        this.getCategories(null, null, 'name ASC')
     },
 
     methods: {

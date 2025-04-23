@@ -11,7 +11,7 @@
                         v-model="filter">
                     <label for="searchProduct">Pesquisar...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getClients(filter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getClients(filter, null, 'name', 'name ASC')"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getClients()
+        this.getClients(null, null, null, 'name ASC')
     },
 
     methods: {

@@ -35,9 +35,14 @@ class MovementController extends Controller {
             $movementRepository->filter($request->filter);
         }
 
-        if($request->has('subFilter')) {
+        if($request->has('extendedFilter')) {
 
-            $movementRepository->subFilter('product,'.$request->subFilter);
+            $movementRepository->extendedFilter($request->extendedFilter);
+        }
+
+        if($request->has('sort')) {
+
+            $movementRepository->sort($request->sort);
         }
 
         if($movement = $movementRepository->getResultado()) {   

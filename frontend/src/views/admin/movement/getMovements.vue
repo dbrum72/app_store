@@ -1,7 +1,7 @@
 <template>
     <div :class="{ 'blurred': loader.active }">
         <div class="areaHeader">
-            <span class="font12rW600TuCg">ESTOQUE</span>
+            <span class="font12rW600TuCg">MOVIMENTAÇÕES</span>
         </div>
 
         <div class="p-2">
@@ -9,10 +9,10 @@
             <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
                 <div class="form-floating flex-fill">
                     <input type="text" class="form-control" id="filterProduct" placeholder="Pesquisar name..."
-                        v-model="subFilter">
+                        v-model="searchQuery">
                     <label for="filterProduct">Pesquisar produto...</label>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getMovements(subFilter)"><i
+                        <button type="button" class="btn btn-opcoes search-button" @click="getMovements(null, 'product,'+this.searchQuery, 'name', 'updated_at DESC')"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -76,7 +76,6 @@ export default {
             movements: {},
             searchQuery: '',
             products: {},
-            subFilter: '',
             loading: false
         };
     },
@@ -84,7 +83,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getMovements()
+        this.getMovements(null, null, null, 'updated_at DESC')
     },
 
     methods: {

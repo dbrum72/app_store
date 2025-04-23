@@ -7,11 +7,10 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getMovements(subFilter) {
+        async getMovements(filter, extendedFilter, parameter, sort) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/movement?with=product,movement_reason`
-            const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, null, subFilter, parameter),
+                () => getCollection(url, filter, extendedFilter, parameter, sort),
                 'Lista de estoques atualizada.',
                 'Erro ao carregar a lista de estoques.',
                 false

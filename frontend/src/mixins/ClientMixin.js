@@ -7,11 +7,10 @@ export default {
 
         ...mapMutations(['SET_ERRORS']),
 
-        async getClients(filter) {
+        async getClients(filter, extendedFilter, parameter, sort) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client`
-            const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, null, parameter),
+                () => getCollection(url, filter, extendedFilter, parameter, sort),
                 null,
                 'Erro ao carregar a lista de clientes.',
                 false

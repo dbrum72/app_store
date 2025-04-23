@@ -7,8 +7,8 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getFlows() {
-            const url = `${process.env.VUE_APP_BACKEND_URL}/flow`
+        async getMovementTypes() {
+            const url = `${process.env.VUE_APP_BACKEND_URL}/movementTypes`
             const response = await this.handleRequest(
                 () => getData(url),
                 'Lista de estoques atualizada.',
@@ -16,13 +16,13 @@ export default {
                 false
             );
             if (response) {
-                this.flows = response.data
+                this.movementTypes = response.data
             }
         },
 
-        async getFlowTypes() {
-            if (!this.stock.flow_id) return;
-            const url = `${process.env.VUE_APP_BACKEND_URL}/flow_type/${this.stock.flow_id}`
+        async getReasonByMovement() {
+            if (!this.movement.movement) return;
+            const url = `${process.env.VUE_APP_BACKEND_URL}/reasonByMovement/${this.movement.movement}`
             const response = await this.handleRequest(
                 () => getData(url),
                 'Lista de estoques atualizada.',
@@ -30,7 +30,7 @@ export default {
                 false
             );
             if (response) {
-                this.flowTypes = response.data
+                this.reasonByMovement = response.data
             }
           }
     }

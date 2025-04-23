@@ -36,6 +36,16 @@ class ClientController extends Controller {
             $clientRepository->filter($request->filter);
         }
 
+        if($request->has('extendedFilter')) {
+
+            $clientRepository->extendedFilter($request->extendedFilter);
+        }
+
+        if($request->has('sort')) {
+
+            $clientRepository->sort($request->sort);
+        }
+
         if($clients = $clientRepository->getResultado()) {   
 
             return new ClientResource($clients);            

@@ -183,7 +183,7 @@ const routes = [
                 path: 'movement/new',
                 name: 'newMovement',
                 meta: { auth: true },
-                component: () => import('@/views/admin/movement/movement.vue')
+                component: () => import('@/views/admin/movement/newMovement.vue')
             },
             {
                 path: 'movement/edit/:id',

@@ -12,7 +12,7 @@
                     <label for="filterProduct">Pesquisar...</label>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-opcoes search-button"
-                            @click="getProducts(null, 'name', filter)"><i
+                            @click="getProducts(filter, null, 'name', 'name ASC')"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -79,8 +79,8 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getCategories()
-        this.getProducts()
+        this.getCategories(null, null, null, null)
+        this.getProducts(null, null, null, 'name ASC')
     },
 
     methods: {

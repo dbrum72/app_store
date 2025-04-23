@@ -72,7 +72,7 @@ export default {
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getCategories()
+        this.getCategories(null, null, 'name ASC')
     }
 }
 </script>

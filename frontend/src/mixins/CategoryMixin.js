@@ -7,11 +7,10 @@ export default {
 
         ...mapMutations([ 'SET_ERRORS' ]),
 
-        async getCategories(filter) {
+        async getCategories(filter, parameter, sort) {
             const url = `${process.env.VUE_APP_BACKEND_URL}/category`
-            const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, null, parameter),
+                () => getCollection(url, filter, null, parameter, sort),
                 'Lista de categorias atualizada.',
                 'Erro ao carregar a lista de categoryes.',
                 false

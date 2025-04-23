@@ -37,9 +37,14 @@ class ProductController extends Controller {
             $productRepository->filter($request->filter);
         }
 
-        if($request->has('subFilter')) {
+        if($request->has('extendedFilter')) {
 
-            $productRepository->subFilter($request->subFilter);
+            $productRepository->extendedFilter($request->extendedFilter);
+        }
+
+        if($request->has('sort')) {
+
+            $productRepository->sort($request->sort);
         }
 
         if($products = $productRepository->getResultado()) {   

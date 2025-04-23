@@ -11,7 +11,7 @@ export default {
             const url = `${process.env.VUE_APP_BACKEND_URL}/client_address?with=client`
             const parameter = 'name'
             const response = await this.handleRequest(
-                () => getCollection(url, filter, null, parameter),
+                () => getCollection(url, filter, null, parameter, null),
                 'Lista de endereços atualizada.',
                 'Erro ao carregar a lista de endereços.',
                 false

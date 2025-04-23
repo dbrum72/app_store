@@ -39,6 +39,10 @@ Route::group([
      /**** Order *****/
     Route::apiResource('/order', 'OrderController', ['except' => ['create','edit']]);
 
+    /**** Movement Reasons *****/
+    Route::get('movementTypes', 'App\Http\Controllers\MovementReasonController@getMovementTypes')->name('getMovementTypes');
+    Route::get('reasonByMovement/{movement}', 'App\Http\Controllers\MovementReasonController@getReasonByMovement')->name('getReasonByMovement');
+
     /**** Movement *****/
     Route::apiResource('movement', 'App\Http\Controllers\MovementController');
 });
@@ -72,8 +76,6 @@ Route::group([
 
     /**** Product *****/
     Route::apiResource('/product', 'ProductController', ['except' => ['index','show','create','edit']]);
-
-        
 
     /**** User *****/
     Route::resource('/user', 'UserController', ['except' => ['create','store','edit']]);
