@@ -26,10 +26,10 @@
         </div>
         <nav>
             <router-link
-                :to="{ name: 'Ecommerce', query: { filter: 'tree', parameter: 'Notebooks' } }">Notebooks</router-link>
-            <router-link :to="{ name: 'Ecommerce', query: { filter: 'tree', parameter: 'SSDs' } }">SSDs</router-link>
+                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Notebooks', parameter: 'tree', sort: 'updated_at DESC' } }">Notebooks</router-link>
+            <router-link :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,SSDs', parameter: 'tree', sort: 'updated_at DESC' } }">SSDs</router-link>
             <router-link
-                :to="{ name: 'Ecommerce', query: { filter: 'tree', parameter: 'Periféricos' } }">Periféricos</router-link>
+                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Periféricos', parameter: 'tree', sort: 'updated_at DESC' } }">Periféricos</router-link>
             <router-link to="">Acessórios</router-link>
             <router-link to="">Promoções</router-link>
             <div>

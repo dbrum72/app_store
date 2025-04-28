@@ -29,6 +29,7 @@ export default {
         return {
             urlBackFiles: process.env.VUE_APP_BACKEND_URL_FILES,
             filter: this.$route.query.filter,
+            extendedFilter: this.$route.query.extendedFilter,
             parameter: this.$route.query.parameter,
             products: {}
         }
@@ -39,7 +40,8 @@ export default {
             handler(newQuery) {
                 this.parameter = newQuery.parameter;
                 this.filter = newQuery.filter;
-                this.getProducts(null, this.filter, this.parameter);
+                this.extendedFilter = newQuery.extendedFilter;
+                this.getProducts(this.filter, this.extendedFilter, this.parameter, null);
             },
             deep: true, // Garante que mudanças em qualquer propriedade da query sejam detectadas
             immediate: true // Executa a função imediatamente ao montar o componente
@@ -47,7 +49,7 @@ export default {
     },
 
     mounted() {
-        this.getProducts(null, this.filter, this.parameter)
+        this.getProducts(this.filter, this.extendedFilter, this.parameter, null)
     }
 }
 </script>

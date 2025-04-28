@@ -1,6 +1,6 @@
 import http from '@/services/http.js'
 
-export const getCollection = (url, filter, extendFilter, parameter, sort) => {
+export const getCollection = (url, filter, extendedFilter, parameter, sort) => {
 
     let queryUrl = url;
     
@@ -9,9 +9,9 @@ export const getCollection = (url, filter, extendFilter, parameter, sort) => {
         queryUrl += `${queryUrl.includes('?') ? '&' : '?'}filter=${parameter}:like:%${encodeURIComponent(filter)}%`
     }
 
-    if (extendFilter) {
+    if (extendedFilter) {
         
-        const extendParameter = extendFilter.split(',')
+        const extendParameter = extendedFilter.split(',')
         
         queryUrl += `${queryUrl.includes('?') ? '&' : '?'}extendedFilter=${extendParameter[0]},${encodeURIComponent(parameter)}:like:%${extendParameter[1]}%`
     }
