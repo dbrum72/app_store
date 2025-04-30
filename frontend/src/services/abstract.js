@@ -19,8 +19,6 @@ export const getCollection = (url, filter, extendedFilter, parameter, sort) => {
     if (sort) {
         queryUrl += `${queryUrl.includes('?') ? '&' : '?'}sort=${sort}`
     }
-
-    console.log(queryUrl)
     
     return http.get(queryUrl)
 }

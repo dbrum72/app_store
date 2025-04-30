@@ -36,9 +36,9 @@ class ClientAddressController extends Controller {
             $clientAddressRepository->filter($request->filter);
         }
 
-        if($request->has('subFilter')) {
+        if($request->has('extendedFilter')) {
 
-            $clientAddressRepository->subFilter($request->subFilter);
+            $clientAddressRepository->extendedFilter($request->extendedFilter);
         }
 
         if($clientAddresss = $clientAddressRepository->getResultado()) {   
