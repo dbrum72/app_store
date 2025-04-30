@@ -228,13 +228,16 @@ input {
 }
 
 .search-button {
-    position: absolute;
+    border: 0;
+    color: #04AA6D !important;
+    background-color: transparent;
+    /* position: absolute;
     right: 3px;
     top: 3px;
     bottom: 3px;
-    color: #04AA6D !important;
+    
     outline: none;
-    z-index: 2;
+    z-index: 2; */
 }
 
 #user {

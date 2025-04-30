@@ -6,14 +6,12 @@
 
         <div class="p-2">
             <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                <div class="form-floating flex-fill">
-                    <input type="text" class="form-control" id="searchProduct" placeholder="Pesquisar name..."
-                        v-model="filter">
-                    <label for="searchProduct">Pesquisar...</label>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getClients(filter, null, 'name', 'name ASC')"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
+                <div class="position-relative">
+                    <input type="text" class="form-control pe-5" id="searchClient" placeholder="Pesquisar cliente..."
+                        v-model="searchQuery">
+                    <button class="position-absolute top-50 end-0 translate-middle-y me-3 search-button"
+                        @click="getClients(searchQuery, null, 'name', 'name ASC')">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 <div>
                     <router-link class="btn btn-sm btn-green" :to="{ name: 'newClient' }"><i
@@ -66,7 +64,7 @@ export default {
     data() {
         return {
             clients: [],
-            filter: null,
+            searchQuery: null,
         };
     },
 
@@ -78,7 +76,7 @@ export default {
 
     methods: {
         navigateTo(id) {
-            this.$router.push({ name: 'getClient', params: { 'id': id} })
+            this.$router.push({ name: 'getClient', params: { 'id': id } })
         }
     }
 

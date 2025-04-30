@@ -6,15 +6,12 @@
 
         <div class="p-2">
             <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
-                <div class="form-floating flex-fill">
-                    <input type="text" class="form-control" id="filterProduct" placeholder="Pesquisar..."
-                        v-model="filter">
-                    <label for="filterProduct">Pesquisar...</label>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button"
-                            @click="getProducts(filter, null, 'name', 'name ASC')"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
+                <div class="position-relative">
+                    <input type="text" class="form-control pe-5" id="searchProduct" placeholder="Pesquisar produto..."
+                        v-model="searchQuery">
+                    <button class="position-absolute top-50 end-0 translate-middle-y me-3 search-button"
+                        @click="getProducts(searchQuery, null, 'name', 'name ASC')">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 <div>
                     <router-link class="btn btn-sm btn-green" :to="{ name: 'newProduct' }"><i
@@ -72,7 +69,7 @@ export default {
         return {
             products: {},
             categories: {},
-            filter: null,
+            searchQuery: null,
         };
     },
 

@@ -7,14 +7,12 @@
         <div class="p-2">
 
             <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
-                <div class="form-floating flex-fill">
-                    <input type="text" class="form-control" id="filterProduct" placeholder="Pesquisar name..."
+                <div class="position-relative">
+                    <input type="text" class="form-control pe-5" id="searchProduct" placeholder="Pesquisar produto..."
                         v-model="searchQuery">
-                    <label for="filterProduct">Pesquisar produto...</label>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-opcoes search-button" @click="getMovements(null, 'product,'+this.searchQuery, 'name', 'updated_at DESC')"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
+                    <button class="position-absolute top-50 end-0 translate-middle-y me-3 search-button"
+                        @click="getMovements(null, 'product,'+this.searchQuery, 'name', 'updated_at DESC')">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 <div>
                     <router-link class="btn btn-sm btn-green" :to="{ name: 'newMovement' }" title="Nova entrada"><i
