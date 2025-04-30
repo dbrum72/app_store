@@ -1,6 +1,6 @@
 <template>
     <nav class="nav-breadcrumb">
-        <router-link v-for="(item, index) in treeArray" :key="index" :to="generatePath(index)"
+        <router-link v-for="(item, index) in treeArray" :key="index" :to="generatePath(index,item)"
             class="nav-breadcrumb-item">
             {{ item }}
         </router-link>
@@ -15,12 +15,6 @@ export default {
         'tree'
     ],
 
-    data() {
-        return {
-            url: process.env.VUE_APP_FRONTEND_URL + '/ecommerce?filter=tree&parameter=',
-        }
-    },
-
     computed: {
         treeArray() {
             return this.tree ? this.tree.split('/') : [];
@@ -28,9 +22,9 @@ export default {
     },
 
     methods: {
-        generatePath(index) {
+        generatePath(index,item) {
             // Corrigido para gerar o caminho correto sem barras extras
-            return this.url + this.treeArray.slice(index, index + 1).join(' / ');
+            return `${process.env.VUE_APP_FRONTEND_URL}/ecommerce?filter&extendedFilter=categorY,${item}&parameter=tree`;
         }
     }
 };
