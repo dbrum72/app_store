@@ -27,16 +27,20 @@
         <nav>
             <router-link
                 :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Notebooks', parameter: 'tree', sort: 'updated_at DESC' } }">Notebooks</router-link>
-            <router-link :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,SSDs', parameter: 'tree', sort: 'updated_at DESC' } }">SSDs</router-link>
+            <router-link
+                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,SSDs', parameter: 'tree', sort: 'updated_at DESC' } }">SSDs</router-link>
             <router-link
                 :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Periféricos', parameter: 'tree', sort: 'updated_at DESC' } }">Periféricos</router-link>
             <router-link to="">Acessórios</router-link>
             <router-link to="">Promoções</router-link>
-            <div>
-                <input type="text" placeholder="Buscar produto">
-                <i class="fas fa-search"></i>
+            <div class="position-relative">
+                <input type="text" class="form-control pe-5" id="filterProduct" placeholder="Pesquisar produto..."
+                    v-model="searchQuery">
+                <router-link
+                    :to="{ name: 'Ecommerce', query: { filter: searchQuery, extendedFilter: null, parameter: 'name', sort: 'updated_at DESC' } }"
+                    class="position-absolute top-50 end-0 translate-middle-y me-3 text-decoration-none text-muted">
+                    <i class="fa-solid fa-magnifying-glass"></i> </router-link>
             </div>
-
         </nav>
     </div>
 </template>
@@ -44,12 +48,19 @@
 <script>
 import { mapGetters } from "vuex"
 import AbstractMixin from '@/mixins/AbstractMixin'
+import ProductMixin from '@/mixins/ProductMixin'
 
 export default {
 
     name: 'HeaderBar',
 
-    mixins: [AbstractMixin],
+    mixins: [AbstractMixin, ProductMixin],
+
+    data() {
+        return {
+            searchQuery: ''
+        };
+    },
 
     computed: {
         ...mapGetters([
@@ -86,7 +97,7 @@ h1 {
 }
 
 i {
-    color: #fff;
+    color: #41B883;
 }
 
 .logo {
