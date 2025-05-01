@@ -12,7 +12,7 @@ let axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
 
-    const token = document.cookie.split("; ").find((row) => row.startsWith("token="))?.split("=")[1];
+    const token = localStorage.getItem('token')
 
     if (token) {
         config.headers.Authorization = `Bearer ${token}`

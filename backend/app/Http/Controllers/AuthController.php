@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserSaveRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class AuthController extends Controller {
 
@@ -17,6 +23,20 @@ class AuthController extends Controller {
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
+    public function register(UserSaveRequest $request) {
+
+        $request->password = Hash::make($request->password);
+
+        if($user = User::create($request->all())) {
+
+            $token = JWTAuth::fromUser($user);
+
+            return response()->json([ 'user' => $user, 'token' => $token, 'errors' => [], 'msg' => 'Usuário criado com sucesso!' ], 201);
+        }
+
+        return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
+    }
+
     /**
      * Get a JWT token via given credentials.
      *
@@ -24,11 +44,12 @@ class AuthController extends Controller {
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login() {
 
-        $credentials = request(['email', 'password']);
+    public function login(Request $request) {
 
-        if (! $token = auth()->attempt($credentials)) {
+        $credentials = $request->only('email', 'password');
+
+        if (!$token = JWTAuth::attempt($credentials)) {
 
             return response()->json(['msg' => 'Usuário e/ou senha inválidos.'], 401);
         }
@@ -81,11 +102,11 @@ class AuthController extends Controller {
     protected function respondWithToken($token) {
 
         return response()->json([
-            'access_token' => $token,
+            'user' => auth()->user(),
+            'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user_name' => auth()->user()->name,
-            'user_id' => auth()->user()->id,
+            
         ]);
     }
 

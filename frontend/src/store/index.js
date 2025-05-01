@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate";
+import http from '@/services/http.js'
 
 export default createStore({
 
     state: {
         user: null,
+        token: localStorage.getItem('token') || '',
         cart: [],
         notifications: [],
         loader: {},
@@ -14,7 +16,7 @@ export default createStore({
 
     plugins: [createPersistedState()],
 
-    getters: {        
+    getters: {
 
         isLogged(state) {
             return !!state.user;
@@ -29,7 +31,7 @@ export default createStore({
         },
 
         GET_USERNAME(state) {
-            return state.user ? state.user.user_name : null
+            return state.user ? state.user.name : null
         },
 
         GET_USERID(state) {
@@ -52,8 +54,19 @@ export default createStore({
         /***** USER ********************************************************************/
         /*******************************************************************************/
 
-        SET_USER: (state, payload) => {
-            state.user = payload
+        SET_USER(state, user) {
+            state.user = user
+        },
+
+        SET_TOKEN(state, token) {
+            state.token = token
+            localStorage.setItem('token', token)
+        },
+
+        LOGOUT(state) {
+            state.user = null
+            state.token = ''
+            localStorage.removeItem('token')
         },
 
         /***** CART ********************************************************************/
@@ -74,8 +87,8 @@ export default createStore({
         /*****  ERRORS ********************************************************************/
         /*******************************************************************************/
 
-        SET_ERRORS: (state, payload) => {
-            state.errors = payload
+        SET_ERRORS: (state, error) => {
+            state.errors = error
         },
 
         /***** NOTIFICATION *************************************************************/
@@ -100,5 +113,36 @@ export default createStore({
         SET_LOADER: (state, payload) => {
             state.loader = payload
         },
-    }
+    },
+
+    actions: {
+        async register({ commit }, userData) {
+            try {
+                let url = `${process.env.VUE_APP_BACKEND_URL}/auth/register`
+                const response = await http.post(url, userData)
+                commit('SET_USER', response.data.user)
+                commit('SET_TOKEN', response.data.token)
+                commit('SET_ERRORS', null)
+            } catch (error) {
+                commit('SET_ERRORS', error.response?.data?.message || 'Erro ao registrar')
+            }
+            console.log(this.state.user)
+        },
+
+        async login({ commit }, credentials) {
+            try {
+                let url = `${process.env.VUE_APP_BACKEND_URL}/auth/login`
+                const response = await http.post(url, credentials)
+                commit('SET_USER', response.data.user)
+                commit('SET_TOKEN', response.data.token)
+                commit('SET_ERROR', null)
+            } catch (error) {
+                commit('SET_ERROR', error.response?.data?.message || 'Erro no login')
+            }
+        },
+
+        logout({ commit }) {
+            commit('LOGOUT')
+        },
+    },
 })

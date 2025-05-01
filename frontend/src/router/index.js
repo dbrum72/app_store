@@ -59,6 +59,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "sobre" */ '@/views/UserView.vue')
     },
     {
+        path: '/user/register',
+        name: 'UserRegister',
+        component: () => import('@/views/user-register.vue')
+    },
+    {
         path: '/admin',
         name: 'AdminIndex',
         meta: { auth: true },
@@ -202,7 +207,7 @@ const routes = [
                 name: 'deleteMovement',
                 meta: { auth: true },
                 component: () => import('@/views/admin/movement/deleteMovement.vue')
-            },
+            }            
         ]
     },
     {

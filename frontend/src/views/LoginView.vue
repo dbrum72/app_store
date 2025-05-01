@@ -20,7 +20,7 @@
                             <label for="validationServerLoginEmail">Email</label>
                             <div v-if="errors.email" id="validationServerLoginEmailFeedback"
                                 class="invalid-feedback text-start">{{
-                    errors.email[0] }}</div>
+                                    errors.email[0] }}</div>
                         </div>
 
                     </div>
@@ -35,7 +35,7 @@
                             <label for="validationServerLoginSenha">Senha</label>
                             <div v-if="errors.password" id="validationServerLoginSenhaFeedback"
                                 class="invalid-feedback text-start">{{
-                    errors.password[0] }}</div>
+                                    errors.password[0] }}</div>
                         </div>
 
                     </div>
@@ -43,8 +43,13 @@
 
                 <div class="row">
                     <div class="col-md-8 offset-md-4">
-                        <button type="button" class="btn btn-green" @click="login()">Entrar</button>
+                        <button type="button" class="btn btn-green" @click="this.login(this.user)">Entrar</button>
                     </div>
+                </div>
+                <div class="row mt-3">
+                    <span>Se ainda não possui conta, clique
+                        <router-link :to="{ name: 'UserRegister' }">aqui</router-link>
+                    </span>
                 </div>
             </div>
         </div>
@@ -52,8 +57,7 @@
 </template>
 
 <script>
-import http from '@/services/http.js'
-import { mapMutations } from "vuex"
+import { mapMutations, mapActions } from "vuex"
 
 export default {
 
@@ -78,43 +82,7 @@ export default {
             'PUSH_NOTIFICATION'
         ]),
 
-        async login() {
-
-            this.loaderActive = true
-            this.text = 'Autenticando...'
-
-            try {
-                let url = `${process.env.VUE_APP_BACKEND_URL}/auth/login`
-                let response = await http.post(url, this.user)
-                
-                document.cookie = 'token=' + response.data.access_token + ';SameSite=Lax'
-                this.SET_USER({
-                    'user_id': response.data.user_id,
-                    'user_name': response.data.user_name
-                })
-                
-                /* eslint-disable */
-                this.$router.push({ name: 'Ecommerce' })
-
-            } catch (error) {
-                if (error?.response?.status === 401) {
-                    this.PUSH_NOTIFICATION({
-                        type: 'erro',
-                        message: 'Acesso não autorizado.'
-                    })
-                } else if (error?.response?.status === 403) {
-                    this.PUSH_NOTIFICATION({
-                        type: 'erro',
-                        message: error.response.data.msg
-                    })
-                }
-                this.$router.push({ name: 'Login' })
-            }
-            finally {
-                this.text = ''
-                this.loaderActive = false
-            }
-        }
+        ...mapActions(['login']),
     }
 }
 </script>
