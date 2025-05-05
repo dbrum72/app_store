@@ -10,16 +10,14 @@ let axiosInstance = axios.create({
     }
     
 })
-console.log(axiosInstance.headers)
 
 axiosInstance.interceptors.request.use((config) => {
     
-    const token = localStorage.getItem('token') || '';
-    console.llog('token: '+token)
+    const token = localStorage.getItem('token') || null;
+    
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
-    
     return config;
 
 }, (error) => {

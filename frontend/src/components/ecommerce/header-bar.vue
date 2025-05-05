@@ -15,7 +15,7 @@
                     </span>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" @click="goToAdmin()">Administraçao</a></li>
-                        <li><a class="dropdown-item" @click="this.logout()">Sair</a></li>
+                        <li><a class="dropdown-item" @click="submitLogout()">Sair</a></li>
                     </ul>
                 </div>
                 <div v-else>
@@ -71,6 +71,15 @@ export default {
 
     methods: {
         ...mapActions(['logout']),
+
+        async submitLogout() {
+            try {
+                await this.logout();
+                this.$router.push({ name: "Ecommerce" });
+            } catch (error) {
+                console.error("Erro no logout:", error);
+            }
+        },
         
         goToAdmin() {
             this.$router.push({ name: 'AdminIndex' })

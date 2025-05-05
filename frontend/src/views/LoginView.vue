@@ -16,7 +16,7 @@
                         <div class='form-floating'>
                             <input type="email" class="form-control" :class="errors.email ? 'is-invalid' : ''"
                                 id="validationServerLoginEmail" aria-describedby="validationServerLoginEmailFeedback"
-                                required autocomplete="email" placeholder="Email" v-model="user.email" />
+                                required autocomplete="email" placeholder="Email" v-model="credentials.email" />
                             <label for="validationServerLoginEmail">Email</label>
                             <div v-if="errors.email" id="validationServerLoginEmailFeedback"
                                 class="invalid-feedback text-start">{{
@@ -31,7 +31,7 @@
                         <div class='form-floating'>
                             <input type="password" class="form-control" :class="errors.password ? 'is-invalid' : ''"
                                 id="validationServerLoginSenha" aria-describedby="validationServerLoginSenhaFeedback"
-                                required autocomplete="current-password" placeholder="Senha" v-model="user.password" />
+                                required autocomplete="current-password" placeholder="Senha" v-model="credentials.password" />
                             <label for="validationServerLoginSenha">Senha</label>
                             <div v-if="errors.password" id="validationServerLoginSenhaFeedback"
                                 class="invalid-feedback text-start">{{
@@ -43,7 +43,7 @@
 
                 <div class="row">
                     <div class="col-md-8 offset-md-4">
-                        <button type="button" class="btn btn-green" @click="this.login(this.user)">Entrar</button>
+                        <button type="button" class="btn btn-green" @click="submitLogin(this.credentials)">Entrar</button>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -65,7 +65,7 @@ export default {
 
     data() {
         return {
-            user: {
+            credentials: {
                 email: 'dbrum72@gmail.com',
                 password: 'password'
             },
@@ -77,6 +77,15 @@ export default {
         ...mapState(['errors']),
 
         ...mapActions(['login']),
+
+        async submitLogin() {
+            try {
+                await this.login(this.credentials);
+                this.$router.push({ name: "Ecommerce" });
+            } catch (error) {
+                console.error("Erro no login:", error);
+            }
+        }
     }
 }
 </script>

@@ -31,17 +31,19 @@ export default {
             filter: this.$route.query.filter,
             extendedFilter: this.$route.query.extendedFilter,
             parameter: this.$route.query.parameter,
+            sort: this.$route.query.sort,
             products: {}
         }
     },
 
     watch: {
         "$route.query": {
-            handler(newQuery) {
-                this.parameter = newQuery.parameter;
+            handler(newQuery) {                
                 this.filter = newQuery.filter;
                 this.extendedFilter = newQuery.extendedFilter;
-                this.getProducts(this.filter, this.extendedFilter, this.parameter, null);
+                this.parameter = newQuery.parameter;
+                this.sort = newQuery.sort;
+                this.getProducts(this.filter, this.extendedFilter, this.parameter, this.sort);
             },
             deep: true, // Garante que mudanças em qualquer propriedade da query sejam detectadas
             immediate: true // Executa a função imediatamente ao montar o componente
@@ -49,7 +51,7 @@ export default {
     },
 
     mounted() {
-        this.getProducts(this.filter, this.extendedFilter, this.parameter, null)
+        this.getProducts(this.filter, this.extendedFilter, this.parameter, this.sort)
     }
 }
 </script>

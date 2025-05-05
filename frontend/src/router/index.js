@@ -225,15 +225,14 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
     if (to.meta?.auth) {
-        const token = document.cookie.split("; ").find((row) => row.startsWith("token="))?.split("=")[1];
+        const token = localStorage.getItem('token') || null;
         if (token) {
             var decoded = jwtDecode(token);
             if (Date.now() / 1000 > decoded.exp) {
                 store.commit('SET_USER', null)
                 next({ name: 'Login' });
-            } else {
-                next()
-            }
+            } 
+            next()
         } else {
             store.commit('SET_USER', null)
             next({ name: 'Login' });
