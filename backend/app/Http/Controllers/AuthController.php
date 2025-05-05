@@ -20,7 +20,7 @@ class AuthController extends Controller {
      */
     public function __construct() {
 
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['register', 'login']]);
     }
 
     public function register(UserSaveRequest $request) {
@@ -65,8 +65,7 @@ class AuthController extends Controller {
     public function me() {
 
         return response()->json([
-            'user_name' => auth()->user()->name,
-            'user_id' => auth()->user()->id
+            'user' => auth()->user()
         ]);
     }
 

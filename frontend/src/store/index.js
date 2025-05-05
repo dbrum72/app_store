@@ -6,7 +6,7 @@ export default createStore({
 
     state: {
         user: null,
-        token: localStorage.getItem('token') || '',
+        token: localStorage.getItem('token') || null,
         cart: [],
         notifications: [],
         loader: {},
@@ -27,7 +27,7 @@ export default createStore({
         },
 
         GET_TOKEN(state) {
-            return state.user ? state.user.access_token : null
+            return state.user ? state.user.token : null
         },
 
         GET_USERNAME(state) {
@@ -64,9 +64,13 @@ export default createStore({
         },
 
         LOGOUT(state) {
+            console.log('token: '+state.token)
+            let url = `${process.env.VUE_APP_BACKEND_URL}/auth/logout`
+            http.post(url);
+
             state.user = null
-            state.token = ''
-            localStorage.removeItem('token')
+            state.token = null
+            localStorage.removeItem('token')            
         },
 
         /***** CART ********************************************************************/
@@ -126,23 +130,30 @@ export default createStore({
             } catch (error) {
                 commit('SET_ERRORS', error.response?.data?.message || 'Erro ao registrar')
             }
-            console.log(this.state.user)
         },
 
         async login({ commit }, credentials) {
+            
             try {
-                let url = `${process.env.VUE_APP_BACKEND_URL}/auth/login`
-                const response = await http.post(url, credentials)
+                let url = `${process.env.VUE_APP_BACKEND_URL}/auth/login`   
+                           
+                const response = await http.post(url, credentials)                
+                
                 commit('SET_USER', response.data.user)
                 commit('SET_TOKEN', response.data.token)
-                commit('SET_ERROR', null)
+                commit('SET_ERRORS', null)
+                
+                this.$router.push({ name: 'Ecommerce' })
+
             } catch (error) {
-                commit('SET_ERROR', error.response?.data?.message || 'Erro no login')
+                commit('SET_ERRORS', error.response?.data?.msg || 'Erro no login')
             }
         },
 
         logout({ commit }) {
-            commit('LOGOUT')
+            if(commit('LOGOUT')) {
+                this.$router.push({ name: 'Ecommerce' })
+            }
         },
     },
 })

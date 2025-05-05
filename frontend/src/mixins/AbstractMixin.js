@@ -77,20 +77,6 @@ export default {
               }).format(value);
         },
 
-        logout() {
-
-            let url = `${process.env.VUE_APP_BACKEND_URL}/auth/logout`
-            http.post(url);
-
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "user_name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            this.SET_USER(null)
-
-            this.$router.push({ name: 'Ecommerce' })
-
-        },
-
         async searchZipCode(cep) {
 
             this.loaderActive = true

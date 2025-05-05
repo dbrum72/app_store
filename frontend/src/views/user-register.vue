@@ -1,5 +1,5 @@
 <template>
-    <div class="register-form">        
+    <div class="register-form">
         <div class="card form-bg m-4">
             <div class="card-body">
                 <h2>Cadastro de Usuário</h2>

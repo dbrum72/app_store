@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "@/store"
+import store from "@/store";
 
 let axiosInstance = axios.create({
     baseURL: process.env.VUE_APP_BACK_URL,
@@ -8,25 +8,28 @@ let axiosInstance = axios.create({
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
     }
+    
 })
+console.log(axiosInstance.headers)
 
 axiosInstance.interceptors.request.use((config) => {
-
-    const token = localStorage.getItem('token')
-
+    
+    const token = localStorage.getItem('token') || '';
+    console.llog('token: '+token)
     if (token) {
-        config.headers.Authorization = `Bearer ${token}`
+        config.headers.Authorization = `Bearer ${token}`;
     }
+    
     return config;
 
 }, (error) => {
+    store.commit('SET_USER', null);
+    return Promise.reject(error);
+});
 
-    store.commit('SET_USER', null)
-    return Promise.reject(error)
-})
 
 axiosInstance.interceptors.response.use((response) => {
-    
+
     return response
 
 }, (error) => {

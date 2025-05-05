@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex"
+import { mapState, mapActions } from "vuex"
 
 export default {
 
@@ -69,18 +69,12 @@ export default {
                 email: 'dbrum72@gmail.com',
                 password: 'password'
             },
-            errors: [],
-            loaderActive: false,
-            text: ''
+            loaderActive: false
         }
     },
 
     methods: {
-
-        ...mapMutations([
-            'SET_USER',
-            'PUSH_NOTIFICATION'
-        ]),
+        ...mapState(['errors']),
 
         ...mapActions(['login']),
     }

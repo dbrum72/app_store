@@ -15,7 +15,7 @@
                     </span>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" @click="goToAdmin()">Administraçao</a></li>
-                        <li><a class="dropdown-item" @click="logout()">Sair</a></li>
+                        <li><a class="dropdown-item" @click="this.logout()">Sair</a></li>
                     </ul>
                 </div>
                 <div v-else>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 import AbstractMixin from '@/mixins/AbstractMixin'
 import ProductMixin from '@/mixins/ProductMixin'
 
@@ -66,10 +66,12 @@ export default {
         ...mapGetters([
             'isLogged',
             'GET_USERNAME'
-        ])
+        ])        
     },
 
     methods: {
+        ...mapActions(['logout']),
+        
         goToAdmin() {
             this.$router.push({ name: 'AdminIndex' })
         }
