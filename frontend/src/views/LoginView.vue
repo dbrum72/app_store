@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex"
+import { mapState, mapMutations, mapActions } from "vuex"
 
 export default {
 
@@ -74,16 +74,26 @@ export default {
     },
 
     methods: {
+        ...mapMutations([
+            'SET_LOADER',
+            'PUSH_NOTIFICATION',
+        ]),
+
         ...mapState(['errors']),
 
         ...mapActions(['login']),
 
         async submitLogin() {
+            this.SET_LOADER({ 'active': true, 'text': 'Submetendo credenciais...' })
+
             try {
                 await this.login(this.credentials);
                 this.$router.push({ name: "Ecommerce" });
             } catch (error) {
                 console.error("Erro no login:", error);
+            }
+            finally {
+                this.SET_LOADER({ 'active': false, 'text': '' })
             }
         }
     }

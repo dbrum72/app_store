@@ -73,11 +73,15 @@ export default {
         ...mapActions(['logout']),
 
         async submitLogout() {
+            this.SET_LOADER({ 'active': true, 'text': 'Processando...' })
             try {
                 await this.logout();
                 this.$router.push({ name: "Ecommerce" });
             } catch (error) {
                 console.error("Erro no logout:", error);
+            }
+            finally {
+                this.SET_LOADER({ 'active': false, 'text': '' })
             }
         },
         

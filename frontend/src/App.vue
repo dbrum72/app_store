@@ -11,13 +11,14 @@
 		<AppNavbar />
 
 		<div class="d-flex justify-content-center m-4">
-			<LoaderWait v-if="loader.active" :text="loader.text" />
+			'<LoaderWait v-if="loader.active" :text="loader.text" />'
 			
 			<NotificationsList />
 		</div>
 
 		<AppFooter />-->
 	<main class="container">
+		<LoaderWait v-if="loader.active" :text="loader.text" />
 		<router-view />
 	</main>
 
@@ -30,12 +31,12 @@ import HeaderBar from '@/components/ecommerce/header-bar.vue'
 //import AppHeader from '@/components/templates/app-header.vue'
 //import AppNavbar from '@/components/templates/app-navbar.vue'
 //import AppFooter from '@/components/templates/app-footer.vue'
-//import LoaderWait from "@/components/commons/loader-wait.vue";
+import LoaderWait from "@/components/commons/loader-wait.vue";
 //import NotificationsList from '@/components/commons/notifications-list.vue'
 
 export default {
 
-	name: 'AppWebstore',
+	name: 'AppStore',
 
 	components: {
 		HeaderBar,
@@ -43,7 +44,7 @@ export default {
 		//AppHeader,
 		//AppNavbar,
 		//AppFooter,
-		//LoaderWait,
+		LoaderWait,
 		//NotificationsList
 	},
 
@@ -51,17 +52,7 @@ export default {
 
 	methods: {
 
-		...mapMutations(['SET_USER']),
-
-		setUser() {
-			if (localStorage.getItem('authuser')) {
-				this.SET_USER(JSON.parse(localStorage.getItem('authuser')))
-			}
-		},
-	},
-
-	created() {
-		this.setUser
+		...mapMutations(['SET_USER'])
 	}
 }
 </script>
