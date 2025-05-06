@@ -23,7 +23,7 @@ const routes = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/views/LoginView.vue')
+        component: () => import('@/views/login-view.vue')
     },
     {
         path: '/meus-dados',
@@ -35,7 +35,7 @@ const routes = [
         path: '/logout',
         name: 'Logout',
         meta: { auth: true },
-        component: () => import('@/views/LoginView.vue')
+        component: () => import('@/views/login-view.vue')
     },
     {
         path: '/dashboard',

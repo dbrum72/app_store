@@ -26,7 +26,7 @@ export default {
     display: flex;
     flex-flow: column nowrap;
     gap: 20px;
-    top: 165px;
+    top: 120px;
     right: 0px;
     z-index: 1000;
 }

@@ -61,10 +61,10 @@ export default createStore({
 		},
 
 		LOGOUT(state) {
-            state.user = null;
-            state.token = null;
-            localStorage.removeItem("token");
-        },
+			state.user = null;
+			state.token = null;
+			localStorage.removeItem("token");
+		},
 
 		/***** CART ********************************************************************/
 		/*******************************************************************************/
@@ -138,27 +138,35 @@ export default createStore({
 				commit("SET_TOKEN", response.data.token);
 				commit("SET_ERRORS", null);
 
-				this.$router.push({ name: "Ecommerce" });
+				commit('PUSH_NOTIFICATION', {
+					type: 'success',
+					message: response?.data?.msg || 'Login realizado com sucesso.'
+				})
+
 			} catch (error) {
-				commit(
-					"SET_ERRORS",
-					error.response?.data?.msg || "Erro no login"
-				);
+				commit('PUSH_NOTIFICATION', {
+					type: 'error',
+					message: error.response?.data?.msg || "Erro no login."
+				})
 			}
 		},
 
-		async logout({ commit }) {            
-            try {
-                const url = `${process.env.VUE_APP_BACKEND_URL}/auth/logout`;
-                await http.post(url);
-                commit("LOGOUT");
-            } catch (error) {
-                commit(
-					"SET_ERRORS",
-					error.response?.data?.msg || "Erro ao deslogar"
-				);
-            }
-            
-        }
+		async logout({ commit }) {
+			try {
+				const url = `${process.env.VUE_APP_BACKEND_URL}/auth/logout`;
+				await http.post(url);
+				commit("LOGOUT");
+				commit('PUSH_NOTIFICATION', {
+					type: 'success',
+					message: 'Usuário deslogado com sucesso.'
+				})
+			} catch (error) {
+				commit('PUSH_NOTIFICATION', {
+					type: 'error',
+					message: error.response?.data?.msg || "Erro ao deslogar."
+				})
+			}
+
+		}
 	},
 });

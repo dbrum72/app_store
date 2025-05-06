@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from "@/store";
+//import store from "@/store";
 
 let axiosInstance = axios.create({
     baseURL: process.env.VUE_APP_BACK_URL,
@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use((config) => {
     return config;
 
 }, (error) => {
-    store.commit('SET_USER', null);
+    //store.commit('SET_USER', null);
     return Promise.reject(error);
 });
 
@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use((response) => {
 
 }, (error) => {
     if (error.response.status === 401) {
-        store.commit('SET_USER', null)
+        //store.commit('SET_USER', null)
         return window.location.href = '#/login'
     }
     return Promise.reject(error)
