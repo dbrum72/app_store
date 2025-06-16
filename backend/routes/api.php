@@ -63,12 +63,6 @@ Route::group([
     Route::apiResource('/category', 'CategoryController', ['except' => ['index']]);
     Route::get('/category/getParentTree/{id?}', 'CategoryController@getParentTree')->name('category.getParentTree');
 
-    /**** Client *****/
-    Route::apiResource('/client', 'ClientController');
-
-    /**** Client - Address *****/
-    Route::apiResource('/client_address', 'ClientAddressController');    
-
     /**** Orders - Products *****/
     Route::resource('/order_product', 'OrderItemController', ['except' => ['show','create','edit']]);
     Route::get('/order_product/{order_product}', function (string $order_product) {
@@ -80,6 +74,9 @@ Route::group([
 
     /**** User *****/
     Route::resource('/user', 'UserController', ['except' => ['create','store','edit']]);
+
+    /**** User - Address *****/
+    Route::apiResource('/user_address', 'UserAddressController'); 
 });
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientAddressSaveRequest extends FormRequest {
+class UserAddressSaveRequest extends FormRequest {
 
     public function authorize(): bool {
 
@@ -16,13 +16,13 @@ class ClientAddressSaveRequest extends FormRequest {
     public function rules() {
         
         $rules = [
-            'id' => 'unique:clients_addresses,id,'.(isset($this->client_address) ? $this->client_address : null).',id',
+            'id' => 'unique:users_addresses,id,'.(isset($this->user_address) ? $this->user_address : null).',id',
             'street' => 'required|min:3|max:255',
             'complement' => 'nullable|min:3|max:255',
             'district' => 'required|min:3|max:255',
             'city' => 'required|min:3|max:255',
             'zipcode' => 'nullable|digits:8',
-            'client_id' => 'required|exists:clients,id'
+            'user_id' => 'required|exists:users,id'
         ];
 
         if($this->method() === 'PATCH') {

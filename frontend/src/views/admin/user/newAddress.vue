@@ -112,7 +112,7 @@
                             <span class="obgField">* Campo obrigatório.</span>
                         </div>
                         <div class="card-footer text-end">
-                            <router-link class="btn btn-gray me-2" :to="{ name: 'getClient', params: { 'id': client_id }}">Cancelar</router-link>
+                            <router-link class="btn btn-gray me-2" :to="{ name: 'getUser', params: { 'id': client_id }}">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
                                 @click="newAddress()">Salvar</button>
                         </div>
@@ -126,14 +126,14 @@
 <script>
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ClientAddressMixin from '@/mixins/ClientAddressMixin';
-import ClientMixin from '@/mixins/ClientMixin';
+import ClientAddressMixin from '@/mixins/UserAddressMixin';
+import UserMixin from '@/mixins/UserMixin';
 
 export default {
 
     name: 'NewAddress',
 
-    mixins: [AbstractMixin, ClientAddressMixin, ClientMixin],
+    mixins: [AbstractMixin, ClientAddressMixin, UserMixin],
 
     data() {
         return {
@@ -147,7 +147,7 @@ export default {
     computed: mapState(['loader', 'errors']),
 
     mounted() {
-        this.getClient(this.client_id)
+        this.getUser(this.client_id)
         this.address.client_id = this.client_id
     }
 }

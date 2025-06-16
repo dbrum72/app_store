@@ -16,11 +16,12 @@ class UserSaveRequest extends FormRequest {
     public function rules() {
         
         $rules = [
-            'name' => 'required|string|min:3|max:255',
-            'cnpj_cpf' => 'nullable|digits_between:11,14|unique:users,cnpj_cpf,'.$this->user.',id',
-            'email' => 'required|string|email|unique:users,email,'.$this->user.',id',
-            'tel_cel' => 'nullable|digits:11',
-            'password' => 'required|string|min:6|confirmed',
+            'id' => 'unique:users,id,'.(isset($this->user) ? $this->user : null).',id',
+            'name' => 'nullable|min:3|max:255',
+            'cnpj_cpf' => 'required|digits_between:11,14|unique:users,cnpj_cpf,'.$this->user.',id',
+            'email' => 'email:rfc,dns|unique:users,email,'.$this->user.',id',
+            'celphone' => 'nullable|digits:11',
+            'password' => 'required|min:6|confirmed',
         ];
 
         if($this->method() === 'PATCH') {
@@ -52,7 +53,7 @@ class UserSaveRequest extends FormRequest {
             'email' => 'O dado informado não corresponde a um endereço de email válido.',
             'digits_between' =>  'O registro deve ter 11 ou 14 dígitos, para CPF ou CNPJ, respectivamente.',
             'digits' =>  'O telefone deve possuir 11 dígitos.',
-            'string' => 'Campo de possuir somente letras.'
+            'confirmed' => 'Senha de confirmação não corresponde.'
         ];        
     }
 }

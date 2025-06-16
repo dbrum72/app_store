@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class User extends Authenticatable implements JWTSubject {
 
@@ -18,8 +20,13 @@ class User extends Authenticatable implements JWTSubject {
      *
      * @var array<int, string>
      */
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'name',
+        'cnpj_cpf',        
+        'celphone',
+        'whatsapp',
         'email',
         'password'
     ];
@@ -57,5 +64,10 @@ class User extends Authenticatable implements JWTSubject {
     public function getJWTCustomClaims() {
         
         return [];
+    }
+
+    public function addresses(): HasMany {
+
+        return $this->hasMany('App\Models\UserAddress', 'client_id');
     }
 }

@@ -99,7 +99,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <router-link class="btn btn-gray me-2"
-                                :to="{ name: 'getClient', params: { 'id': address.client_id } }">Cancelar</router-link>
+                                :to="{ name: 'getUser', params: { 'id': address.client_id } }">Cancelar</router-link>
                             <button class="btn btn-save" type="button"
                                 @click="editAddress(address.id, address.client_id)">Salvar</button>
                         </div>
@@ -113,7 +113,7 @@
 <script>
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ClientAddressMixin from '@/mixins/ClientAddressMixin';
+import ClientAddressMixin from '@/mixins/UserAddressMixin';
 
 
 export default {

@@ -76,8 +76,8 @@
 <script>
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ClientAddressMixin from '@/mixins/ClientAddressMixin';
-import ClientMixin from '@/mixins/ClientMixin';
+import ClientAddressMixin from '@/mixins/UserAddressMixin';
+import UserMixin from '@/mixins/UserMixin';
 import { debounce } from 'lodash';
 
 
@@ -85,7 +85,7 @@ export default {
 
     name: 'ClientAddressView',
 
-    mixins: [AbstractMixin, ClientAddressMixin, ClientMixin],
+    mixins: [AbstractMixin, ClientAddressMixin, UserMixin],
 
     data() {
         return {
@@ -112,7 +112,7 @@ export default {
                 return;
             }
             this.loading = true;
-            this.getClients(this.searchQuery);
+            this.getUsers(this.searchQuery);
             this.loading = false;
         }, 500),
 

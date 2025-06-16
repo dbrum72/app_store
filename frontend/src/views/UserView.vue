@@ -59,7 +59,7 @@
         <template v-if="template === 'visualizar'">
             <div class="d-flex justify-content-between areaHeader">
                 <div class="text-start">
-                    <span>CLIENTE</span>
+                    <span>USUÁRIO</span>
                 </div>
                 <div>
                     <button type="button" class="btn btn-sm btn-headArea me-2" title="Lista de users"

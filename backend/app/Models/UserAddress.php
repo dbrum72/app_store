@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ClientAddress extends Model {
+class UserAddress extends Model {
 
     use SoftDeletes;
 
-    protected $table = 'clients_addresses';
+    protected $table = 'users_addresses';
 
     protected $dates = ['deleted_at'];
 
@@ -22,11 +22,11 @@ class ClientAddress extends Model {
         'city',
         'zipcode',
         'main',
-        'client_id'     
+        'user_id'     
     ];
 
-    public function client(): BelongsTo {
+    public function user(): BelongsTo {
 
-        return $this->belongsTo('App\Models\Client', 'client_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

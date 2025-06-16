@@ -2,48 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClientAddress;
-use App\Http\Requests\ClientAddressSaveRequest;
-use App\Http\Resources\ClientAddressResource;
-use App\Repositories\ClientAddressRepository;
+use App\Models\UserAddress;
+use App\Http\Requests\UserAddressSaveRequest;
+use App\Http\Resources\UserAddressResource;
+use App\Repositories\UserAddressRepository;
 use Illuminate\Http\Request;
 
-class ClientAddressController extends Controller {
+class UserAddressController extends Controller {
 
-    public function __construct(ClientAddress $clientAddress) {
+    public function __construct(UserAddress $userAddress) {
 
-        $this->clientAddress = $clientAddress;
+        $this->userAddress = $userAddress;
     }
 
     /********************************************************************************************************/
     
     public function index(Request $request) {
         
-        $clientAddressRepository = new ClientAddressRepository($this->clientAddress);
+        $userAddressRepository = new UserAddressRepository($this->userAddress);
 
         if($request->has('atributos')) {
 
-            $clientAddressRepository->selectAtributos($request->atributos);
+            $userAddressRepository->selectAtributos($request->atributos);
         }
 
         if($request->has('with')) {
 
-            $clientAddressRepository->selectWith($request->with);
+            $userAddressRepository->selectWith($request->with);
         }        
 
         if($request->has('filter')) {
 
-            $clientAddressRepository->filter($request->filter);
+            $userAddressRepository->filter($request->filter);
         }
 
         if($request->has('extendedFilter')) {
 
-            $clientAddressRepository->extendedFilter($request->extendedFilter);
+            $userAddressRepository->extendedFilter($request->extendedFilter);
         }
 
-        if($clientAddresss = $clientAddressRepository->getResultado()) {   
+        if($userAddresss = $userAddressRepository->getResultado()) {   
 
-            return new ClientAddressResource($clientAddresss);            
+            return new UserAddressResource($userAddresss);            
         }
 
         return response()->json(['errors' => ['error' => 'Nenhum registro localizado.']], 404);
@@ -51,9 +51,9 @@ class ClientAddressController extends Controller {
 
 
     /************************************************************************************/
-    public function store(ClientAddressSaveRequest $request) {
+    public function store(UserAddressSaveRequest $request) {
 
-        if($store = $this->clientAddress->create($request->all())) {
+        if($store = $this->userAddress->create($request->all())) {
             
             return response()->json([ 'errors' => [], 'msg' => 'Registro criado com sucesso!'], 201);
         }
@@ -64,9 +64,9 @@ class ClientAddressController extends Controller {
 
     /********************************************************************************************************/
     
-    public function update(ClientAddressSaveRequest $request, $clientAddress) {
+    public function update(UserAddressSaveRequest $request, $userAddress) {
         
-        if($update = $this->clientAddress->find($clientAddress)) {            
+        if($update = $this->userAddress->find($userAddress)) {            
 
             if($update->update($request->all())) {
 
@@ -80,16 +80,16 @@ class ClientAddressController extends Controller {
     }
 
 
-    public function show($clientAddress) {
+    public function show($userAddress) {
 
-        return new ClientAddressResource($this->clientAddress->with('client')->findOrFail($clientAddress));
+        return new UserAddressResource($this->userAddress->with('user')->findOrFail($userAddress));
     }
 
     /********************************************************************************************************/
     
-    public function destroy($clientAddress) {
+    public function destroy($userAddress) {
 
-        if($destroy = $this->clientAddress->find($clientAddress)) {      
+        if($destroy = $this->userAddress->find($userAddress)) {      
             
             if($destroy->delete()) {
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UserSaveRequest;
 use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -35,6 +36,16 @@ class UserController extends Controller {
             $userRepository->filter($request->filter);
         }
 
+        if($request->has('extendedFilter')) {
+
+            $userRepository->extendedFilter($request->extendedFilter);
+        }
+
+        if($request->has('sort')) {
+
+            $userRepository->sort($request->sort);
+        }
+
         if($users = $userRepository->getResultado()) {   
 
             return new UserResource($users);            
@@ -44,15 +55,27 @@ class UserController extends Controller {
     }
 
 
+    /************************************************************************************/
+    public function store(UserSaveRequest $request) {
+
+        if($store = $this->user->create($request->all())) {
+            
+            return response()->json([ 'user' => $store, 'errors' => [], 'msg' => 'Registro criado com sucesso!' ], 201);
+        }
+
+        return response()->json(['errors' => ['error' => 'Erro ao criar o registro']], 404);
+    }
+
+
     /********************************************************************************************************/
     
-    public function update(UserUpdateRequest $request, $user) {
+    public function update(UserSaveRequest $request, $user) {
         
         if($update = $this->user->find($user)) {            
 
             if($update->update($request->all())) {
 
-                return response()->json([ 'errors' => [], 'msg' => 'Registro atualizado com sucesso!'], 200);
+                return response()->json([ 'user' => $update, 'errors' => [], 'msg' => 'Registro atualizado com sucesso!' ], 201);
             }       
 
             return response()->json(['errors' => ['error' => 'Erro ao gravar o registro']], 404);
@@ -65,7 +88,7 @@ class UserController extends Controller {
 
     public function show($user) {
 
-        return new UserResource($this->user->findOrFail($user));
+        return new UserResource($this->user->with('addresses')->findOrFail($user));
     }
 
     /********************************************************************************************************/

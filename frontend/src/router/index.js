@@ -101,52 +101,52 @@ const routes = [
             },
             
             {
-                path: 'clients',
-                name: 'getClients',
+                path: 'users',
+                name: 'getUsers',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/getClients.vue'),
+                component: () => import('@/views/admin/user/getUsers.vue'),
             },
             {
-                path: 'client/new',
-                name: 'newClient',
+                path: 'user/new',
+                name: 'newUser',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/newClient.vue')
+                component: () => import('@/views/admin/user/newUser.vue')
             },
             {
-                path: 'client/edit/:id',
-                name: 'editClient',
+                path: 'user/edit/:id',
+                name: 'editUser',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/editClient.vue')
+                component: () => import('@/views/admin/user/editUser.vue')
             },
             {
-                path: 'client/delete/:id',
-                name: 'deleteClient',
+                path: 'user/delete/:id',
+                name: 'deleteUser',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/deleteClient.vue')
+                component: () => import('@/views/admin/user/deleteUser.vue')
             },
             {
-                path: 'client/show/:id',
-                name: 'getClient',
+                path: 'user/show/:id',
+                name: 'getUser',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/getClient.vue')
+                component: () => import('@/views/admin/user/getUser.vue')
             },
             {
-                path: 'client/address/new/:client_id',
+                path: 'user/address/new/:user_id',
                 name: 'newAddress',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/newAddress.vue')
+                component: () => import('@/views/admin/user/newAddress.vue')
             },
             {
-                path: 'client/address/edit/:id',
+                path: 'user/address/edit/:id',
                 name: 'editAddress',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/editAddress.vue')
+                component: () => import('@/views/admin/user/editAddress.vue')
             },
             {
-                path: 'client/address/delete/:id',
+                path: 'user/address/delete/:id',
                 name: 'deleteAddress',
                 meta: { auth: true },
-                component: () => import('@/views/admin/client/deleteAddress.vue')
+                component: () => import('@/views/admin/user/deleteAddress.vue')
             },            
             {
                 path: 'products',

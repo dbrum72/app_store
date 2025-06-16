@@ -2,8 +2,8 @@
     <div :class="{ 'blurred': loader.active }">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex areaHeader">
-                <span class="font12rW600TuCg pe-2">CLIENTE</span>
-                <router-link class="btn btn-sm btn-gray" :to="{ name: 'getClients' }" title="Lista de clientes"><i
+                <span class="font12rW600TuCg pe-2">USUÁRIO</span>
+                <router-link class="btn btn-sm btn-gray" :to="{ name: 'getUsers' }" title="Lista de usuários"><i
                     class="fa-solid fa-list"></i></router-link>
             </div>
         </div>
@@ -14,10 +14,10 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <router-link class="btn btn-sm btn-blue"
-                        :to="{ name: 'editClient', params: { 'id': client.id } }" title="Editar"><i
+                        :to="{ name: 'editUser', params: { 'id': user.id } }" title="Editar"><i
                             class="fa-solid fa-pencil"></i></router-link>
                     <router-link class="btn btn-sm btn-red"
-                        :to="{ name: 'deleteClient', params: { 'id': client.id } }" title="Excluir"><i
+                        :to="{ name: 'deleteUser', params: { 'id': user.id } }" title="Excluir"><i
                             class="fa-regular fa-trash-can"></i></router-link>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         ID
                     </div>
                     <div class="data">
-                        {{ this.client.id }}
+                        {{ this.user.id }}
                     </div>
                 </div>
                 <div class="tupla">
@@ -35,7 +35,7 @@
                         Nome
                     </div>
                     <div class="data">
-                        {{ client.name }}
+                        {{ user.name }}
                     </div>
                 </div>
                 <div class="tupla">
@@ -43,7 +43,7 @@
                         CPF/CNPJ
                     </div>
                     <div class="data">
-                        {{ client.cnpj_cpf }}
+                        {{ user.cnpj_cpf }}
                     </div>
                 </div>
                 <div class="tupla">
@@ -51,8 +51,8 @@
                         Celular
                     </div>
                     <div class="data">
-                        {{ client.celphone }}
-                        <i v-if="client.whatsapp" class="fa-brands fa-whatsapp" style="color: #41B883;"></i>
+                        {{ user.celphone }}
+                        <i v-if="user.whatsapp" class="fa-brands fa-whatsapp" style="color: #41B883;"></i>
                     </div>
                 </div>
                 <div class="tupla">
@@ -60,7 +60,7 @@
                         Email
                     </div>
                     <div class="data">
-                        {{ client.email }}
+                        {{ user.email }}
                     </div>
                 </div>
                 <div class="tupla">
@@ -68,7 +68,7 @@
                         Criado em
                     </div>
                     <div class="data">
-                        {{ this.client.created_at ? formatDate(this.client.created_at) : '' }}
+                        {{ this.user.created_at ? formatDate(this.user.created_at) : '' }}
                     </div>
                 </div>
                 <div class="tupla">
@@ -76,7 +76,7 @@
                         Atualizado em
                     </div>
                     <div class="data">
-                        {{ this.client.updated_at ? formatDate(this.client.updated_at) : '' }}
+                        {{ this.user.updated_at ? formatDate(this.user.updated_at) : '' }}
                     </div>
                 </div>
             </div>
@@ -86,13 +86,13 @@
                 <span>Endereços</span>
                 <div>
                     <router-link class="btn btn-sm btn-green"
-                        :to="{ name: 'newAddress', params: { 'client_id': id } }"><i class="fa-solid fa-plus"></i>
+                        :to="{ name: 'newAddress', params: { 'user_id': id } }"><i class="fa-solid fa-plus"></i>
                         Adicionar endereço</router-link>
                 </div>
             </div>
 
-            <div class="d-flex flex-column m-2" v-if="(client.addresses && client.addresses.length > 0)">
-                <div class="dados mb-3" v-for="(address, index) in client.addresses" :key="index">
+            <div class="d-flex flex-column m-2" v-if="(user.addresses && user.addresses.length > 0)">
+                <div class="dados mb-3" v-for="(address, index) in user.addresses" :key="index">
                     <div class="tupla">
                         <div class="field">
                             Logradouro
@@ -146,25 +146,25 @@
 <script>
 import { mapState } from "vuex";
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ClientMixin from '@/mixins/ClientMixin';
+import UserMixin from '@/mixins/UserMixin';
 
 export default {
 
-    name: 'GetClient',
+    name: 'getUser',
 
-    mixins: [AbstractMixin, ClientMixin],
+    mixins: [AbstractMixin, UserMixin],
 
     data() {
         return {
             id: this.$route.params.id,
-            client: {},
+            user: {},
         };
     },
 
     computed: mapState(['errors', 'loader']),
 
     mounted() {
-        this.getClient(this.id)
+        this.getUser(this.id)
     }
 
 }
