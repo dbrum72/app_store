@@ -85,10 +85,7 @@ export default {
             'COUNT_CART',
             'getSumCart'
         ]),
-        ...mapMutations([
-            'PUSH_NOTIFICATION',
-            'SET_LOADER'
-        ]),
+        ...mapMutations([ 'PUSH_NOTIFICATION' ]),
 
         async startOrder() {
 
@@ -115,9 +112,6 @@ export default {
                     this.errors = error.response.data.errors
                     this.$router.push({ name: 'Carrinho' })
                 }
-            }
-            finally {
-                this.SET_LOADER({ 'active': false, 'text': '' })
             }
         },
 
@@ -155,8 +149,6 @@ export default {
 
         async concludeOrder() {
 
-            this.SET_LOADER({ 'active': true, 'text': 'Salvando dados...' })
-
             this.startOrder()
 
             this.includeItens()
@@ -167,8 +159,6 @@ export default {
         },
 
         async decrementItem(item) {
-
-            this.SET_LOADER({ 'active': true, 'text': 'Salvando dados...' })
 
             try {
 
@@ -205,14 +195,9 @@ export default {
                     this.$router.push({ name: 'Login' })
                 }
             }
-            finally {
-                this.SET_LOADER({ 'active': false, 'text': '' })
-            }
         },
 
         async incrementItem(item) {
-
-            this.SET_LOADER({ 'active': true, 'text': 'Salvando dados...' })
 
             try {
 
@@ -243,9 +228,6 @@ export default {
                     this.errors = error.response.data.errors
                     this.$router.push({ name: 'Login' })
                 }
-            }
-            finally {
-                this.SET_LOADER({ 'active': false, 'text': '' })
             }
         }
     }

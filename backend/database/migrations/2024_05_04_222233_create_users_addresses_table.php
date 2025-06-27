@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('city', 255);
             $table->string('zipcode', 8)->nullable();
             $table->boolean('main')->default(0);
-            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

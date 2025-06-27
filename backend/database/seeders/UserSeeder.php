@@ -14,7 +14,8 @@ class UserSeeder extends Seeder {
         User::create([
             'name' => 'Dario Brum',
             'email' => 'dbrum72@gmail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'cnpj_cpf' => '66869650063'
         ]);
     }
 }
