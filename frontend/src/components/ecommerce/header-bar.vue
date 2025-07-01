@@ -1,11 +1,19 @@
 <template>
     <div class="header">
-        <div class="title">
+        <div class="title mb-2">
             <div class="logo">
                 <img src="@/assets/logo.png">
                 <router-link :to="{ name: 'Ecommerce' }">
                     <h1>{{ $myEcommerce }}</h1>
                 </router-link>
+            </div>
+            <div class="position-relative">
+                <input type="text" class="form-control pe-5" id="filterProduct"
+                    placeholder="O que você está procurando?" v-model="searchQuery">
+                <router-link
+                    :to="{ name: 'Ecommerce', query: { filter: searchQuery, extendedFilter: null, parameter: 'name', sort: 'updated_at DESC' } }"
+                    class="position-absolute top-50 end-0 translate-middle-y me-3 text-decoration-none text-muted">
+                    <i class="fa-solid fa-magnifying-glass"></i> </router-link>
             </div>
             <div class="user-options me-3">
                 <div v-if="isLogged">
@@ -23,6 +31,10 @@
                         Cadastre-se</router-link>
                 </div>
             </div>
+            <div class="btn-cart" :class="countCart ? '' : ' empty'">
+                <span class="mb-1">{{ countCart }}</span>
+                <span class="label"><i class="fa-solid fa-cart-shopping"></i></span>
+            </div>
         </div>
         <nav>
             <router-link
@@ -33,14 +45,6 @@
                 :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Periféricos', parameter: 'tree', sort: 'updated_at DESC' } }">Periféricos</router-link>
             <router-link to="">Acessórios</router-link>
             <router-link to="">Promoções</router-link>
-            <div class="position-relative">
-                <input type="text" class="form-control pe-5" id="filterProduct" placeholder="Pesquisar produto..."
-                    v-model="searchQuery">
-                <router-link
-                    :to="{ name: 'Ecommerce', query: { filter: searchQuery, extendedFilter: null, parameter: 'name', sort: 'updated_at DESC' } }"
-                    class="position-absolute top-50 end-0 translate-middle-y me-3 text-decoration-none text-muted">
-                    <i class="fa-solid fa-magnifying-glass"></i> </router-link>
-            </div>
         </nav>
     </div>
 </template>
@@ -65,8 +69,9 @@ export default {
     computed: {
         ...mapGetters([
             'isLogged',
-            'GET_USERNAME'
-        ])        
+            'GET_USERNAME',
+            'countCart'
+        ])
     },
 
     methods: {
@@ -84,7 +89,7 @@ export default {
                 this.SET_LOADER({ 'active': false, 'text': '' })
             }
         },
-        
+
         goToAdmin() {
             this.$router.push({ name: 'AdminIndex' })
         }
@@ -93,6 +98,23 @@ export default {
 </script>
 
 <style scoped>
+.btn-cart {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    font-size: 1.4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #5AE8C9;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
+    background: #203041;
+}
+
 .dropdown-item:hover {
     color: #203041;
     background-color: #D9FEF1;
@@ -102,6 +124,18 @@ export default {
 .dropdown-menu {
     border: solid 2px #41B883;
     background-color: #203041 !important;
+}
+
+.empty {
+    text-shadow: none;
+    color: #fff;
+}
+
+.header {
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -139,6 +173,15 @@ nav {
 nav a {
     color: #879FC4;
     text-decoration: none;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    padding: 0;
 }
 
 .user-options {

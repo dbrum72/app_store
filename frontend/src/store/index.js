@@ -36,7 +36,7 @@ export default createStore({
 			return state.user ? state.user.user_id : null;
 		},
 
-		COUNT_CART(state) {
+		countCart(state) {
 			return state.cart.length;
 		},
 

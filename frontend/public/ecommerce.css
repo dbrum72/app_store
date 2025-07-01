@@ -1,18 +1,4 @@
-.header {
-    margin: 0 auto;
-    padding: 10px 10px 20px;
-    display: flex;
-    flex-direction: column; 
-}
 
-.title {
-    display: flex;
-    justify-content: space-between;
-}
-
-ul {
-    padding: 0;
-}
 
 @media (max-width: 1024px) {
     .header {
