@@ -6,7 +6,7 @@
       
 <script>
 import { mapState } from "vuex";
-import NotificationMessage from "@/components/commons/notification-message.vue"
+import NotificationMessage from "@/components/notifications/notification-message.vue"
 
 export default {
 

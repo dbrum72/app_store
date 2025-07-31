@@ -75,7 +75,7 @@
 <script>
 import AbstractMixin from '@/mixins/AbstractMixin';
 import ProductMixin from '@/mixins/ProductMixin';
-import BreadcrumbBar from '@/components/ecommerce/breadcrumb-bar.vue'
+import BreadcrumbBar from '@/components/bars/breadcrumb-bar.vue'
 
 export default {
 

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import BreadcrumbBar from '@/components/ecommerce/breadcrumb-bar.vue'
+import BreadcrumbBar from '@/components/bars/breadcrumb-bar.vue'
 
 export default {
     name: 'ProductCard',

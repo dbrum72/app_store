@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AdminBar from '@/components/commons/AdminBar.vue';
+import AdminBar from '@/components/bars/admin-bar.vue';
 
 export default {
 

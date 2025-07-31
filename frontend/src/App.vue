@@ -25,13 +25,13 @@
 
 <script>
 import { mapState } from "vuex";
-import HeaderBar from '@/components/ecommerce/header-bar.vue'
+import HeaderBar from '@/components/bars/header-bar.vue'
 //import AppAuthenticated from '@/components/templates/app-authenticated.vue'
 //import AppHeader from '@/components/templates/app-header.vue'
 //import AppNavbar from '@/components/templates/app-navbar.vue'
 //import AppFooter from '@/components/templates/app-footer.vue'
-import LoaderWait from "@/components/commons/loader-wait.vue";
-import NotificationsList from '@/components/commons/notifications-list.vue'
+import LoaderWait from "@/components/loaders/loader-wait.vue";
+import NotificationsList from '@/components/notifications/notifications-list.vue'
 
 export default {
 
