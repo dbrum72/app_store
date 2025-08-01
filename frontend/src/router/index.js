@@ -7,12 +7,19 @@ const routes = [
     {
         path: '/ecommerce',
         name: 'Ecommerce',
-        component: () => import('@/views/ecommerce/IndexView.vue')      
-    },
-    {
-        path: '/ecommerce/product/:id',
-        name: 'ProductView',
-        component: () => import('@/views/ecommerce/getProduct.vue')
+        component: () => import('@/views/ecommerce/main-view.vue'),
+        children: [
+            {
+                path: '', // <- rota default da main view
+                name: 'Start',
+                component: () => import('@/views/ecommerce/start-view.vue'),
+            },
+            {
+                path: 'product/:id',
+                name: 'ProductView',
+                component: () => import('@/views/ecommerce/getProduct.vue')
+            },
+        ]
     },
     {
         path: '/carrinho',
@@ -46,7 +53,7 @@ const routes = [
         path: '/produtos',
         name: 'Produtos',
         component: () => import('@/views/ecommerce/OrderView.vue')
-    },    
+    },
     {
         path: '/sobre',
         name: 'Sobre',
@@ -99,7 +106,7 @@ const routes = [
                 meta: { auth: true },
                 component: () => import('@/views/admin/category/deleteCategory.vue')
             },
-            
+
             {
                 path: 'users',
                 name: 'getUsers',
@@ -147,7 +154,7 @@ const routes = [
                 name: 'deleteAddress',
                 meta: { auth: true },
                 component: () => import('@/views/admin/user/deleteAddress.vue')
-            },            
+            },
             {
                 path: 'products',
                 name: 'getProducts',
@@ -207,14 +214,14 @@ const routes = [
                 name: 'deleteMovement',
                 meta: { auth: true },
                 component: () => import('@/views/admin/movement/deleteMovement.vue')
-            }            
+            }
         ]
     },
     {
         path: '/:catchAll(.*)',
         redirect: { name: 'Ecommerce' }
     },
-    
+
 ]
 
 const router = createRouter({
@@ -231,7 +238,7 @@ router.beforeEach((to, from, next) => {
             if (Date.now() / 1000 > decoded.exp) {
                 store.commit('SET_USER', null)
                 next({ name: 'Login' });
-            } 
+            }
             next()
         } else {
             store.commit('SET_USER', null)

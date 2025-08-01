@@ -24,7 +24,7 @@ export default {
     methods: {
         generatePath(index,item) {
             // Corrigido para gerar o caminho correto sem barras extras
-            return `${process.env.VUE_APP_FRONTEND_URL}/ecommerce?filter&extendedFilter=categorY,${item}&parameter=tree`;
+            return `${process.env.VUE_APP_FRONTEND_URL}/ecommerce?filter&extendedFilter=category,${item}&parameter=tree`;
         }
     }
 };

@@ -3,7 +3,7 @@
         <div class="title mb-2">
             <div class="logo">
                 <img src="@/assets/logo.png">
-                <router-link :to="{ name: 'Ecommerce' }">
+                <router-link :to="{ name: 'Start' }">
                     <h1>{{ $myEcommerce }}</h1>
                 </router-link>
             </div>
@@ -38,11 +38,11 @@
         </div>
         <nav>
             <router-link
-                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Notebooks', parameter: 'tree', sort: 'updated_at DESC' } }">Notebooks</router-link>
+                :to="{ name: 'Start', query: { filter: null, extendedFilter: 'category,Notebooks', parameter: 'tree', sort: 'updated_at DESC' } }">Notebooks</router-link>
             <router-link
-                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,SSDs', parameter: 'tree', sort: 'updated_at DESC' } }">SSDs</router-link>
+                :to="{ name: 'Start', query: { filter: null, extendedFilter: 'category,SSDs', parameter: 'tree', sort: 'updated_at DESC' } }">SSDs</router-link>
             <router-link
-                :to="{ name: 'Ecommerce', query: { filter: null, extendedFilter: 'category,Periféricos', parameter: 'tree', sort: 'updated_at DESC' } }">Periféricos</router-link>
+                :to="{ name: 'Start', query: { filter: null, extendedFilter: 'category,Periféricos', parameter: 'tree', sort: 'updated_at DESC' } }">Periféricos</router-link>
             <router-link to="">Acessórios</router-link>
             <router-link to="">Promoções</router-link>
         </nav>

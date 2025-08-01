@@ -1,58 +1,17 @@
 <template>
-
-	<header>
-		<HeaderBar />
-	</header>
-
-	<!--<AppAuthenticated />
-
-		<AppHeader :title=$myEcommerce />
-
-		<AppNavbar />
-
-		<div class="d-flex justify-content-center m-4">
-			'<LoaderWait v-if="loader.active" :text="loader.text" />'			
-		</div>
-
-		<AppFooter />-->
-	<main class="container">
-		<NotificationsList />
-		<LoaderWait v-if="loader.active" :text="loader.text" />
-		<router-view />
-	</main>
-
+	<div id="app">
+		<MainView />
+	</div>
+		
 </template>
 
 <script>
-import { mapState } from "vuex";
-import HeaderBar from '@/components/bars/header-bar.vue'
-//import AppAuthenticated from '@/components/templates/app-authenticated.vue'
-//import AppHeader from '@/components/templates/app-header.vue'
-//import AppNavbar from '@/components/templates/app-navbar.vue'
-//import AppFooter from '@/components/templates/app-footer.vue'
-import LoaderWait from "@/components/loaders/loader-wait.vue";
-import NotificationsList from '@/components/notifications/notifications-list.vue'
+import MainView from '@/views/ecommerce/main-view.vue';
 
 export default {
 
 	name: 'AppStore',
 
-	components: {
-		HeaderBar,
-		//AppAuthenticated,
-		//AppHeader,
-		//AppNavbar,
-		//AppFooter,
-		LoaderWait,
-		NotificationsList
-	},
-
-	computed: mapState(['loader']),
+	components: { MainView }
 }
 </script>
-
-<style>
-header {
-	background-color: #203041;
-}
-</style>

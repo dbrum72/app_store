@@ -1,10 +1,7 @@
 <template>
-     <div class="cards" v-if="(this.products && this.products.length > 0)">
+    <div class="cards" v-if="(this.products && this.products.length > 0)">
         <div v-for="product in products" :key=product.id>
-            <ProductCard
-                :id="product.id"
-                :name="product.name"
-                :tree="product.category?.tree"
+            <ProductCard :id="product.id" :name="product.name" :tree="product.category?.tree"
                 :src="urlBackFiles + (product.files?.[0]?.storaged ?? 'nenhumaImagem.png')"
                 :description="product.description" :price="product.price" />
         </div>
@@ -13,17 +10,16 @@
 
 <script>
 import AbstractMixin from '@/mixins/AbstractMixin';
-import ProductMixin from '@/mixins/ProductMixin';
-import ProductCard from '@/components/ecommerce/product-card.vue';
-
+import ProductMixin from '@/mixins/ProductMixin'
+import ProductCard from '@/components/cards/product-card.vue';
 
 export default {
 
-    name: 'EcommerceIndex',
-
-    mixins: [AbstractMixin, ProductMixin],
+    name: 'StartView',
 
     components: { ProductCard },
+
+    mixins: [ AbstractMixin, ProductMixin ],
 
     data() {
         return {
@@ -33,12 +29,12 @@ export default {
             parameter: this.$route.query.parameter,
             sort: this.$route.query.sort,
             products: {}
-        }
+        };
     },
 
     watch: {
         "$route.query": {
-            handler(newQuery) {                
+            handler(newQuery) {
                 this.filter = newQuery.filter;
                 this.extendedFilter = newQuery.extendedFilter;
                 this.parameter = newQuery.parameter;
@@ -52,12 +48,11 @@ export default {
 
     mounted() {
         this.getProducts(this.filter, this.extendedFilter, this.parameter, this.sort)
-    }
-}
+    },
+};
 </script>
 
 <style scoped>
-
 .cards {
     display: flex;
     flex-flow: row wrap;
@@ -66,9 +61,4 @@ export default {
     max-width: 1160px;
     margin: 0 auto;
 }
-
-
-
-
-
 </style>
